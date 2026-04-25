@@ -49,9 +49,6 @@ export default function HomePage() {
           <div className="hero__letter">
             <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
             <p className="letter">{siteCopy.letter.body}</p>
-            <div className="button-row">
-              <Link className="button button--slab" href="/join">{siteCopy.primaryCta}</Link>
-            </div>
           </div>
         </div>
 
@@ -71,6 +68,12 @@ export default function HomePage() {
         </div>
         </div>
       </section>
+
+      <Link href="/join" className="rsvp-band reveal-on-scroll" aria-label="Join Our Guest List">
+        <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
+        <span className="rsvp-band__meta">{siteCopy.heroDateLong}</span>
+        <span className="rsvp-band__arrow" aria-hidden="true">→</span>
+      </Link>
 
       <section className="section-shell reveal-on-scroll">
         <div className="section-heading">

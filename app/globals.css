@@ -107,11 +107,11 @@ button, input, textarea, select {
 }
 
 .hero__sonogram {
-  margin: clamp(8px, 2vh, 24px) auto clamp(24px, 4vh, 48px);
-  max-width: clamp(280px, 38vw, 440px);
-  padding: clamp(10px, 1.2vw, 16px);
-  background: var(--paper-soft);
-  box-shadow: 0 12px 32px rgba(28, 26, 23, 0.12);
+  margin: clamp(12px, 2vh, 28px) auto clamp(32px, 5vh, 56px);
+  max-width: clamp(320px, 46vw, 580px);
+  padding: 0;
+  background: transparent;
+  box-shadow: 0 24px 60px rgba(28, 26, 23, 0.18);
 }
 
 .hero__sonogram img {
@@ -507,13 +507,70 @@ p:last-child {
   margin-top: 38px;
 }
 
-/* When slab lives inside the note panel, break it out to the panel edges */
-.hero__letter .button-row {
-  margin: 22px -22px -24px;
+/* Architectural full-bleed RSVP band — section break between hero and schedule */
+.rsvp-band {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: clamp(48px, 8vh, 96px);
+  padding: clamp(36px, 5.5vh, 56px) clamp(32px, 8vw, 96px);
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background 240ms ease;
 }
 
-.hero__letter .button--slab {
-  width: 100%;
+.rsvp-band:hover {
+  background: var(--accent);
+}
+
+.rsvp-band__label {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.rsvp-band__meta {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: rgba(246, 241, 231, 0.7);
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.rsvp-band__arrow {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 300;
+  transition: transform 240ms ease;
+}
+
+.rsvp-band:hover .rsvp-band__arrow {
+  transform: translateX(8px);
+}
+
+@media (max-width: 700px) {
+  .rsvp-band {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "label arrow"
+      "meta arrow";
+    gap: 6px 16px;
+    padding: 28px 24px;
+  }
+  .rsvp-band__label { grid-area: label; }
+  .rsvp-band__meta {
+    grid-area: meta;
+    text-align: left;
+  }
+  .rsvp-band__arrow { grid-area: arrow; align-self: center; }
 }
 
 @media (max-width: 800px) {
