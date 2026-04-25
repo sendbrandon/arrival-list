@@ -127,7 +127,7 @@ button, input, textarea, select {
   height: clamp(34vh, 42vh, 50vh);
   position: relative;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.22;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
