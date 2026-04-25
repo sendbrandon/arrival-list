@@ -450,7 +450,7 @@ p:last-child {
   color: var(--paper);
 }
 
-/* Slab — full column width, square, monumental */
+/* Slab — full panel width, square, monumental */
 .button--slab {
   display: flex;
   width: 100%;
@@ -463,8 +463,12 @@ p:last-child {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   transition: background 200ms ease, transform 200ms ease;
 }
 
@@ -475,6 +479,22 @@ p:last-child {
 
 .button-row:has(.button--slab) {
   margin-top: 38px;
+}
+
+/* When slab lives inside the note panel, break it out to the panel edges */
+.hero__letter .button-row {
+  margin: 32px -28px -32px;
+}
+
+.hero__letter .button--slab {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .button--slab {
+    letter-spacing: 0.18em;
+    font-size: 0.82rem;
+  }
 }
 
 /* ---------- Hero details strip ---------- */
