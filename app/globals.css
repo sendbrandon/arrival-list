@@ -108,23 +108,23 @@ button, input, textarea, select {
 
 /* Full-bleed sonogram fading down into the title section */
 .hero__sonogram-bleed {
-  margin: clamp(8px, 1.5vh, 24px) calc(50% - 50vw) clamp(-220px, -22vh, -120px);
+  margin: clamp(4px, 1vh, 12px) calc(50% - 50vw) clamp(-180px, -18vh, -100px);
   width: 100vw;
-  height: clamp(50vh, 68vh, 80vh);
+  height: clamp(34vh, 42vh, 50vh);
   position: relative;
   z-index: 0;
   -webkit-mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 55%,
-    rgba(0, 0, 0, 0.6) 78%,
+    black 50%,
+    rgba(0, 0, 0, 0.55) 78%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 55%,
-    rgba(0, 0, 0, 0.6) 78%,
+    black 50%,
+    rgba(0, 0, 0, 0.55) 78%,
     transparent 100%
   );
 }
@@ -138,11 +138,11 @@ button, input, textarea, select {
 }
 
 .hero__sonogram-caption {
-  margin: clamp(8px, 1.5vh, 16px) 0 clamp(16px, 3vh, 28px);
+  margin: clamp(6px, 1vh, 12px) 0 clamp(10px, 2vh, 20px);
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   letter-spacing: 0.01em;
   color: var(--ink-soft);
   text-align: center;
@@ -274,35 +274,35 @@ p:last-child {
 .hero__main {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 88px);
+  gap: clamp(32px, 5vw, 72px);
   align-items: start;
-  padding: clamp(24px, 4vh, 48px) 0 0;
+  padding: clamp(12px, 2vh, 24px) 0 0;
   position: relative;
   z-index: 1;
 }
 
 /* Match top edge of names column to note panel's first line */
 .hero__content {
-  padding-top: 22px;
+  padding-top: 16px;
   border-bottom: 1px solid rgba(28, 26, 23, 0.18);
-  padding-bottom: 22px;
+  padding-bottom: 18px;
 }
 
 
 .hero__letter {
-  max-width: 360px;
+  max-width: 340px;
   justify-self: end;
   align-self: end;
   text-align: left;
   position: relative;
-  padding: 22px 22px 24px;
+  padding: 16px 18px 18px;
   background: rgba(251, 247, 239, 0.6);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
 .hero__letter .eyebrow {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   color: var(--accent);
   text-shadow: 0 1px 0 rgba(246, 241, 231, 0.6);
 }
@@ -311,11 +311,11 @@ p:last-child {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 420;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
   line-height: 1.4;
   letter-spacing: -0.005em;
   color: var(--ink);
-  margin: 0 0 14px;
+  margin: 0;
   text-shadow: 0 1px 0 rgba(246, 241, 231, 0.55);
 }
 
@@ -391,7 +391,7 @@ p:last-child {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   text-transform: lowercase;
   color: var(--ink-soft);
   letter-spacing: 0;
@@ -404,21 +404,21 @@ p:last-child {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: clamp(5.5rem, 18vw, 13rem);
+  font-size: clamp(4.5rem, 13vw, 9.5rem);
   text-transform: none;
   letter-spacing: -0.035em;
   line-height: 0.9;
   color: var(--ink);
   font-variation-settings: "opsz" 144, "SOFT" 100;
   display: block;
-  margin: clamp(-12px, -1vh, -4px) 0 clamp(-12px, -1vh, -4px);
+  margin: clamp(-10px, -1vh, -4px) 0 clamp(-10px, -1vh, -4px);
 }
 
 .hero__title--emigre .t-3 {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   letter-spacing: -0.02em;
   color: var(--ink-soft);
   margin: 0;
@@ -427,11 +427,11 @@ p:last-child {
 }
 
 .hero__names {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-family: "Fraunces", serif;
   font-style: normal;
   font-weight: 500;
-  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
   color: var(--ink);
   letter-spacing: -0.018em;
   line-height: 1.18;
@@ -448,20 +448,20 @@ p:last-child {
 }
 
 .hero__date {
-  margin: 14px 0 4px;
+  margin: 8px 0 2px;
   font-family: "Fraunces", serif;
   font-style: normal;
   font-weight: 400;
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   color: var(--ink);
   letter-spacing: -0.01em;
   line-height: 1.25;
 }
 
 .hero__location {
-  margin: 0 0 32px;
+  margin: 0;
   font-family: "Inter", sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 400;
   color: var(--ink-soft);
   letter-spacing: 0.01em;
@@ -568,8 +568,8 @@ p:last-child {
   gap: clamp(24px, 5vw, 64px);
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-top: clamp(28px, 4vh, 48px);
-  padding: clamp(32px, 5vh, 52px) clamp(32px, 8vw, 96px);
+  margin-top: clamp(16px, 2.5vh, 28px);
+  padding: clamp(22px, 3.2vh, 36px) clamp(32px, 8vw, 96px);
   background: var(--ink);
   color: var(--paper);
   text-decoration: none;
