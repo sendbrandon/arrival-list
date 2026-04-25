@@ -1,0 +1,683 @@
+.c {
+  --c-paper: #efe7d0;
+  --c-paper-soft: #ece2c4;
+  --c-ink: #2f3d33;
+  --c-ink-soft: #4a5a4f;
+  --c-muted: #88907f;
+  --c-line: rgba(47, 61, 51, 0.18);
+  --c-line-soft: rgba(47, 61, 51, 0.08);
+  --c-accent: #d35d3a;
+  --c-accent-soft: #e89478;
+  --c-rose: #d4a596;
+  --c-black: #1c1a17;
+  background: var(--c-paper);
+  color: var(--c-ink);
+  position: relative;
+  font-family: "Fraunces", serif;
+  overflow-x: hidden;
+}
+
+.c-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* ---------- Marquee ---------- */
+.c-marquee {
+  background: var(--c-black);
+  color: var(--c-paper);
+  overflow: hidden;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(239, 231, 208, 0.1);
+}
+
+.c-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 2.5em;
+  white-space: nowrap;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  letter-spacing: -0.005em;
+  animation: c-marquee-slide 38s linear infinite;
+  will-change: transform;
+}
+
+.c-marquee__mark {
+  color: var(--c-accent);
+  font-size: 0.85em;
+  font-style: normal;
+}
+
+@keyframes c-marquee-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-marquee__track { animation: none; }
+}
+
+/* ---------- Hero ---------- */
+.c-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.c-hero__video video,
+.c-hero__video .hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.7) hue-rotate(-12deg) brightness(1.06) contrast(0.92);
+  opacity: 0.55;
+}
+
+.c-hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(239,231,208,0.7) 0%, rgba(239,231,208,0.4) 38%, rgba(239,231,208,0.85) 100%);
+}
+
+.c-hero__inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Nav ---------- */
+.c-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 26px 0 32px;
+}
+
+.c-nav__brand {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--c-ink);
+  letter-spacing: -0.005em;
+}
+
+.c-nav__brand em {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0.18em;
+  font-size: 0.92em;
+}
+
+.c-nav__edition {
+  font-family: "Inter", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+/* ---------- Section markers (00 / 01 / 02 / 03) ---------- */
+.c-marker {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 28px;
+  padding-bottom: 0;
+}
+
+.c-marker__num {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--c-accent);
+  letter-spacing: -0.005em;
+}
+
+.c-marker__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+
+.c-marker__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--c-line);
+  margin-left: 12px;
+}
+
+/* ---------- Sonogram bleed ---------- */
+.c-sonogram {
+  width: 100vw;
+  margin: clamp(8px, 1.5vh, 24px) calc(50% - 50vw) clamp(-160px, -16vh, -90px);
+  height: clamp(34vh, 42vh, 50vh);
+  opacity: 0.32;
+  position: relative;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 12%,
+    rgba(0,0,0,0.4) 26%,
+    rgba(0,0,0,0.36) 52%,
+    rgba(0,0,0,0.18) 76%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 12%,
+    rgba(0,0,0,0.4) 26%,
+    rgba(0,0,0,0.36) 52%,
+    rgba(0,0,0,0.18) 76%,
+    transparent 100%
+  );
+  animation: c-sonogram-fade 14s ease-in-out infinite;
+}
+
+.c-sonogram img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 65%;
+  filter: sepia(0.45) hue-rotate(-12deg) saturate(0.85) brightness(1.18) contrast(0.85);
+  mix-blend-mode: multiply;
+}
+
+@keyframes c-sonogram-fade {
+  0%, 100% { opacity: 0.22; }
+  50%      { opacity: 0.38; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-sonogram { animation: none; }
+}
+
+/* ---------- Title ---------- */
+.c-title {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: clamp(8px, 1.5vh, 20px) 0 clamp(20px, 3.5vh, 40px);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  font-feature-settings: "ss01" 1, "dlig" 1;
+}
+
+.c-title__t1 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  color: var(--c-ink-soft);
+  letter-spacing: 0;
+  font-variation-settings: "opsz" 9;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.c-title__t2 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(5rem, 14vw, 10.5rem);
+  color: var(--c-ink);
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  margin: -8px 0 -6px;
+  display: block;
+}
+
+.c-title__t3 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  color: var(--c-ink-soft);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variation-settings: "opsz" 60, "SOFT" 100;
+}
+
+.c-title__period {
+  display: inline-block;
+  color: var(--c-accent);
+  font-size: 1.3em;
+  line-height: 0;
+  vertical-align: baseline;
+  transform: translateY(0.04em);
+  font-style: normal;
+  margin-left: 0.02em;
+}
+
+/* ---------- Main row ---------- */
+.c-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+  padding: clamp(16px, 2.5vh, 32px) 0 clamp(28px, 4vh, 48px);
+  position: relative;
+  z-index: 1;
+}
+
+.c-main::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%, var(--c-line) 8%, var(--c-line) 92%, transparent 100%
+  );
+}
+
+.c-content {
+  padding-top: 16px;
+  padding-bottom: 18px;
+}
+
+.c-names {
+  margin: 0 0 8px;
+  font-family: "Fraunces", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  color: var(--c-ink);
+  letter-spacing: -0.018em;
+  line-height: 1.18;
+}
+
+.c-names em {
+  font-style: italic;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+.c-amp {
+  font-style: italic;
+  font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
+  color: var(--c-accent);
+  font-size: 1.08em;
+  margin: 0 0.05em;
+}
+
+.c-date {
+  margin: 8px 0 2px;
+  font-family: "Fraunces", serif;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  color: var(--c-ink);
+  letter-spacing: -0.01em;
+}
+
+.c-location {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--c-ink-soft);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.c-letter {
+  max-width: 360px;
+  justify-self: end;
+  align-self: end;
+  text-align: left;
+  padding: 16px 0 18px;
+}
+
+.c-eyebrow {
+  margin: 0 0 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.c-letter__body {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 420;
+  font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+  line-height: 1.4;
+  color: var(--c-ink);
+  margin: 0 0 12px;
+}
+
+.c-letter__signoff {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-accent);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- RSVP slab ---------- */
+.c-rsvp {
+  display: grid;
+  grid-template-columns: auto 1px auto 1fr auto;
+  align-items: center;
+  gap: clamp(20px, 4vw, 48px);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: auto;
+  padding: clamp(22px, 3.2vh, 36px) clamp(32px, 8vw, 96px);
+  background: var(--c-black);
+  color: var(--c-paper);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  transition: background 240ms ease;
+  border-top: 3px solid var(--c-accent);
+}
+
+.c-rsvp:hover {
+  background: var(--c-accent);
+  border-top-color: var(--c-paper);
+}
+
+.c-rsvp__label {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.c-rsvp__rule {
+  width: 1px;
+  height: 1.4em;
+  background: rgba(239, 231, 208, 0.4);
+  display: block;
+}
+
+.c-rsvp__meta {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(239, 231, 208, 0.78);
+}
+
+.c-rsvp__arrow {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 300;
+  justify-self: end;
+  transition: transform 240ms ease;
+}
+
+.c-rsvp:hover .c-rsvp__arrow {
+  transform: translateX(8px);
+}
+
+@media (max-width: 800px) {
+  .c-rsvp {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "label arrow"
+      "meta  arrow";
+    gap: 6px 20px;
+    padding: 24px 22px;
+  }
+  .c-rsvp__label { grid-area: label; font-size: 0.95rem; letter-spacing: 0.18em; }
+  .c-rsvp__rule { display: none; }
+  .c-rsvp__meta { grid-area: meta; font-size: 0.7rem; letter-spacing: 0.18em; }
+  .c-rsvp__arrow { grid-area: arrow; align-self: center; font-size: 1.6rem; }
+}
+
+/* ---------- Sections (Schedule / Registry) ---------- */
+.c-section {
+  padding: clamp(72px, 10vw, 120px) 0;
+}
+
+.c-h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: var(--c-ink);
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  margin: 0 0 clamp(40px, 6vw, 72px);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.c-h2 em {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.85em;
+  margin: 0 0.05em;
+  font-feature-settings: "swsh" 1, "dlig" 1;
+}
+
+/* ---------- Schedule list ---------- */
+.c-schedule {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--c-ink);
+}
+
+.c-schedule__row {
+  display: grid;
+  grid-template-columns: 90px minmax(180px, 1fr) minmax(0, 2fr) auto;
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+  min-height: 96px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--c-line);
+  transition: padding 250ms ease, background 250ms ease;
+}
+
+.c-schedule__row:hover {
+  background: rgba(47, 61, 51, 0.025);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.c-schedule__num {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1;
+  color: var(--c-accent);
+  letter-spacing: -0.02em;
+}
+
+.c-schedule__title {
+  font-family: "Fraunces", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+}
+
+.c-schedule__body {
+  margin: 0;
+  color: var(--c-ink-soft);
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.c-schedule__when {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .c-schedule__row {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas: "num title" "num body" ".   when";
+    row-gap: 8px;
+    column-gap: 20px;
+  }
+  .c-schedule__num   { grid-area: num; }
+  .c-schedule__title { grid-area: title; }
+  .c-schedule__body  { grid-area: body; }
+  .c-schedule__when  { grid-area: when; }
+}
+
+/* ---------- Registry ---------- */
+.c-registry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+}
+
+@media (max-width: 800px) {
+  .c-registry { grid-template-columns: 1fr; }
+}
+
+/* Registry cards on this page — override .registry-card colors via .c scope */
+.c .registry-card {
+  border-top-color: var(--c-ink);
+  color: var(--c-ink);
+}
+
+.c .registry-card__category {
+  color: var(--c-accent);
+}
+
+.c .registry-card__title { color: var(--c-ink); }
+.c .registry-card__note { color: var(--c-ink-soft); }
+.c .registry-card__cta {
+  color: var(--c-ink);
+  border-bottom-color: var(--c-ink);
+}
+.c .price-block { color: var(--c-ink); }
+.c .price-block__sale { color: var(--c-accent); }
+.c .price-block__original { color: var(--c-muted); }
+
+.c-text-link {
+  display: inline-block;
+  margin-top: clamp(28px, 4vw, 40px);
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  border-bottom: 1px solid var(--c-accent);
+  padding-bottom: 2px;
+  text-decoration: none;
+}
+
+.c-text-link:hover {
+  color: var(--c-accent);
+}
+
+/* ---------- Footer ---------- */
+.c-footer {
+  border-top: 1px solid var(--c-line);
+  padding: 32px clamp(24px, 5vw, 48px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-top: clamp(64px, 10vw, 120px);
+}
+
+.c-footer__mark {
+  color: var(--c-accent);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .c-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* ---------- Mobile main row ---------- */
+@media (max-width: 800px) {
+  .c-main {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 12px 0 28px;
+  }
+
+  .c-main::after { display: none; }
+
+  .c-letter {
+    justify-self: start;
+    max-width: 100%;
+    padding-bottom: 12px;
+  }
+
+  .c-content {
+    padding-bottom: 12px;
+  }
+
+  .c-title {
+    margin: 8px 0 18px;
+  }
+
+  .c-title__t2 {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .c-title__t3 {
+    font-size: clamp(1.85rem, 7vw, 2.6rem);
+  }
+
+  .c-sonogram {
+    height: clamp(22vh, 28vh, 34vh);
+    margin-bottom: clamp(-50px, -7vh, -28px);
+  }
+
+  .c-nav__edition { display: none; }
+}
