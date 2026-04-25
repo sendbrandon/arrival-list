@@ -8,7 +8,7 @@ export const siteCopy = {
     eyebrow: "A note from us",
     body: "To the family and friends we love most — thank you for showing up for us in this season. This little one is already so loved, and so much of that love is because of you. We can't wait to celebrate together in June.",
     signoff: "— Brandon & Shenika"
-  }
+  },
   heroBody: "",
   primaryCta: "RSVP",
   secondaryCta: "View Registry",
