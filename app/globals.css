@@ -111,7 +111,7 @@ button, input, textarea, select {
   max-width: clamp(320px, 46vw, 580px);
   padding: 0;
   background: transparent;
-  box-shadow: 0 24px 60px rgba(28, 26, 23, 0.18);
+  position: relative;
 }
 
 .hero__sonogram img {
@@ -119,6 +119,19 @@ button, input, textarea, select {
   width: 100%;
   height: auto;
   filter: sepia(0.18) contrast(1.05) brightness(1.04);
+  box-shadow: 0 24px 60px rgba(28, 26, 23, 0.18);
+}
+
+.hero__sonogram-caption {
+  margin: 18px 0 0;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  text-align: center;
+  font-variation-settings: "opsz" 60, "SOFT" 100;
 }
 
 .mini-nav {
@@ -213,14 +226,47 @@ p:last-child {
   display: grid;
   grid-template-rows: auto auto auto auto;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Architectural axis line — subtle 1px ink hairline through the page center */
+.hero__inner::before {
+  content: "";
+  position: absolute;
+  top: clamp(180px, 24vh, 280px);
+  bottom: clamp(140px, 18vh, 220px);
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 26, 23, 0) 0%,
+    rgba(28, 26, 23, 0.18) 12%,
+    rgba(28, 26, 23, 0.18) 88%,
+    rgba(28, 26, 23, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 800px) {
+  .hero__inner::before {
+    display: none;
+  }
 }
 
 .hero__main {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr);
   gap: clamp(28px, 4.5vw, 56px);
-  align-items: stretch;
+  align-items: start;
   padding: clamp(24px, 4vh, 48px) 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Match top edge of names column to note panel's first line */
+.hero__content {
+  padding-top: 22px;
 }
 
 .hero__divider {

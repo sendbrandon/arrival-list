@@ -35,6 +35,7 @@ export default function HomePage() {
 
         <figure className="hero__sonogram reveal" aria-label="Ultrasound — our little one">
           <img src="/sonogram.jpg" alt="Ultrasound profile of the baby" />
+          <figcaption className="hero__sonogram-caption">the baby, in profile.</figcaption>
         </figure>
 
         <div className="hero__main">
