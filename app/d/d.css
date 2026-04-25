@@ -46,10 +46,32 @@
 
 @media (max-width: 800px) {
   .d-feature {
-    height: clamp(38vh, 48vh, 56vh);
+    height: clamp(40vh, 50vh, 58vh);
+    /* Lighter top fade so BABY isn't lost; deeper bottom fade is fine */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 5%,
+      rgba(0, 0, 0, 1) 14%,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0.5) 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 5%,
+      rgba(0, 0, 0, 1) 14%,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0.5) 90%,
+      transparent 100%
+    );
   }
 
   .d-feature img {
-    transform: scale(1.4);
+    /* Pull image down so BABY sits clearly in the opaque zone */
+    object-position: center 22%;
+    transform-origin: center 22%;
+    transform: scale(1.05);
   }
 }
