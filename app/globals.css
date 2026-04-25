@@ -1266,33 +1266,37 @@ textarea {
   }
 
   .hero__title {
-    margin: 24px 0 28px;
+    margin: 16px 0 20px;
     font-size: clamp(3rem, 14vw, 5rem);
     line-height: 0.95;
   }
 
   .hero__sonogram-bleed {
-    height: clamp(40vh, 50vh, 60vh);
-    margin-bottom: clamp(-100px, -12vh, -60px);
+    height: clamp(26vh, 32vh, 38vh);
+    margin-bottom: clamp(-60px, -8vh, -32px);
   }
 
   .hero__title--emigre {
-    margin: 24px 0 28px;
+    margin: 12px 0 20px;
+  }
+
+  .hero__title--emigre .t-1 {
+    font-size: clamp(1.15rem, 4.5vw, 1.6rem);
   }
 
   .hero__title--emigre .t-2 {
-    font-size: clamp(5rem, 24vw, 7rem);
+    font-size: clamp(4rem, 20vw, 6rem);
   }
 
   .hero__title--emigre .t-3 {
-    font-size: clamp(2rem, 7.5vw, 3rem);
+    font-size: clamp(1.75rem, 6.5vw, 2.5rem);
     margin: 0;
   }
 
   .hero__main {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 8px 0 32px;
+    gap: 24px;
+    padding: 4px 0 20px;
     align-items: start;
   }
 
@@ -1301,15 +1305,15 @@ textarea {
     justify-self: start;
     align-self: start;
     max-width: 100%;
-    padding-bottom: 0;
+    padding: 0 0 12px;
   }
 
   .hero__content {
-    padding: 0;
+    padding: 12px 0 12px;
   }
 
   .nav-line {
-    padding: 24px 0 0;
+    padding: 20px 0 0;
   }
 
   .hero__details > div {
