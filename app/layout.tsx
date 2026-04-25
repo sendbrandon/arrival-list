@@ -8,7 +8,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL("https://arrival-list.vercel.app"),
+  metadataBase: new URL("https://kingadams.family"),
   openGraph: {
     title,
     description,
