@@ -55,7 +55,7 @@ export default function HomePage() {
         <Link href="/join" className="rsvp-band reveal" aria-label="Join Our Guest List">
           <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
           <span className="rsvp-band__rule" aria-hidden="true" />
-          <span className="rsvp-band__meta">We can&rsquo;t wait to see you.</span>
+          <span className="rsvp-band__meta">Address · Reminders · Registry</span>
           <span className="rsvp-band__arrow" aria-hidden="true">→</span>
         </Link>
 
