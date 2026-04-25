@@ -2,13 +2,10 @@ import type { RegistryItem } from "@/lib/registry";
 
 export function RegistryCard({ item }: { item: RegistryItem }) {
   return (
-    <article className="registry-card">
-      <div className="registry-card__meta">
-        <span>{item.category}</span>
-        <span>{item.retailer}</span>
-      </div>
-      <h3>{item.title}</h3>
-      <p>{item.note}</p>
+    <a className="registry-card" href={item.href} aria-label={`Open registry item: ${item.title}`}>
+      <span className="registry-card__category">{item.category}</span>
+      <h3 className="registry-card__title">{item.title}</h3>
+      <p className="registry-card__note">{item.note}</p>
       <div className="registry-card__footer">
         <div className="price-block" aria-label="Price">
           {item.salePrice ? (
@@ -20,10 +17,8 @@ export function RegistryCard({ item }: { item: RegistryItem }) {
             <span>{item.price}</span>
           )}
         </div>
-        <a className="text-link" href={item.href} aria-label={`Open registry item: ${item.title}`}>
-          View item
-        </a>
+        <span className="registry-card__cta">View →</span>
       </div>
-    </article>
+    </a>
   );
 }

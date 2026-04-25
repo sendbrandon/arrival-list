@@ -258,15 +258,24 @@ p:last-child {
 }
 
 .hero__names {
-  margin: 0 0 36px;
+  margin: 0 0 6px;
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
   color: var(--ink);
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  max-width: 540px;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.hero__sublabel {
+  margin: 0 0 36px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -456,11 +465,16 @@ dd {
 
 /* ---------- Cards (Drop / Registry / Detail panel) ---------- */
 
-.drop-grid,
-.registry-grid {
+.drop-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+
+.registry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 48px);
 }
 
 /* Editorial schedule list */
@@ -475,15 +489,15 @@ dd {
   display: grid;
   grid-template-columns: 90px minmax(180px, 1fr) minmax(0, 2fr) auto;
   gap: clamp(20px, 4vw, 56px);
-  align-items: baseline;
-  padding: 28px 0;
+  align-items: center;
+  min-height: 96px;
+  padding: 24px 0;
   border-bottom: 1px solid var(--line);
-  transition: padding 250ms ease;
+  transition: padding 250ms ease, background 250ms ease;
 }
 
 .drop-row:hover {
-  padding-left: 12px;
-  padding-right: 12px;
+  background: rgba(28, 26, 23, 0.02);
 }
 
 .drop-row__num {
@@ -523,7 +537,6 @@ dd {
 }
 
 .drop-card,
-.registry-card,
 .detail-panel {
   background: var(--paper-soft);
   border: 1px solid var(--line);
@@ -533,8 +546,7 @@ dd {
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
-.drop-card:hover,
-.registry-card:hover {
+.drop-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -549,21 +561,49 @@ dd {
   margin-bottom: 12px;
 }
 
+/* Editorial registry card — no box, just typography */
 .registry-card {
   display: flex;
   flex-direction: column;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+  min-height: 220px;
 }
 
-.registry-card__meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-  color: var(--muted);
-  font-size: 0.7rem;
+.registry-card:hover {
+  opacity: 0.7;
+}
+
+.registry-card__category {
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.registry-card__title {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.registry-card__note {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 280px;
 }
 
 .registry-card__footer {
@@ -575,10 +615,24 @@ dd {
   padding-top: 24px;
 }
 
+.registry-card__cta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  align-self: end;
+}
+
 .price-block {
   font-family: "Fraunces", serif;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   color: var(--ink);
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .price-block__sale {
