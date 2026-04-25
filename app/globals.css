@@ -98,6 +98,20 @@ button, input, textarea, select {
   padding: 32px 0;
 }
 
+.nav-serial {
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .nav-serial { display: none; }
+}
+
 .t-crest {
   display: block;
   width: clamp(96px, 11vw, 160px);
@@ -299,10 +313,9 @@ p:last-child {
   align-self: end;
   text-align: left;
   position: relative;
-  padding: 16px 18px 18px;
-  background: rgba(251, 247, 239, 0.6);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  padding: 16px 0 18px;
+  background: transparent;
+  border-bottom: 1px solid rgba(28, 26, 23, 0.18);
 }
 
 .hero__letter .eyebrow {
@@ -382,7 +395,7 @@ p:last-child {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(4px, 1vh, 12px);
-  margin: 0 0 clamp(8px, 1.5vh, 16px);
+  margin: clamp(20px, 4vh, 56px) 0 clamp(8px, 1.5vh, 16px);
   letter-spacing: 0;
   line-height: 1;
   font-weight: 400;
@@ -434,7 +447,7 @@ p:last-child {
   margin: 0 0 8px;
   font-family: "Fraunces", serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   color: var(--ink);
   letter-spacing: -0.018em;
@@ -567,9 +580,9 @@ p:last-child {
 /* Architectural full-bleed RSVP band — section break between hero and schedule */
 .rsvp-band {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: auto 1px auto 1fr auto;
   align-items: center;
-  gap: clamp(24px, 5vw, 64px);
+  gap: clamp(20px, 4vw, 48px);
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-top: clamp(16px, 2.5vh, 28px);
@@ -578,6 +591,22 @@ p:last-child {
   color: var(--paper);
   text-decoration: none;
   transition: background 240ms ease;
+}
+
+.rsvp-band__rule {
+  width: 1px;
+  height: 1.4em;
+  background: rgba(246, 241, 231, 0.4);
+  display: block;
+}
+
+.rsvp-band__meta {
+  justify-self: start;
+  text-align: left !important;
+}
+
+.rsvp-band__arrow {
+  justify-self: end;
 }
 
 .rsvp-band:hover {
@@ -623,9 +652,10 @@ p:last-child {
     padding: 28px 24px;
   }
   .rsvp-band__label { grid-area: label; }
+  .rsvp-band__rule { display: none; }
   .rsvp-band__meta {
     grid-area: meta;
-    text-align: left;
+    text-align: left !important;
   }
   .rsvp-band__arrow { grid-area: arrow; align-self: center; }
 }

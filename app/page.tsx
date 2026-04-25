@@ -25,6 +25,7 @@ export default function HomePage() {
         <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.navTitle}</span>
+          <span className="nav-serial">No. 001</span>
         </div>
 
         <figure className="hero__sonogram-bleed" aria-label="Ultrasound — our little one">
@@ -54,6 +55,7 @@ export default function HomePage() {
 
         <Link href="/join" className="rsvp-band reveal" aria-label="Join Our Guest List">
           <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
+          <span className="rsvp-band__rule" aria-hidden="true" />
           <span className="rsvp-band__meta">{siteCopy.heroDateLong}</span>
           <span className="rsvp-band__arrow" aria-hidden="true">→</span>
         </Link>
