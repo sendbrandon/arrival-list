@@ -31,7 +31,8 @@ export default function HomePage() {
           <div className="hero__content reveal">
             <h1 className="hero__title">{siteCopy.heroTitle}</h1>
             <p className="hero__names">{siteCopy.heroNames}</p>
-            <p className="hero__sublabel">{siteCopy.heroSubLabel}</p>
+            <p className="hero__date">{siteCopy.heroDateLong}</p>
+            <p className="hero__location">{siteCopy.heroLocationShort}</p>
             <div className="button-row">
               <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
             </div>
@@ -45,12 +46,12 @@ export default function HomePage() {
 
         <div className="hero__details" aria-label="Event summary">
           <div>
-            <span>The Day</span>
-            <strong>{siteCopy.eventDate}</strong>
+            <span>Dress</span>
+            <strong>Elevated casual, soft neutrals</strong>
           </div>
           <div>
-            <span>The Place</span>
-            <strong>{siteCopy.eventCity}</strong>
+            <span>Parking & Map</span>
+            <strong>Shared closer to the day</strong>
           </div>
           <div>
             <span>Staying in Touch</span>

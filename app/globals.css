@@ -294,6 +294,27 @@ p:last-child {
   color: var(--ink-soft);
 }
 
+.hero__date {
+  margin: 14px 0 4px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.hero__location {
+  margin: 0 0 32px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__title {
     animation: none;

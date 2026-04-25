@@ -3,7 +3,9 @@ export const siteCopy = {
   eyebrow: "June / Baby Shower",
   heroTitle: "A New Life Arrives",
   heroNames: "Brandon & Shenika",
-  heroSubLabel: "Baby Shower · June 2026",
+  heroSubLabel: "Baby Shower",
+  heroDateLong: process.env.NEXT_PUBLIC_EVENT_DATE_LONG || "Saturday · June 2026",
+  heroLocationShort: process.env.NEXT_PUBLIC_EVENT_LOCATION_SHORT || "Location shared closer to the day",
   letter: {
     eyebrow: "A note from us",
     body: "To the family and friends we love most — thank you for showing up for us in this season. This little one is already so loved, and so much of that love is because of you. We can't wait to celebrate together in June.",
