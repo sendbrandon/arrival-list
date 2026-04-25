@@ -9,6 +9,19 @@ export default function HomePage() {
   return (
     <main>
       <section className="hero section-shell">
+        <div className="hero__video-wrap" aria-hidden="true">
+          <video
+            className="hero__video"
+            src="/hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+          <div className="hero__video-overlay" />
+        </div>
+
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.name}</span>
           <span>{siteCopy.eventDate}</span>
