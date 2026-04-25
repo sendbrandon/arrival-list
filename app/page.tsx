@@ -27,10 +27,10 @@ export default function HomePage() {
           <span>{siteCopy.navTitle}</span>
         </div>
 
-        <h1 className="hero__title reveal">
-          A New Life
-          <br />
-          Arrives
+        <h1 className="hero__title hero__title--emigre reveal">
+          <span className="t-1">a new</span>
+          <span className="t-2">Life</span>
+          <span className="t-3">Arrives.</span>
         </h1>
 
         <div className="hero__main">
