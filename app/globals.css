@@ -1309,8 +1309,9 @@ textarea {
       to bottom,
       transparent 0%,
       rgba(28, 26, 23, 0.22) 6%,
-      rgba(28, 26, 23, 0.22) 94%,
-      rgba(28, 26, 23, 0.22) 100%
+      rgba(28, 26, 23, 0.22) 70%,
+      rgba(28, 26, 23, 0.06) 92%,
+      transparent 100%
     );
     z-index: 4;
     pointer-events: none;
