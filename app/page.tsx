@@ -40,6 +40,8 @@ export default function HomePage() {
             <p className="hero__location">{siteCopy.heroLocationShort}</p>
           </div>
 
+          <div className="hero__divider" aria-hidden="true" />
+
           <div className="hero__letter">
             <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
             <p className="letter">{siteCopy.letter.body}</p>

@@ -194,10 +194,23 @@ p:last-child {
 
 .hero__main {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 72px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr);
+  gap: clamp(28px, 4.5vw, 56px);
+  align-items: stretch;
   padding: clamp(24px, 4vh, 48px) 0 0;
+}
+
+.hero__divider {
+  width: 1px;
+  align-self: stretch;
+  justify-self: center;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(28, 26, 23, 0.18) 18%,
+    rgba(28, 26, 23, 0.18) 82%,
+    transparent 100%
+  );
 }
 
 .hero__letter {
@@ -206,7 +219,10 @@ p:last-child {
   align-self: end;
   text-align: left;
   position: relative;
-  padding-bottom: 8px;
+  padding: 28px 28px 32px;
+  background: rgba(251, 247, 239, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .hero__letter .eyebrow {
@@ -1051,9 +1067,21 @@ textarea {
 
   .hero__main {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
     padding: 8px 0 32px;
     align-items: start;
+  }
+
+  .hero__divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(28, 26, 23, 0.18) 12%,
+      rgba(28, 26, 23, 0.18) 88%,
+      transparent 100%
+    );
   }
 
   .hero__letter {
