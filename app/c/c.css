@@ -42,7 +42,14 @@
   font-size: clamp(0.95rem, 1.3vw, 1.15rem);
   letter-spacing: -0.005em;
   animation: c-marquee-slide 140s linear infinite;
+  animation-fill-mode: backwards;
   will-change: transform;
+}
+
+@keyframes c-marquee-slide {
+  0%   { transform: translateX(0); }
+  6%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .c-marquee__group {
@@ -58,11 +65,6 @@
   font-size: 0.85em;
   font-style: normal;
   flex-shrink: 0;
-}
-
-@keyframes c-marquee-slide {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
