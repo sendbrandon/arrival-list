@@ -160,6 +160,25 @@ button, input, textarea, select {
   object-position: center 65%;
   filter: sepia(0.28) contrast(0.82) brightness(1.32);
   mix-blend-mode: multiply;
+  transform-origin: center 65%;
+  animation: sonogram-breath 7s ease-in-out infinite;
+}
+
+@keyframes sonogram-breath {
+  0%, 100% {
+    transform: scale(1);
+    filter: sepia(0.28) contrast(0.82) brightness(1.32);
+  }
+  50% {
+    transform: scale(1.018);
+    filter: sepia(0.3) contrast(0.84) brightness(1.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__sonogram-bleed img {
+    animation: none;
+  }
 }
 
 .hero__sonogram-caption {
