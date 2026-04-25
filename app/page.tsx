@@ -38,6 +38,12 @@ export default function HomePage() {
           </div>
         </div>
 
+        <div className="hero__letter">
+          <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
+          <p className="letter">{siteCopy.letter.body}</p>
+          <p className="letter__signoff">{siteCopy.letter.signoff}</p>
+        </div>
+
         <div className="hero__details" aria-label="Event summary">
           <div>
             <span>Date</span>
@@ -53,12 +59,6 @@ export default function HomePage() {
           </div>
         </div>
         </div>
-      </section>
-
-      <section className="section-shell letter-section">
-        <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
-        <p className="letter">{siteCopy.letter.body}</p>
-        <p className="letter__signoff">{siteCopy.letter.signoff}</p>
       </section>
 
       <section className="section-shell">

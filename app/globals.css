@@ -179,7 +179,6 @@ p:last-child {
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  min-height: 92vh;
   padding-bottom: 60px;
   isolation: isolate;
   overflow: hidden;
@@ -189,8 +188,41 @@ p:last-child {
   width: min(1080px, calc(100% - 40px));
   margin: 0 auto;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: inherit;
+  grid-template-rows: auto auto auto auto;
+  gap: clamp(48px, 8vw, 96px);
+  min-height: 100vh;
+}
+
+.hero__letter {
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero__letter .eyebrow {
+  margin-bottom: 22px;
+}
+
+.hero__letter .letter {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 auto 22px;
+}
+
+.hero__letter .letter__signoff {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin: 0;
 }
 
 .hero__video-wrap {
