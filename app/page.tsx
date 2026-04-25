@@ -25,6 +25,7 @@ export default function HomePage() {
         <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.navTitle}</span>
+          <span className="nav-edition">Arrival · No. 001 · MMXXVI</span>
         </div>
 
         <h1 className="hero__title hero__title--emigre reveal">
@@ -44,8 +45,6 @@ export default function HomePage() {
             <p className="hero__date">{siteCopy.heroDateLong}</p>
             <p className="hero__location">{siteCopy.heroLocationShort}</p>
           </div>
-
-          <div className="hero__divider" aria-hidden="true" />
 
           <div className="hero__letter">
             <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
