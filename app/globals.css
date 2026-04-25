@@ -298,7 +298,7 @@ p:last-child {
   max-width: none;
 }
 
-/* EMIGRE-style three-voice title — mixed typographic registers */
+/* EMIGRE-altar three-voice title — centered axis, extreme scale contrast */
 .hero__title--emigre {
   text-transform: none;
   display: grid;
@@ -308,6 +308,7 @@ p:last-child {
   letter-spacing: 0;
   line-height: 1;
   font-weight: 400;
+  text-align: center;
 }
 
 .hero__title--emigre .t-1 {
@@ -342,27 +343,8 @@ p:last-child {
   font-size: clamp(2.25rem, 4.5vw, 3.75rem);
   letter-spacing: -0.015em;
   color: var(--ink);
-  margin-left: clamp(40%, 45%, 50%);
-  margin-top: clamp(-12px, -1vh, -4px);
+  margin: clamp(-12px, -1vh, -4px) 0 0;
   font-variation-settings: "opsz" 60, "SOFT" 100;
-}
-
-/* Catholic cross integrated into the I of LIFE */
-.cross-i {
-  position: relative;
-  display: inline-block;
-}
-
-.cross-i::before {
-  content: "";
-  position: absolute;
-  top: 0.18em;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0.55em;
-  height: 0.085em;
-  background: currentColor;
-  pointer-events: none;
 }
 
 .hero__names {
@@ -1102,7 +1084,7 @@ textarea {
 
   .hero__title--emigre .t-3 {
     font-size: clamp(2rem, 8vw, 3rem);
-    margin-left: 35%;
+    margin: 0;
   }
 
   .hero__main {
