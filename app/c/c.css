@@ -37,11 +37,11 @@
   width: max-content;
   white-space: nowrap;
   font-family: "Fraunces", serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   font-size: clamp(0.95rem, 1.3vw, 1.15rem);
   letter-spacing: -0.005em;
-  animation: c-marquee-slide 80s linear infinite;
+  animation: c-marquee-slide 140s linear infinite;
   will-change: transform;
 }
 
