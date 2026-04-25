@@ -334,16 +334,16 @@ p:last-child {
 
 .hero__title--emigre .t-2 {
   font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 350;
-  font-size: clamp(5.5rem, 18vw, 13rem);
-  text-transform: none;
-  letter-spacing: -0.035em;
-  line-height: 0.9;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(5rem, 18vw, 14rem);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
   color: var(--ink);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
   display: block;
-  margin: clamp(-12px, -1vh, -4px) 0 clamp(-12px, -1vh, -4px);
+  margin: clamp(-8px, -0.5vh, -2px) 0 clamp(-12px, -1vh, -4px);
 }
 
 .hero__title--emigre .t-3 {

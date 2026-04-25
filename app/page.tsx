@@ -28,12 +28,6 @@ export default function HomePage() {
         </div>
 
         <h1 className="hero__title hero__title--emigre reveal">
-          <img
-            className="t-crest"
-            src="/baby-shower-logo.svg"
-            alt="Baby Shower crest"
-            aria-hidden="true"
-          />
           <span className="t-1">a new</span>
           <span className="t-2">Life</span>
           <span className="t-3">arrives.</span>
