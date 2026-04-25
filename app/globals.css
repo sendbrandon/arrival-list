@@ -202,13 +202,15 @@ p:last-child {
 
 .hero__divider {
   width: 1px;
-  align-self: stretch;
+  height: clamp(140px, 22vh, 220px);
+  align-self: start;
   justify-self: center;
+  margin-top: clamp(12px, 2vh, 28px);
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(28, 26, 23, 0.18) 18%,
-    rgba(28, 26, 23, 0.18) 82%,
+    rgba(28, 26, 23, 0.2) 25%,
+    rgba(28, 26, 23, 0.2) 75%,
     transparent 100%
   );
 }
