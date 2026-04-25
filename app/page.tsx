@@ -29,7 +29,9 @@ export default function HomePage() {
 
         <h1 className="hero__title hero__title--emigre reveal">
           <span className="t-1">a new</span>
-          <span className="t-2">Life</span>
+          <span className="t-2">
+            L<span className="cross-i" aria-label="I (cross)">I</span>FE
+          </span>
           <span className="t-3">Arrives.</span>
         </h1>
 

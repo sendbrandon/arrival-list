@@ -318,7 +318,7 @@ p:last-child {
   text-transform: lowercase;
   color: var(--ink-soft);
   letter-spacing: 0;
-  margin-left: clamp(8px, 2vw, 24px);
+  text-align: center;
   font-variation-settings: "opsz" 9, "SOFT" 100;
 }
 
@@ -345,6 +345,24 @@ p:last-child {
   margin-left: clamp(40%, 45%, 50%);
   margin-top: clamp(-12px, -1vh, -4px);
   font-variation-settings: "opsz" 60, "SOFT" 100;
+}
+
+/* Catholic cross integrated into the I of LIFE */
+.cross-i {
+  position: relative;
+  display: inline-block;
+}
+
+.cross-i::before {
+  content: "";
+  position: absolute;
+  top: 0.18em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.55em;
+  height: 0.085em;
+  background: currentColor;
+  pointer-events: none;
 }
 
 .hero__names {
