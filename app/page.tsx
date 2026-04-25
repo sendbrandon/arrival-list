@@ -28,20 +28,22 @@ export default function HomePage() {
           <span>{siteCopy.eventDate}</span>
         </div>
 
-        <div className="hero__content reveal">
-          <p className="eyebrow">{siteCopy.eyebrow}</p>
-          <h1 className="hero__title">{siteCopy.heroTitle}</h1>
-          <p className="hero__names">{siteCopy.heroNames}</p>
-          <p className="hero__sublabel">{siteCopy.heroSubLabel}</p>
-          <div className="button-row">
-            <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
+        <div className="hero__main">
+          <div className="hero__content reveal">
+            <p className="eyebrow">{siteCopy.eyebrow}</p>
+            <h1 className="hero__title">{siteCopy.heroTitle}</h1>
+            <p className="hero__names">{siteCopy.heroNames}</p>
+            <p className="hero__sublabel">{siteCopy.heroSubLabel}</p>
+            <div className="button-row">
+              <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
+            </div>
           </div>
-        </div>
 
-        <div className="hero__letter">
-          <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
-          <p className="letter">{siteCopy.letter.body}</p>
-          <p className="letter__signoff">{siteCopy.letter.signoff}</p>
+          <div className="hero__letter">
+            <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
+            <p className="letter">{siteCopy.letter.body}</p>
+            <p className="letter__signoff">{siteCopy.letter.signoff}</p>
+          </div>
         </div>
 
         <div className="hero__details" aria-label="Event summary">
