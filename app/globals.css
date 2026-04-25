@@ -206,22 +206,6 @@ p:last-child {
   justify-self: end;
   text-align: left;
   position: relative;
-  padding: 28px 24px;
-}
-
-/* soft cream halo behind the note for readability */
-.hero__letter::before {
-  content: "";
-  position: absolute;
-  inset: -28px -40px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(246, 241, 231, 0.85) 0%,
-    rgba(246, 241, 231, 0.55) 50%,
-    rgba(246, 241, 231, 0) 90%
-  );
-  z-index: -1;
-  pointer-events: none;
 }
 
 .hero__letter .eyebrow {
@@ -396,6 +380,33 @@ p:last-child {
   color: var(--paper);
 }
 
+/* Slab — full column width, square, monumental */
+.button--slab {
+  display: flex;
+  width: 100%;
+  min-height: 72px;
+  padding: 0 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.button--slab:hover {
+  background: var(--accent);
+  transform: none;
+}
+
+.button-row:has(.button--slab) {
+  margin-top: 38px;
+}
+
 /* ---------- Hero details strip ---------- */
 
 .hero__details {
@@ -414,17 +425,9 @@ p:last-child {
   position: relative;
 }
 
-/* ornamental diamond divider between cells */
-.hero__details > div + div::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  transform: translate(-3px, -50%) rotate(45deg);
-  opacity: 0.55;
+/* simple hairline divider between cells */
+.hero__details > div + div {
+  border-left: 1px solid var(--line);
 }
 
 .hero__details span,
@@ -943,33 +946,6 @@ textarea {
   }
 }
 
-/* Ornamental section divider with diamond motif */
-.section-divider {
-  width: min(1080px, calc(100% - 40px));
-  margin: clamp(40px, 7vw, 80px) auto 0;
-  position: relative;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--line) 18%,
-    var(--line) 82%,
-    transparent 100%
-  );
-}
-
-.section-divider::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  background: var(--accent);
-  transform: translate(-50%, -50%) rotate(45deg);
-  opacity: 0.55;
-  box-shadow: 0 0 0 6px var(--paper);
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

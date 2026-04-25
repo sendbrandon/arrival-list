@@ -34,7 +34,7 @@ export default function HomePage() {
             <p className="hero__date">{siteCopy.heroDateLong}</p>
             <p className="hero__location">{siteCopy.heroLocationShort}</p>
             <div className="button-row">
-              <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
+              <Link className="button button--slab" href="/join">{siteCopy.primaryCta}</Link>
             </div>
           </div>
 
@@ -61,8 +61,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="section-divider" aria-hidden="true" />
-
       <section className="section-shell reveal-on-scroll">
         <div className="section-heading">
           <p className="eyebrow">What to expect</p>
@@ -81,8 +79,6 @@ export default function HomePage() {
           ))}
         </ol>
       </section>
-
-      <div className="section-divider" aria-hidden="true" />
 
       <section className="section-shell reveal-on-scroll">
         <div className="section-heading section-heading--inline">
