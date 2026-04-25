@@ -18,22 +18,22 @@ A living reference for running the King Adams baby shower campaign through launc
 
 | Route | Purpose |
 |---|---|
-| `/` | Home — Version D (Baby in Bloom skin) |
+| `/` | Home — Version D (Baby in Bloom) |
 | `/join` | RSVP form |
 | `/registry` | Full registry list |
 | `/details` | Event date / location / dress |
-| `/a` | Backup of Version A (editorial / Donda direction) |
+| `/a` | Backup of Version A (editorial / Donda) |
 | `/bloom` | Version B (whimsical garden invitation) |
 | `/c` | Version C (editorial structure + bloom skin with sonogram) |
-| `/d` | Version D (same as `/` — kept as alternate URL) |
+| `/d` | Version D (same as `/`) |
 
 ## Event Details
 
 | | |
 |---|---|
 | **Date** | Sunday, June 28, 2026 |
-| **Time** | 1:00 p.m. (TBD on actual time) |
-| **Location** | Shared with confirmed guests (TBD) |
+| **Time** | 1:00 p.m. (placeholder) |
+| **Location** | Shared with confirmed guests |
 | **Hosts** | Brandon & Shenika |
 | **Theme** | Baby in Bloom |
 | **Domain** | kingadams.family |
@@ -50,14 +50,14 @@ A living reference for running the King Adams baby shower campaign through launc
 - [x] Sonogram image (cropped, no PHI)
 - [x] Baby in Bloom invitation image (Version D hero)
 - [x] All four design versions live (A, B, C, D)
-- [x] Mobile-optimized
+- [x] Mobile-optimized with architectural left rail
 - [x] Favicon + Apple touch icon
-- [x] Open Graph / Twitter share image
+- [x] Open Graph / Twitter share image (BABY in BLOOM crop)
 - [x] Rich metadata for link previews
-- [x] Marquee announcement bar
-- [x] Architectural left rail (mobile)
+- [x] Marquee announcement bar (with start spacer for readability)
 - [x] Black slab RSVP CTA
 - [x] Schedule + registry sections styled
+- [x] All pages skinned in Bloom palette (cream / forest / terracotta)
 
 ### Mailchimp
 - [x] Audience created
@@ -72,72 +72,218 @@ A living reference for running the King Adams baby shower campaign through launc
 
 ### Before launching the campaign
 - [ ] **Replace registry placeholder URLs** with real Babylist/Amazon links in `lib/registry.ts`
-- [ ] **Set up Mailchimp welcome email automation** (auto-sends after signup)
+- [ ] **Set up Mailchimp welcome email automation** (Customer Journey using `/email-templates/welcome.html`)
 - [ ] **Lock event time** (currently placeholder)
 - [ ] **Lock event location** (will be private — only sent post-RSVP)
 - [ ] **Test signup form end-to-end** (submit → email arrives → tags applied)
 - [ ] **Update Mailchimp Audience defaults**: company website → kingadams.family
-- [ ] **Test SMS to your own number** before sending to guest list
+- [ ] **Buy a complementary `.com` domain** if you want texts to auto-link without `https://` prefix
 
 ### Content tasks
 - [ ] Lock real schedule body copy with specific dates
 - [ ] Add real registry items + URLs
-- [ ] Optional: Photo of Brandon & Shenika for the personal note
+- [ ] Optional: photo of Brandon & Shenika for the personal note
 
 ### Optional polish
-- [ ] Make `arrival-list.vercel.app` redirect to `kingadams.family` (Vercel → Domains → click .vercel.app → Redirect)
-- [ ] Set up Mailchimp drop campaigns for AL-001 → AL-008
+- [ ] Make `arrival-list.vercel.app` redirect to `kingadams.family`
 
 ---
 
-## 📅 The Drop Schedule (Mailchimp Campaign Plan)
+## ⚠️ Important: SMS Strategy (No EIN = Email-First)
 
-Plan to send approximately 3 SMS + email rounds to your ~70 guests:
+**Mailchimp SMS requires an EIN** (A2P 10DLC carrier registration). Same goes for Klaviyo, Twilio, EZ Texting — every business SMS platform.
 
-| # | Code | Timing | What | Send via |
+**Solution: Email-first campaign + manual iMessage for the day-of moment.**
+
+### Why this works:
+- Email is free and requires no business verification
+- Email reaches everyone (older relatives prefer it anyway)
+- Rich images, formatted layouts, clickable buttons — all native to email
+- The ONE moment SMS truly matters (day-of address) is a personal group iMessage from your phone
+
+---
+
+## 📅 The Drop Schedule (Email-First)
+
+| # | Code | When | What | Channel |
 |---|---|---|---|---|
-| 1 | AL-001 | ~April–May (now) | Save the Date · Date + RSVP link | Email + SMS |
-| 2 | AL-002 | Mid May | Registry is live · Few items, link | Email |
-| 3 | AL-003 | Early June | Final Details · Address, parking, dress | Email + SMS |
-| 4 | AL-004 | 48 hours before | Day-of reminder · Time, address, parking | SMS only |
-| 5 | AL-005 | Day after | Thank you + photos | Email |
-| 6 | AL-006 | Post-baby | Baby arrival update | Email |
+| 1 | AL-001 | Apr–May (now) | Save the Date | Mailchimp **email** |
+| 2 | AL-002 | Mid May | Registry is live | Mailchimp **email** |
+| 3 | AL-003 | Early June | Final Details | Mailchimp **email** |
+| 4 | AL-004 | 48 hrs before | Day-of reminder | Manual group iMessage from your phone |
+| 5 | AL-005 | Day after | Thank you + photos | Mailchimp **email** |
+| 6 | AL-006 | Post-baby | Baby arrival update | Mailchimp **email** |
 
 ---
 
-## 📱 SMS Credits Math (Mailchimp)
+## ✉️ Email Templates (Ready to Paste)
 
-You have **2,500 SMS credits**. Plenty of headroom.
+Each template includes: subject, preview text, body. Use the HTML template at `email-templates/welcome.html` as the visual frame, then swap in this copy.
 
-### Pricing (US numbers)
-| Type | Credits per recipient |
-|---|---|
-| Standard SMS (≤160 chars, no emoji) | **1** |
-| Long SMS (161–320 chars) | **2** |
-| MMS (with image) | **3** |
+### AL-001 · Save the Date
 
-### Your campaign math
-70 recipients × 3 sends:
+**Subject:** You're on the list.
+**Preview:** Sunday, June 28, 2026 · The address and details to come.
 
-| Format | Per send | Total (3 sends) |
-|---|---|---|
-| Short plain SMS | 70 | **210 credits** |
-| Longer SMS (>160 chars) | 140 | **420 credits** |
-| MMS with image | 210 | **630 credits** |
+**Body:**
+```
+Thank you for RSVPing to our baby shower. We can't tell you
+how much it means to know who'll be there with us.
 
-**Worst realistic case: ~630 credits. You have 2,500 → 4× buffer. You can send 8–10 campaigns easily.**
+To the family we love most — this little one is already so
+loved because of you. We can't wait to celebrate together
+in June.
 
-### Tips to stretch credits
-- Keep texts ≤160 chars
-- Avoid emojis (encoding switches limit to ~70 chars)
-- Use plain dashes / punctuation
-- Save MMS for one important moment (day-of address with map image)
-- Filter by `rsvp-yes` and `rsvp-maybe` tags — don't send to "no" replies
-- Test to your own number before sending to all
+— Brandon & Shenika
+```
 
-### Watch out for
-- **International numbers** cost 3–10× more
-- **Failed sends still burn credits**
+CTA: **View the Details** → `https://kingadams.family/details`
+
+---
+
+### AL-002 · Registry is Live
+
+**Subject:** A few things we'd love help with.
+**Preview:** A short list. Group gifts and cash funds welcome.
+
+**Body:**
+```
+The registry is open.
+
+We've curated a short list of things that would help us
+prepare for the little one — sorted by need and budget.
+Group gifts and cash funds are always welcome.
+
+Whatever you choose, we are deeply grateful.
+
+— Brandon & Shenika
+```
+
+CTA: **See the Registry** → `https://kingadams.family/registry`
+
+---
+
+### AL-003 · Final Details
+
+**Subject:** Final details for Sunday.
+**Preview:** Address, parking, dress, and what to expect.
+
+**Body:**
+```
+The day is almost here.
+
+Here's what you need to know for Sunday, June 28:
+
+  ·  Address — [TBA]
+  ·  Time — 1:00 p.m.
+  ·  Parking — [TBA]
+  ·  Dress — Elevated casual, soft neutrals welcome
+
+We can't wait to see you.
+
+— Brandon & Shenika
+```
+
+CTA: **View All Details** → `https://kingadams.family/details`
+
+---
+
+### AL-004 · Day-of Reminder (SMS)
+
+**Send manually as a group iMessage from your phone the day before or morning-of.**
+
+```
+Tomorrow at 1pm. Address and parking:
+[ADDRESS HERE]
+Can't wait to see you. Love, B&S
+```
+
+Or break into 2-3 group iMessages of ~25 contacts each (iOS group limit is 32).
+
+---
+
+### AL-005 · Thank You
+
+**Subject:** Thank you for showing up for us.
+**Preview:** A few photos and a few words.
+
+**Body:**
+```
+Thank you for celebrating with us yesterday.
+
+There aren't enough words for what it meant to be
+surrounded by the people we love most as we prepare
+for this little one. Every dish, every gift, every laugh,
+every quiet moment — we'll carry it with us.
+
+We've put together a few photos from the day below.
+
+With all our love,
+— Brandon & Shenika
+```
+
+CTA: **See the Photos** → (link to a photo gallery — Google Photos shared album works great)
+
+---
+
+### AL-006 · Baby Arrival Update
+
+**Subject:** Our little one is here.
+**Preview:** A short note from us, and a name.
+
+**Body:**
+```
+[Baby's name] arrived on [date].
+
+[Weight, length].
+
+We are exhausted, tender, and so grateful you were
+part of welcoming this little one. We'll share more
+soon — for now, just this.
+
+With love,
+— Brandon & Shenika
+```
+
+---
+
+## 🎨 Email Visual Style (Custom HTML in Mailchimp)
+
+Use **Custom HTML** in Mailchimp's email builder to paste the template at `email-templates/welcome.html` (in the repo). It includes:
+
+- Top black marquee bar with "You are invited..." italic
+- Cream paper background (`#efe7d0`)
+- Forest green text (`#2f3d33`)
+- Terracotta accent (`#d35d3a`) for the section markers, drop numerals, "in"
+- Georgia serif fallback (since web fonts don't render in most email clients)
+- 600px max-width centered layout
+- Hero image of the BIB invite
+- "What to Expect" numbered list with hairline rules
+- Footer signature line: "Baby in Bloom · Vol. I · 2026 · Made with care · B & S"
+
+### How to use the HTML template in Mailchimp
+
+1. **Create → Email**
+2. Choose template type: **Code your own** → **Paste in code**
+3. Open `email-templates/welcome.html` in any text editor
+4. Copy the entire file content
+5. Paste into Mailchimp's HTML editor
+6. Mailchimp auto-renders preview
+7. Customize:
+   - Subject line + preview text (in the campaign settings, not the HTML)
+   - Body copy (search for "Thank you for RSVP" and replace with the drop-specific copy from above)
+8. **Send test** to your own email
+9. Check on phone (most opens happen there)
+10. Schedule or Send
+
+### Adapting for other drops
+
+For each new drop (AL-002, 003, 005, 006):
+1. **Save As** the Welcome template in Mailchimp (Templates → Saved → Save current as template)
+2. Edit the body copy section only
+3. Update the section marker number (00 → 01 → 02 → 03)
+4. Update the CTA button text + link
+5. Update subject + preview text in campaign settings
 
 ---
 
@@ -153,50 +299,21 @@ You have **2,500 SMS credits**. Plenty of headroom.
    - **Company/organization:** `King Adams · Baby in Bloom`
 4. **Save**
 
+### Setting up the Welcome Email Automation
+1. **Automations → Customer Journeys** → **+ New Journey**
+2. Choose template: **Welcome new subscribers** OR start from scratch
+3. **Trigger**: "Subscribes to your audience" or "Tag added: arrival-list-site"
+4. Add **Email step** → use the HTML from `email-templates/welcome.html`
+5. **Turn on** the journey
+6. Test by signing up via the site form yourself
+
 ### Sending an email campaign
 1. **Create → Email**
-2. Pick a template (Plain Text or Custom HTML matches your brand)
-3. Compose body — paste links like `https://kingadams.family/join`
+2. **Code your own** template type
+3. Paste your HTML
 4. Filter recipients by tag (e.g., `rsvp-yes`, `arrival-list-site`)
 5. Send a test to yourself first
 6. Schedule or Send
-
-### Sending an SMS campaign
-1. **Create → SMS** (requires Marketing plan or SMS add-on)
-2. Pick audience → filter by tag
-3. Compose message — Mailchimp shows live character count + credit cost
-4. Send test to your own number first
-5. Schedule or Send Now
-6. Check **Reports → SMS Reports** afterward
-
----
-
-## 📲 SMS Templates (under 160 chars each)
-
-### Save the date
-> Hi! Brandon & Shenika are throwing a baby shower — Sunday June 28. Sending address + details closer to the day. RSVP: kingadams.family
->
-> *(155 chars)*
-
-### Registry reminder
-> A few items we'd love help with for the baby — kingadams.family/registry. With love, B&S
->
-> *(94 chars)*
-
-### Final details (1 week before)
-> It's almost here. Address, parking, dress, and timing for Sunday's baby shower: kingadams.family/details
->
-> *(115 chars)*
-
-### Day-of reminder (48 hours before)
-> Tomorrow, 1pm. Address & parking: kingadams.family/details. Can't wait to see you. — B&S
->
-> *(95 chars)*
-
-### Thank you (day after)
-> Thank you for showing up for us yesterday. We loved every minute. Photos coming soon. — B&S
->
-> *(96 chars)*
 
 ---
 
@@ -206,7 +323,7 @@ Auto-applied when someone signs up via the site:
 
 | Tag | Meaning |
 |---|---|
-| `arrival-list-site` | Source: signed up via website (always applied) |
+| `arrival-list-site` | Signed up via website (always applied) |
 | `rsvp-yes` | RSVP'd yes |
 | `rsvp-maybe` | RSVP'd maybe |
 | `rsvp-no` | RSVP'd no |
@@ -214,35 +331,34 @@ Auto-applied when someone signs up via the site:
 | `reminders-registry` | Wants registry updates (default on) |
 | `reminders-baby-updates` | Wants post-shower baby updates (default on) |
 
-Use these tags to filter your campaign sends.
+Use these to filter campaigns. For example, "Final Details" should only go to `rsvp-yes` and `rsvp-maybe` — not `rsvp-no`.
 
 ---
 
 ## 🧠 Decisions Locked In
 
-- **Stack**: Next.js + Vercel + Mailchimp (no Supabase, no Resend)
-- **Domain**: kingadams.family (generational family domain)
-- **Primary palette**: cream / forest green / terracotta (Bloom skin)
+- **Stack**: Next.js + Vercel + Mailchimp Email (no Supabase, no Resend, no SMS platform)
+- **Domain**: kingadams.family
+- **Primary palette**: cream / forest green / terracotta
 - **Backup palettes**: editorial Donda (Version A), garden whimsical (Version B)
-- **Hero image**: Baby in Bloom illustrated invitation (AI-generated, Sept 2026)
+- **Hero image**: Baby in Bloom illustrated invitation
 - **Sonogram**: stored cropped at `/public/sonogram.jpg`, no PHI in current crop
+- **SMS strategy**: Email-first via Mailchimp; day-of reminder via manual iMessage from personal phone
 
 ---
 
 ## 🧾 Environment Variables (Vercel)
 
-Currently set in Vercel → Project Settings → Environment Variables:
+Set in Vercel → Project Settings → Environment Variables:
 
 | Name | Purpose |
 |---|---|
 | `MAILCHIMP_API_KEY` | API key for posting signups |
 | `MAILCHIMP_AUDIENCE_ID` | Which audience to subscribe to |
-| `NEXT_PUBLIC_EVENT_DATE` | (Optional) Override default event date string |
+| `NEXT_PUBLIC_EVENT_DATE` | (Optional) Override default event date |
 | `NEXT_PUBLIC_EVENT_DATE_LONG` | (Optional) Override hero "Sunday · June 28, 2026" |
 | `NEXT_PUBLIC_EVENT_CITY` | (Optional) Override location placeholder |
 | `NEXT_PUBLIC_EVENT_LOCATION_SHORT` | (Optional) Override hero location line |
-
-To update event details site-wide: edit these env vars in Vercel and redeploy.
 
 ---
 
@@ -262,6 +378,22 @@ Edit `app/page.tsx` — currently re-exports from `./d/page`. Change to `./a/pag
 
 ### Pull guest contact info for a campaign
 Mailchimp → Audience → All contacts → Filter by tag → Export CSV.
+
+---
+
+## 📲 The One SMS You Will Send (Manual, From Your Phone)
+
+48 hours or morning-of, send this as a group iMessage from your personal iPhone:
+
+**Group 1 (~24 contacts) message:**
+```
+Tomorrow at 1pm at [ADDRESS].
+Parking: [PARKING NOTE].
+Can't wait to see you. Love,
+B & S
+```
+
+**Tip:** Split your guests into 3 group iMessages of ~24 each. iOS group iMessage limit is 32. This way everyone gets the message but groups stay manageable.
 
 ---
 
