@@ -9,6 +9,7 @@ export default function HomePage() {
   return (
     <main>
       <section className="hero">
+        <span className="hero__rail" aria-hidden="true" />
         <div className="hero__video-wrap" aria-hidden="true">
           <video
             className="hero__video"
