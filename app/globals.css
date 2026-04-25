@@ -1308,12 +1308,36 @@ textarea {
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(28, 26, 23, 0.16) 6%,
-      rgba(28, 26, 23, 0.16) 94%,
-      rgba(28, 26, 23, 0.16) 100%
+      rgba(28, 26, 23, 0.22) 6%,
+      rgba(28, 26, 23, 0.22) 94%,
+      rgba(28, 26, 23, 0.22) 100%
     );
     z-index: 4;
     pointer-events: none;
+  }
+
+  /* L-corner — short horizontal hairline tying nav to the rail */
+  .hero__rail::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 1px;
+    background: rgba(28, 26, 23, 0.22);
+  }
+
+  /* Architectural terminus — tiny clay diamond at the rail's origin */
+  .hero__rail::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    opacity: 0.7;
   }
 
   .hero__inner {
