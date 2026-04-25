@@ -1,0 +1,52 @@
+/* Version D — same skin as C but image-anchored hero, no sonogram/video */
+
+.d-hero {
+  /* No background video on D */
+  background: var(--c-paper);
+}
+
+/* Featured invitation image — sits between Invitation marker and Celebrate */
+.d-feature {
+  margin: clamp(8px, 1.5vh, 20px) auto clamp(20px, 3vh, 36px);
+  max-width: clamp(420px, 60vw, 760px);
+  height: clamp(38vh, 48vh, 56vh);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 10%,
+    rgba(0, 0, 0, 1) 28%,
+    rgba(0, 0, 0, 1) 72%,
+    rgba(0, 0, 0, 0.5) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 10%,
+    rgba(0, 0, 0, 1) 28%,
+    rgba(0, 0, 0, 1) 72%,
+    rgba(0, 0, 0, 0.5) 90%,
+    transparent 100%
+  );
+}
+
+.d-feature img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Zoom & focus on the floral middle of the invitation */
+  object-position: center 38%;
+  transform: scale(1.15);
+  transform-origin: center 38%;
+}
+
+@media (max-width: 800px) {
+  .d-feature {
+    height: clamp(34vh, 42vh, 50vh);
+    max-width: 100%;
+  }
+}

@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { HeroVideo } from "@/components/HeroVideo";
 import { RegistryCard } from "@/components/RegistryCard";
 import { registryItems } from "@/lib/registry";
 import { reminderDrops, siteCopy } from "@/lib/copy";
-import "./c.css";
+import "../c/c.css";
+import "./d.css";
 
-export default function CPage() {
+export default function DPage() {
   const featuredItems = registryItems.slice(0, 3);
 
   return (
-    <main className="c">
-      {/* Top marquee — duplicated groups for seamless loop */}
+    <main className="c d">
+      {/* Top marquee */}
       <div className="c-marquee" aria-hidden="true">
         <div className="c-marquee__track">
           <div className="c-marquee__group">
@@ -24,12 +24,7 @@ export default function CPage() {
         </div>
       </div>
 
-      <section className="c-hero">
-        <div className="c-hero__video" aria-hidden="true">
-          <HeroVideo />
-          <div className="c-hero__video-overlay" />
-        </div>
-
+      <section className="c-hero d-hero">
         <div className="c-shell c-hero__inner">
           {/* Nav */}
           <div className="c-nav">
@@ -46,19 +41,10 @@ export default function CPage() {
             <span className="c-marker__rule" aria-hidden="true" />
           </div>
 
-          {/* Sonogram bleed — atmospheric */}
-          <figure className="c-sonogram" aria-hidden="true">
-            <img src="/sonogram.jpg" alt="" />
+          {/* Featured invitation image — fades top + bottom */}
+          <figure className="d-feature" aria-label="Baby in Bloom invitation">
+            <img src="/baby-in-bloom-invite.jpg" alt="Baby in Bloom invitation" />
           </figure>
-
-          {/* Title — same content as v1, new skin */}
-          <h1 className="c-title">
-            <span className="c-title__t1">a new</span>
-            <span className="c-title__t2">Life</span>
-            <span className="c-title__t3">
-              arrives<span className="c-title__period">.</span>
-            </span>
-          </h1>
 
           {/* Main row — names + note */}
           <div className="c-main">
