@@ -27,9 +27,10 @@ export default function HomePage() {
           <span>{siteCopy.navTitle}</span>
         </div>
 
+        <h1 className="hero__title reveal">{siteCopy.heroTitle}</h1>
+
         <div className="hero__main">
           <div className="hero__content reveal">
-            <h1 className="hero__title">{siteCopy.heroTitle}</h1>
             <p className="hero__names">{siteCopy.heroNames}</p>
             <p className="hero__date">{siteCopy.heroDateLong}</p>
             <p className="hero__location">{siteCopy.heroLocationShort}</p>

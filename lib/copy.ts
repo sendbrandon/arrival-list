@@ -7,7 +7,7 @@ export const siteCopy = {
   heroLocationShort: process.env.NEXT_PUBLIC_EVENT_LOCATION_SHORT || "Location shared with confirmed guests",
   letter: {
     eyebrow: "A note from us",
-    body: "To the family and friends we love most — thank you for showing up for us in this season. This little one is already so loved, and so much of that love is because of you. We can't wait to celebrate together in June.",
+    body: "To the family we love most — this little one is already so loved because of you. We can\u2019t wait to see you in June.",
     signoff: "— Brandon & Shenika"
   },
   heroBody: "",
@@ -23,25 +23,25 @@ export const reminderDrops = [
   {
     label: "01",
     title: "Save the Date",
-    body: "The day, the city, and an invite for your calendar.",
+    body: "The day, the city, the calendar invite.",
     when: "April"
   },
   {
     label: "02",
     title: "The Registry",
-    body: "What we'd love help with — by need, by budget, and as a group.",
+    body: "What we\u2019d love help with — by need, by budget.",
     when: "May"
   },
   {
     label: "03",
     title: "Final Details",
-    body: "Address, parking, timing, and what to wear.",
+    body: "Address, parking, timing, what to wear.",
     when: "Early June"
   },
   {
     label: "04",
     title: "After the Shower",
-    body: "A thank-you, a few photos, and the baby's first updates.",
+    body: "Thank-yous, photos, baby updates.",
     when: "Late June"
   }
 ];
