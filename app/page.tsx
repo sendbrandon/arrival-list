@@ -38,14 +38,14 @@ export default function HomePage() {
             <p className="hero__names">{siteCopy.heroNames}</p>
             <p className="hero__date">{siteCopy.heroDateLong}</p>
             <p className="hero__location">{siteCopy.heroLocationShort}</p>
-            <div className="button-row">
-              <Link className="button button--slab" href="/join">{siteCopy.primaryCta}</Link>
-            </div>
           </div>
 
           <div className="hero__letter">
             <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
             <p className="letter">{siteCopy.letter.body}</p>
+            <div className="button-row">
+              <Link className="button button--slab" href="/join">{siteCopy.primaryCta}</Link>
+            </div>
           </div>
         </div>
 
