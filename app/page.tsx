@@ -9,7 +9,6 @@ export default function HomePage() {
   return (
     <main>
       <section className="hero">
-        <span className="edge-text" aria-hidden="true">BABY · SHOWER · MMXXVI · BRANDON · SHENIKA</span>
         <div className="hero__video-wrap" aria-hidden="true">
           <video
             className="hero__video"

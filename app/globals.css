@@ -108,10 +108,6 @@ button, input, textarea, select {
   opacity: 0.6;
 }
 
-/* Mobile-only: vertical edge text running down left margin (catalog signature) */
-.edge-text {
-  display: none;
-}
 
 @media (max-width: 600px) {
   .nav-serial { display: none; }
@@ -693,22 +689,33 @@ p:last-child {
   transform: translateX(8px);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .rsvp-band {
     grid-template-columns: 1fr auto;
     grid-template-areas:
       "label arrow"
-      "meta arrow";
-    gap: 6px 16px;
-    padding: 28px 24px;
+      "meta  arrow";
+    gap: 6px 20px;
+    padding: 24px 22px;
   }
-  .rsvp-band__label { grid-area: label; }
+  .rsvp-band__label {
+    grid-area: label;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+  }
   .rsvp-band__rule { display: none; }
   .rsvp-band__meta {
     grid-area: meta;
     text-align: left !important;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: rgba(246, 241, 231, 0.65);
   }
-  .rsvp-band__arrow { grid-area: arrow; align-self: center; }
+  .rsvp-band__arrow {
+    grid-area: arrow;
+    align-self: center;
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 800px) {
@@ -1296,67 +1303,49 @@ textarea {
   }
 
   .hero__sonogram-bleed {
-    height: clamp(22vh, 26vh, 32vh);
-    margin-bottom: clamp(-48px, -6vh, -24px);
+    height: clamp(20vh, 24vh, 30vh);
+    margin-bottom: clamp(-40px, -5vh, -20px);
   }
 
   .hero__title--emigre {
-    margin: 8px 0 16px;
-    gap: 0;
+    margin: 12px 0 18px;
+    gap: 4px;
   }
 
   .hero__title--emigre .t-1 {
-    font-size: clamp(1.15rem, 4.5vw, 1.6rem);
-    margin-bottom: -2px;
+    font-size: clamp(1.1rem, 4vw, 1.45rem);
   }
 
   .hero__title--emigre .t-2 {
-    font-size: clamp(4rem, 20vw, 6rem);
-    margin: -2px 0 -4px;
+    font-size: clamp(3.75rem, 18vw, 5.5rem);
+    margin: -4px 0 -2px;
   }
 
   .hero__title--emigre .t-3 {
-    font-size: clamp(1.75rem, 6.5vw, 2.5rem);
-    margin: -2px 0 0;
-  }
-
-  /* Vertical edge text — Travis catalog signature on mobile */
-  .edge-text {
-    display: block;
-    position: absolute;
-    left: 6px;
-    top: 36vh;
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    font-family: "Inter", sans-serif;
-    font-size: 0.55rem;
-    font-weight: 500;
-    letter-spacing: 0.42em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    opacity: 0.4;
-    white-space: nowrap;
-    z-index: 5;
-    pointer-events: none;
+    font-size: clamp(1.6rem, 6vw, 2.25rem);
+    margin: 0;
   }
 
   .hero__main {
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 4px 0 14px;
+    gap: 16px;
+    padding: 4px 0 12px;
     align-items: start;
   }
 
+  .hero__main::after {
+    display: none;
+  }
 
   .hero__letter {
     justify-self: start;
     align-self: start;
     max-width: 100%;
-    padding: 0 0 8px;
+    padding: 0;
   }
 
   .hero__content {
-    padding: 8px 0 8px;
+    padding: 6px 0 6px;
   }
 
   .nav-line {
