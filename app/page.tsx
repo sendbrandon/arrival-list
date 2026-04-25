@@ -42,7 +42,6 @@ export default function HomePage() {
           <div className="hero__letter">
             <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
             <p className="letter">{siteCopy.letter.body}</p>
-            <p className="letter__signoff">{siteCopy.letter.signoff}</p>
           </div>
         </div>
 

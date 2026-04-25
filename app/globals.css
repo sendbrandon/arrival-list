@@ -196,8 +196,9 @@ p:last-child {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(40px, 7vw, 96px);
-  align-items: center;
-  padding: clamp(40px, 8vh, 80px) 0;
+  align-items: start;
+  align-self: start;
+  padding: clamp(16px, 2.5vh, 32px) 0 0;
 }
 
 .hero__letter {
@@ -268,31 +269,14 @@ p:last-child {
   letter-spacing: -0.025em;
   line-height: 1.02;
   margin-bottom: 18px;
-  background: linear-gradient(
-    100deg,
-    var(--ink) 0%,
-    var(--ink) 38%,
-    var(--accent) 50%,
-    var(--ink) 62%,
-    var(--ink) 100%
-  );
-  background-size: 250% 100%;
-  background-position: 100% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: title-breathe 9s ease-in-out infinite, title-shimmer 12s ease-in-out infinite;
+  color: var(--ink);
   font-variation-settings: "opsz" 96, "SOFT" 50;
+  animation: title-breathe 14s ease-in-out infinite;
 }
 
 @keyframes title-breathe {
-  0%, 100% { font-variation-settings: "opsz" 96, "SOFT" 50; }
+  0%, 100% { font-variation-settings: "opsz" 96,  "SOFT" 50; }
   50%      { font-variation-settings: "opsz" 144, "SOFT" 100; }
-}
-
-@keyframes title-shimmer {
-  0%   { background-position: 100% 0; }
-  100% { background-position: -100% 0; }
 }
 
 .hero__names {
@@ -319,10 +303,6 @@ p:last-child {
 @media (prefers-reduced-motion: reduce) {
   .hero__title {
     animation: none;
-    background: var(--ink);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 }
 
