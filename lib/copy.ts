@@ -1,8 +1,8 @@
 export const siteCopy = {
   name: "The Arrival List",
-  eyebrow: "June / Private Shower List",
+  eyebrow: "June / Baby Shower",
   heroTitle: "A New Life Arrives",
-  heroNames: "Brandon & Shenika",
+  heroNames: "Brandon & Shenika Baby Shower RSVP List",
   heroBody: "",
   primaryCta: "RSVP",
   secondaryCta: "View Registry",

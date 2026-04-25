@@ -55,18 +55,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-shell split-section">
-        <div>
-          <p className="eyebrow">Private List</p>
-          <h2>Not just an RSVP. A small portal for everything guests need.</h2>
-        </div>
-        <p>{siteCopy.reminderPromise}</p>
-      </section>
-
       <section className="section-shell">
         <div className="section-heading">
           <p className="eyebrow">Reminder cadence</p>
-          <h2>The Drop Schedule</h2>
+          <h2>The Schedule</h2>
         </div>
         <ol className="drop-schedule">
           {reminderDrops.map((drop) => (
