@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroVideo } from "@/components/HeroVideo";
 import { RegistryCard } from "@/components/RegistryCard";
 import { registryItems } from "@/lib/registry";
 import { reminderDrops, siteCopy } from "@/lib/copy";
@@ -11,15 +12,7 @@ export default function HomePage() {
       <section className="hero">
         <span className="hero__rail" aria-hidden="true" />
         <div className="hero__video-wrap" aria-hidden="true">
-          <video
-            className="hero__video"
-            src="/hero.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          />
+          <HeroVideo />
           <div className="hero__video-overlay" />
         </div>
 
@@ -42,7 +35,10 @@ export default function HomePage() {
 
         <div className="hero__main">
           <div className="hero__content reveal">
-            <p className="hero__names">{siteCopy.heroNames}</p>
+            <p className="hero__names">
+              Celebrate with{" "}
+              <span className="hero__names-em">Brandon <span className="hero__names-amp">&amp;</span> Shenika</span>
+            </p>
             <p className="hero__date">{siteCopy.heroDateLong}</p>
             <p className="hero__location">{siteCopy.heroLocationShort}</p>
           </div>

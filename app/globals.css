@@ -505,6 +505,22 @@ p:last-child {
   line-height: 1.18;
 }
 
+.hero__names-em {
+  font-style: italic;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+.hero__names-amp {
+  font-style: italic;
+  font-weight: 400;
+  font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  margin: 0 0.04em;
+  font-size: 1.08em;
+  color: var(--accent);
+}
+
 .hero__sublabel {
   margin: 0 0 36px;
   font-family: "Inter", sans-serif;
