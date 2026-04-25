@@ -33,6 +33,10 @@ export default function HomePage() {
           <span className="t-3">arrives.</span>
         </h1>
 
+        <figure className="hero__sonogram reveal" aria-label="Ultrasound — our little one">
+          <img src="/sonogram.jpg" alt="Ultrasound profile of the baby" />
+        </figure>
+
         <div className="hero__main">
           <div className="hero__content reveal">
             <p className="hero__names">{siteCopy.heroNames}</p>
