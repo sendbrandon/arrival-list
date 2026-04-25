@@ -161,23 +161,24 @@ button, input, textarea, select {
   object-position: center 65%;
   filter: sepia(0.28) contrast(0.82) brightness(1.32);
   mix-blend-mode: multiply;
-  transform-origin: center 65%;
-  animation: sonogram-breath 7s ease-in-out infinite;
 }
 
-@keyframes sonogram-breath {
+/* Slow natural fade in/out — feels like ambient breath */
+.hero__sonogram-bleed {
+  animation: sonogram-fade 14s ease-in-out infinite;
+}
+
+@keyframes sonogram-fade {
   0%, 100% {
-    transform: scale(1);
-    filter: sepia(0.28) contrast(0.82) brightness(1.32);
+    opacity: 0.18;
   }
   50% {
-    transform: scale(1.018);
-    filter: sepia(0.3) contrast(0.84) brightness(1.28);
+    opacity: 0.34;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__sonogram-bleed img {
+  .hero__sonogram-bleed {
     animation: none;
   }
 }
