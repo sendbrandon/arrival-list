@@ -55,9 +55,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-shell letter-section">
+        <p className="eyebrow">{siteCopy.letter.eyebrow}</p>
+        <p className="letter">{siteCopy.letter.body}</p>
+        <p className="letter__signoff">{siteCopy.letter.signoff}</p>
+      </section>
+
       <section className="section-shell">
         <div className="section-heading">
-          <p className="eyebrow">Reminder cadence</p>
+          <p className="eyebrow">What to expect</p>
           <h2>The Schedule</h2>
         </div>
         <ol className="drop-schedule">
@@ -78,7 +84,7 @@ export default function HomePage() {
         <div className="section-heading section-heading--inline">
           <div>
             <p className="eyebrow">From the registry</p>
-            <h2>On the list.</h2>
+            <h2>Things we&rsquo;d love help with.</h2>
           </div>
           <Link className="text-link" href="/registry">See everything</Link>
         </div>

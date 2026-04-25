@@ -11,8 +11,8 @@ export default function DetailsPage() {
 
       <section className="details-layout">
         <div>
-          <p className="eyebrow">Event Details</p>
-          <h1>Save the date. Final details arrive closer to the shower.</h1>
+          <p className="eyebrow">The day</p>
+          <h1>Save the date. We&rsquo;ll send the rest closer to June.</h1>
         </div>
 
         <div className="detail-panel">

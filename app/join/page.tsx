@@ -11,11 +11,11 @@ export default function JoinPage() {
 
       <section className="form-layout">
         <div>
-          <p className="eyebrow">Join the list</p>
-          <h1>RSVP, reminders, registry guidance.</h1>
+          <p className="eyebrow">Our guest list</p>
+          <h1>We&rsquo;d love to have you.</h1>
           <p>
-            Add your details once. We will send the important notes: date, final location,
-            registry guidance, and event-day reminders.
+            Add your details once and we&rsquo;ll keep you in the loop &mdash; the date, final
+            location, registry guidance, and a few gentle reminders before the day.
           </p>
         </div>
         <SignupForm />

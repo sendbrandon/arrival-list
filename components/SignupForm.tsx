@@ -16,9 +16,9 @@ export function SignupForm() {
   const [message, setMessage] = useState("");
 
   const buttonLabel = useMemo(() => {
-    if (status === "submitting") return "Joining...";
-    if (status === "success") return "Confirmed";
-    return "Join the List";
+    if (status === "submitting") return "Sending\u2026";
+    if (status === "success") return "We\u2019ve got you";
+    return "Join the Guest List";
   }, [status]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -57,7 +57,7 @@ export function SignupForm() {
       }
 
       setStatus("success");
-      setMessage("You are on the list. Details and reminders will arrive closer to the date.");
+      setMessage("You\u2019re on the list. We can\u2019t wait to celebrate with you.");
       form.reset();
     } catch (error) {
       setStatus("error");
