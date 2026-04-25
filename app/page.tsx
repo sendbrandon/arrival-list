@@ -29,7 +29,6 @@ export default function HomePage() {
 
         <div className="hero__main">
           <div className="hero__content reveal">
-            <p className="eyebrow">{siteCopy.eyebrow}</p>
             <h1 className="hero__title">{siteCopy.heroTitle}</h1>
             <p className="hero__names">{siteCopy.heroNames}</p>
             <p className="hero__sublabel">{siteCopy.heroSubLabel}</p>
