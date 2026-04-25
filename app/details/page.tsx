@@ -7,10 +7,15 @@ export default function DetailsPage() {
     <main className="c">
       <div className="c-marquee" aria-hidden="true">
         <div className="c-marquee__track">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div className="c-marquee__group" key={i}>
-              <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
-              <span className="c-marquee__mark">✿</span>
+          {Array.from({ length: 2 }).map((_, halfIndex) => (
+            <div className="c-marquee__half" key={halfIndex}>
+              <div className="c-marquee__spacer" aria-hidden="true" />
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div className="c-marquee__group" key={i}>
+                  <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
+                  <span className="c-marquee__mark">✿</span>
+                </div>
+              ))}
             </div>
           ))}
         </div>

@@ -41,14 +41,24 @@
   font-weight: 400;
   font-size: clamp(0.95rem, 1.3vw, 1.15rem);
   letter-spacing: -0.005em;
-  animation: c-marquee-slide 140s linear 2s infinite;
-  animation-fill-mode: backwards;
+  animation: c-marquee-slide 140s linear infinite;
   will-change: transform;
 }
 
 @keyframes c-marquee-slide {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+.c-marquee__half {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.c-marquee__spacer {
+  flex-shrink: 0;
+  width: 32vw;
 }
 
 .c-marquee__group {
