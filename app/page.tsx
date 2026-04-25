@@ -24,7 +24,13 @@ export default function HomePage() {
 
         <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
-          <span>{siteCopy.navTitle}</span>
+          <img
+            className="nav-logo"
+            src="/baby-shower-logo.svg"
+            alt={siteCopy.navTitle}
+            width={88}
+            height={88}
+          />
         </div>
 
         <h1 className="hero__title hero__title--emigre reveal">
