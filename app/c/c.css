@@ -807,12 +807,34 @@
   transform: none;
 }
 
+.c-form-shell .signup-form .signup-form__fineprint {
+  margin: 18px 0 0;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(239, 231, 208, 0.6);
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.c-form-shell .signup-form .signup-form__optional {
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: rgba(239, 231, 208, 0.5);
+  text-transform: none;
+  margin-left: 6px;
+}
+
 .c-form-shell .signup-form .form-message {
   color: var(--c-paper);
   font-family: "Fraunces", serif;
   font-style: italic;
   font-size: 1.05rem;
   margin-top: 16px;
+  text-align: center;
 }
 
 .c-form-shell .signup-form .form-message--error {

@@ -49,16 +49,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Please enter a valid email." }, { status: 400 });
   }
 
+  if (!phone || phone.length < 7) {
+    return NextResponse.json({ message: "Please enter a valid phone number." }, { status: 400 });
+  }
+
   if (!allowedRsvp.has(rsvpStatus)) {
     return NextResponse.json({ message: "Please choose a valid RSVP status." }, { status: 400 });
   }
 
-  if (partySize < 0 || partySize > 10) {
-    return NextResponse.json({ message: "Please enter a party size between 0 and 10." }, { status: 400 });
-  }
-
-  if (payload.smsConsent && !phone) {
-    return NextResponse.json({ message: "Please add a phone number for SMS reminders." }, { status: 400 });
+  if (partySize < 1 || partySize > 10) {
+    return NextResponse.json({ message: "Please enter a party size between 1 and 10." }, { status: 400 });
   }
 
   const [firstName, ...rest] = name.split(" ");

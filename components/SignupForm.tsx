@@ -4,13 +4,6 @@ import { FormEvent, useMemo, useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const reminderOptions = [
-  { value: "event", label: "Event reminders" },
-  { value: "registry", label: "Registry updates" },
-  { value: "sale", label: "Sale alerts" },
-  { value: "baby-updates", label: "Baby arrival updates" }
-];
-
 export function SignupForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -18,7 +11,7 @@ export function SignupForm() {
   const buttonLabel = useMemo(() => {
     if (status === "submitting") return "Sending\u2026";
     if (status === "success") return "We\u2019ve got you";
-    return "Join the Guest List";
+    return "Send My RSVP";
   }, [status]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -33,11 +26,10 @@ export function SignupForm() {
       rsvpStatus: String(formData.get("rsvpStatus") || "undecided"),
       partySize: Number(formData.get("partySize") || 1),
       dietaryNotes: String(formData.get("dietaryNotes") || ""),
-      emailConsent: formData.get("emailConsent") === "on",
-      smsConsent: formData.get("smsConsent") === "on",
-      giftBudget: String(formData.get("giftBudget") || ""),
+      emailConsent: true,
+      smsConsent: true,
       website: String(formData.get("website") || ""),
-      reminderPreferences: formData.getAll("reminderPreferences").map(String)
+      reminderPreferences: ["event", "registry", "baby-updates"]
     };
 
     setStatus("submitting");
@@ -82,12 +74,12 @@ export function SignupForm() {
 
       <div className="field-grid field-grid--two">
         <label>
-          <span>Phone optional</span>
-          <input name="phone" type="tel" autoComplete="tel" placeholder="For SMS reminders" />
+          <span>Phone</span>
+          <input name="phone" type="tel" autoComplete="tel" required placeholder="For event-day texts" />
         </label>
         <label>
           <span>Party size</span>
-          <input name="partySize" type="number" min="0" max="10" defaultValue="1" />
+          <input name="partySize" type="number" min="1" max="10" defaultValue="1" required />
         </label>
       </div>
 
@@ -97,52 +89,21 @@ export function SignupForm() {
           <label><input type="radio" name="rsvpStatus" value="yes" required /> Yes</label>
           <label><input type="radio" name="rsvpStatus" value="maybe" /> Maybe</label>
           <label><input type="radio" name="rsvpStatus" value="no" /> No</label>
-          <label><input type="radio" name="rsvpStatus" value="undecided" /> Keep me posted</label>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Reminder preferences</legend>
-        <div className="choice-grid">
-          {reminderOptions.map((option) => (
-            <label key={option.value}>
-              <input type="checkbox" name="reminderPreferences" value={option.value} defaultChecked={option.value === "event"} />
-              {option.label}
-            </label>
-          ))}
         </div>
       </fieldset>
 
       <label>
-        <span>Gift budget preference optional</span>
-        <select name="giftBudget" defaultValue="">
-          <option value="">No preference</option>
-          <option value="under-25">Under $25</option>
-          <option value="under-50">Under $50</option>
-          <option value="under-100">Under $100</option>
-          <option value="group-gift">Group gift</option>
-        </select>
+        <span>Anything we should know? <span className="signup-form__optional">(optional)</span></span>
+        <textarea name="dietaryNotes" rows={3} placeholder="Allergies, accessibility, anything we should know" />
       </label>
-
-      <label>
-        <span>Dietary notes optional</span>
-        <textarea name="dietaryNotes" rows={4} placeholder="Allergies, preferences, or anything we should know" />
-      </label>
-
-      <div className="consent-stack">
-        <label>
-          <input name="emailConsent" type="checkbox" defaultChecked />
-          Email me event details and registry reminders.
-        </label>
-        <label>
-          <input name="smsConsent" type="checkbox" />
-          Text me important event updates. Standard rates may apply.
-        </label>
-      </div>
 
       <button className="button button--primary" type="submit" disabled={status === "submitting"}>
         {buttonLabel}
       </button>
+
+      <p className="signup-form__fineprint">
+        By sending your RSVP, you agree to receive event details and a few gentle reminders by email and text. We&rsquo;ll keep it brief, kept warm, never spammy.
+      </p>
 
       {message ? <p className={`form-message form-message--${status}`}>{message}</p> : null}
     </form>
