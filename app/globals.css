@@ -287,10 +287,9 @@ p:last-child {
   align-self: end;
   text-align: left;
   position: relative;
-  padding: 22px 22px 24px;
-  background: rgba(251, 247, 239, 0.6);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  padding: 22px 0 24px;
+  background: transparent;
+  border-bottom: 1px solid rgba(28, 26, 23, 0.18);
 }
 
 .hero__letter .eyebrow {
@@ -375,6 +374,7 @@ p:last-child {
   line-height: 1;
   font-weight: 400;
   text-align: center;
+  font-feature-settings: "ss01" 1, "ss02" 1, "dlig" 1, "swsh" 1, "calt" 1, "kern" 1;
 }
 
 .hero__title--emigre .t-1 {
@@ -404,6 +404,19 @@ p:last-child {
   margin: clamp(-12px, -1vh, -4px) 0 clamp(-12px, -1vh, -4px);
 }
 
+.hero__title--emigre .t-mark {
+  font-family: "Fraunces", serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+  margin: clamp(8px, 1.4vh, 18px) 0 clamp(6px, 1vh, 12px);
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+
 .hero__title--emigre .t-3 {
   font-family: "Fraunces", serif;
   font-style: italic;
@@ -414,6 +427,17 @@ p:last-child {
   margin: 0;
   line-height: 1;
   font-variation-settings: "opsz" 60, "SOFT" 100;
+}
+
+.hero__title--emigre .t-period {
+  display: inline-block;
+  font-style: normal;
+  color: var(--accent);
+  font-size: 1.45em;
+  line-height: 0;
+  vertical-align: baseline;
+  margin-left: 0.04em;
+  transform: translateY(0.04em);
 }
 
 .hero__names {

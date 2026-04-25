@@ -31,7 +31,10 @@ export default function HomePage() {
         <h1 className="hero__title hero__title--emigre reveal">
           <span className="t-1">a new</span>
           <span className="t-2">Life</span>
-          <span className="t-3">arrives.</span>
+          <span className="t-mark" aria-hidden="true">—</span>
+          <span className="t-3">
+            arrives<span className="t-period">.</span>
+          </span>
         </h1>
 
         <figure className="hero__sonogram reveal" aria-label="Ultrasound — our little one">
