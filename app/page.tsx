@@ -30,8 +30,7 @@ export default function HomePage() {
 
         <div className="hero__content reveal">
           <p className="eyebrow">{siteCopy.eyebrow}</p>
-          <h1>{siteCopy.heroTitle}</h1>
-          <p className="hero__body">{siteCopy.heroBody}</p>
+          <h1 className="hero__title">{siteCopy.heroTitle}</h1>
           <div className="button-row">
             <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
             <Link className="button button--secondary" href="/registry">{siteCopy.secondaryCta}</Link>
@@ -68,15 +67,18 @@ export default function HomePage() {
           <p className="eyebrow">Reminder cadence</p>
           <h2>The Drop Schedule</h2>
         </div>
-        <div className="drop-grid">
+        <ol className="drop-schedule">
           {reminderDrops.map((drop) => (
-            <article className="drop-card" key={drop.label}>
-              <span>{drop.label}</span>
-              <h3>{drop.title}</h3>
-              <p>{drop.body}</p>
-            </article>
+            <li className="drop-row" key={drop.label}>
+              <span className="drop-row__num">{drop.label}</span>
+              <div className="drop-row__title">
+                <h3>{drop.title}</h3>
+              </div>
+              <p className="drop-row__body">{drop.body}</p>
+              <span className="drop-row__when">{drop.when}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section className="section-shell">
