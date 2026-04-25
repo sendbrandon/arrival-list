@@ -624,6 +624,205 @@
   color: var(--c-accent);
 }
 
+/* ---------- First section (after marquee, no extra top padding above nav) ---------- */
+.c-section--first {
+  padding-top: 0;
+}
+
+.c-section--first .c-marker {
+  margin-top: clamp(24px, 4vh, 56px);
+  margin-bottom: 28px;
+}
+
+/* ---------- Intro paragraphs ---------- */
+.c-intro {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--c-ink-soft);
+  max-width: 620px;
+  margin: clamp(20px, 3vh, 32px) 0 clamp(40px, 6vh, 72px);
+}
+
+.c-section__cta {
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+/* ---------- Details list (definition list) ---------- */
+.c-details {
+  margin: 0;
+  border-top: 1px solid var(--c-ink);
+  max-width: 760px;
+}
+
+.c-details__row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: baseline;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.c-details__row dt {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin: 0;
+}
+
+.c-details__row dd {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .c-details__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+}
+
+/* ---------- Form section (forest green slab) ---------- */
+.c-form-shell {
+  background: var(--c-ink);
+  color: var(--c-paper);
+  margin-top: clamp(24px, 4vh, 56px);
+}
+
+.c-form-shell__inner {
+  padding: clamp(56px, 8vw, 112px) 0;
+}
+
+/* Override .signup-form globals for the bloom dark slab */
+.c-form-shell .signup-form {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--c-paper);
+}
+
+.c-form-shell .signup-form label,
+.c-form-shell .signup-form fieldset {
+  margin-bottom: 22px;
+}
+
+.c-form-shell .signup-form label span,
+.c-form-shell .signup-form legend {
+  color: rgba(239, 231, 208, 0.7);
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.c-form-shell .signup-form input[type="text"],
+.c-form-shell .signup-form input[type="email"],
+.c-form-shell .signup-form input[type="tel"],
+.c-form-shell .signup-form input[type="number"],
+.c-form-shell .signup-form select,
+.c-form-shell .signup-form textarea {
+  background: rgba(239, 231, 208, 0.05);
+  border: 1px solid rgba(239, 231, 208, 0.22);
+  color: var(--c-paper);
+  border-radius: 4px;
+  padding: 14px 16px;
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.c-form-shell .signup-form input:focus,
+.c-form-shell .signup-form select:focus,
+.c-form-shell .signup-form textarea:focus {
+  outline: none;
+  border-color: var(--c-accent);
+  background: rgba(239, 231, 208, 0.08);
+  box-shadow: 0 0 0 3px rgba(211, 93, 58, 0.18);
+}
+
+.c-form-shell .signup-form input::placeholder,
+.c-form-shell .signup-form textarea::placeholder {
+  color: rgba(239, 231, 208, 0.4);
+}
+
+.c-form-shell .signup-form .choice-row label,
+.c-form-shell .signup-form .choice-grid label,
+.c-form-shell .signup-form .consent-stack label {
+  background: rgba(239, 231, 208, 0.05);
+  border-color: rgba(239, 231, 208, 0.18);
+  color: var(--c-paper);
+  font-family: "Fraunces", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 12px 14px;
+}
+
+.c-form-shell .signup-form .choice-row label:has(input:checked),
+.c-form-shell .signup-form .choice-grid label:has(input:checked),
+.c-form-shell .signup-form .consent-stack label:has(input:checked) {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: var(--c-paper);
+}
+
+.c-form-shell .signup-form .button {
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  background: var(--c-accent);
+  color: var(--c-paper);
+  border: 0;
+  border-radius: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.c-form-shell .signup-form .button:hover {
+  background: #b94a2a;
+  transform: none;
+}
+
+.c-form-shell .signup-form .form-message {
+  color: var(--c-paper);
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  margin-top: 16px;
+}
+
+.c-form-shell .signup-form .form-message--error {
+  color: #ffb4a4;
+}
+
+.c-form-shell .signup-form .form-message--success {
+  color: var(--c-accent-soft);
+}
+
 /* ---------- Footer ---------- */
 .c-footer {
   border-top: 1px solid var(--c-line);

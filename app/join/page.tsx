@@ -1,25 +1,55 @@
 import Link from "next/link";
 import { SignupForm } from "@/components/SignupForm";
+import "../c/c.css";
 
 export default function JoinPage() {
   return (
-    <main className="page-shell">
-      <nav className="mini-nav" aria-label="Back navigation">
-        <Link href="/">← The Arrival List</Link>
-        <Link href="/registry">Registry</Link>
-      </nav>
-
-      <section className="form-layout">
-        <div>
-          <p className="eyebrow">Our guest list</p>
-          <h1>We&rsquo;d love to have you.</h1>
-          <p>
-            Add your details once and we&rsquo;ll keep you in the loop &mdash; the date, final
-            location, registry guidance, and a few gentle reminders before the day.
-          </p>
+    <main className="c">
+      {/* Top marquee */}
+      <div className="c-marquee" aria-hidden="true">
+        <div className="c-marquee__track">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div className="c-marquee__group" key={i}>
+              <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
+              <span className="c-marquee__mark">✿</span>
+            </div>
+          ))}
         </div>
-        <SignupForm />
+      </div>
+
+      <section className="c-shell c-section c-section--first">
+        <div className="c-nav">
+          <Link href="/" className="c-nav__brand">
+            Baby <em>in</em> Bloom
+          </Link>
+          <span className="c-nav__edition">Vol. I &mdash; Summer &rsquo;26</span>
+        </div>
+
+        <div className="c-marker">
+          <span className="c-marker__num">01</span>
+          <span className="c-marker__label">Join the Guest List</span>
+          <span className="c-marker__rule" aria-hidden="true" />
+        </div>
+
+        <h1 className="c-h2">
+          Tell us you&rsquo;re <em>coming.</em>
+        </h1>
+        <p className="c-intro">
+          We&rsquo;ll send the address, parking notes, and gentle reminders &mdash; kept brief, kept warm, never spammy.
+        </p>
       </section>
+
+      <section className="c-form-shell">
+        <div className="c-shell c-form-shell__inner">
+          <SignupForm />
+        </div>
+      </section>
+
+      <footer className="c-footer">
+        <span>Baby in Bloom · Vol. I · 2026</span>
+        <span aria-hidden="true" className="c-footer__mark">✿</span>
+        <span>Made with care · B &amp; S</span>
+      </footer>
     </main>
   );
 }
