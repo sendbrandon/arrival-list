@@ -107,7 +107,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 26px 0 32px;
+  padding: 20px 0 22px;
 }
 
 .c-nav__brand {
@@ -140,7 +140,7 @@
   display: flex;
   align-items: baseline;
   gap: 14px;
-  margin: 0 0 28px;
+  margin: 0 0 16px;
   padding-bottom: 0;
 }
 
@@ -172,8 +172,8 @@
 /* ---------- Sonogram bleed ---------- */
 .c-sonogram {
   width: 100vw;
-  margin: clamp(8px, 1.5vh, 24px) calc(50% - 50vw) clamp(-160px, -16vh, -90px);
-  height: clamp(34vh, 42vh, 50vh);
+  margin: clamp(4px, 1vh, 12px) calc(50% - 50vw) clamp(-140px, -14vh, -80px);
+  height: clamp(26vh, 32vh, 38vh);
   opacity: 0.32;
   position: relative;
   z-index: 0;
@@ -222,7 +222,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 4px;
-  margin: clamp(8px, 1.5vh, 20px) 0 clamp(20px, 3.5vh, 40px);
+  margin: clamp(4px, 1vh, 12px) 0 clamp(12px, 2vh, 24px);
   text-align: center;
   position: relative;
   z-index: 2;
@@ -245,12 +245,12 @@
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(5rem, 14vw, 10.5rem);
+  font-size: clamp(4.5rem, 12vw, 8.5rem);
   color: var(--c-ink);
   letter-spacing: -0.035em;
   line-height: 0.9;
   font-variation-settings: "opsz" 144, "SOFT" 50;
-  margin: -8px 0 -6px;
+  margin: -6px 0 -4px;
   display: block;
 }
 
@@ -258,7 +258,7 @@
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-size: clamp(2rem, 3.6vw, 2.85rem);
   color: var(--c-ink-soft);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -282,7 +282,7 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: clamp(40px, 6vw, 88px);
   align-items: start;
-  padding: clamp(16px, 2.5vh, 32px) 0 clamp(28px, 4vh, 48px);
+  padding: clamp(8px, 1.5vh, 20px) 0 clamp(16px, 2.5vh, 28px);
   position: relative;
   z-index: 1;
 }
