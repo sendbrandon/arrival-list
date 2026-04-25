@@ -25,7 +25,6 @@ export default function HomePage() {
         <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.name}</span>
-          <span>{siteCopy.eventDate}</span>
         </div>
 
         <div className="hero__main">
@@ -47,16 +46,16 @@ export default function HomePage() {
 
         <div className="hero__details" aria-label="Event summary">
           <div>
-            <span>Date</span>
+            <span>The Day</span>
             <strong>{siteCopy.eventDate}</strong>
           </div>
           <div>
-            <span>Location</span>
+            <span>The Place</span>
             <strong>{siteCopy.eventCity}</strong>
           </div>
           <div>
-            <span>Reminders</span>
-            <strong>Email / optional SMS</strong>
+            <span>Staying in Touch</span>
+            <strong>Email, with optional texts</strong>
           </div>
         </div>
         </div>

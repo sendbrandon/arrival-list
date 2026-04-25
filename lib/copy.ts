@@ -10,7 +10,7 @@ export const siteCopy = {
     signoff: "— Brandon & Shenika"
   },
   heroBody: "",
-  primaryCta: "RSVP",
+  primaryCta: "Join Our Guest List",
   secondaryCta: "View Registry",
   eventDate: process.env.NEXT_PUBLIC_EVENT_DATE || "June 2026",
   eventCity: process.env.NEXT_PUBLIC_EVENT_CITY || "Location shared with confirmed guests",
@@ -21,26 +21,26 @@ export const siteCopy = {
 export const reminderDrops = [
   {
     label: "01",
-    title: "Save the date",
-    body: "Date, city, and calendar reminder.",
+    title: "Save the Date",
+    body: "The day, the city, and an invite for your calendar.",
     when: "April"
   },
   {
     label: "02",
-    title: "Registry guide",
-    body: "Most-needed items, budget picks, and group gift options.",
+    title: "The Registry",
+    body: "What we'd love help with — by need, by budget, and as a group.",
     when: "May"
   },
   {
     label: "03",
-    title: "Final details",
-    body: "Address, parking, timing, and dress vibe.",
+    title: "Final Details",
+    body: "Address, parking, timing, and what to wear.",
     when: "Early June"
   },
   {
     label: "04",
-    title: "After the shower",
-    body: "Thank-you notes, photo updates, and baby arrival opt-in.",
+    title: "After the Shower",
+    body: "A thank-you, a few photos, and the baby's first updates.",
     when: "Late June"
   }
 ];
