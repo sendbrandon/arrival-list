@@ -269,25 +269,26 @@ p:last-child {
 }
 
 .hero__title {
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(3.5rem, 13.5vw, 11rem);
-  letter-spacing: -0.04em;
-  line-height: 0.92;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
   margin: clamp(40px, 8vh, 96px) 0 clamp(36px, 6vh, 64px);
   color: var(--ink);
-  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
+  text-transform: uppercase;
   max-width: none;
 }
 
 .hero__names {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-family: "Fraunces", serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
-  font-size: clamp(1.65rem, 2.9vw, 2.25rem);
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
   color: var(--ink);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
+  letter-spacing: -0.018em;
+  line-height: 1.18;
 }
 
 .hero__sublabel {
@@ -303,12 +304,12 @@ p:last-child {
 .hero__date {
   margin: 14px 0 4px;
   font-family: "Fraunces", serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
-  font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   color: var(--ink);
   letter-spacing: -0.01em;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .hero__location {

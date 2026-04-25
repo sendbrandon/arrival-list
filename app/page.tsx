@@ -27,7 +27,11 @@ export default function HomePage() {
           <span>{siteCopy.navTitle}</span>
         </div>
 
-        <h1 className="hero__title reveal">{siteCopy.heroTitle}</h1>
+        <h1 className="hero__title reveal">
+          A New Life
+          <br />
+          Arrives
+        </h1>
 
         <div className="hero__main">
           <div className="hero__content reveal">

@@ -2,7 +2,7 @@ export const siteCopy = {
   name: "The Arrival List",
   navTitle: "The Baby Shower",
   heroTitle: "A New Life Arrives",
-  heroNames: "Brandon & Shenika",
+  heroNames: "Celebrate with Brandon & Shenika",
   heroDateLong: process.env.NEXT_PUBLIC_EVENT_DATE_LONG || "Saturday · June 2026",
   heroLocationShort: process.env.NEXT_PUBLIC_EVENT_LOCATION_SHORT || "Location shared with confirmed guests",
   letter: {
