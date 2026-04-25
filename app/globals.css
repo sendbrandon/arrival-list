@@ -515,8 +515,8 @@ p:last-child {
   gap: clamp(24px, 5vw, 64px);
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-top: clamp(48px, 8vh, 96px);
-  padding: clamp(36px, 5.5vh, 56px) clamp(32px, 8vw, 96px);
+  margin-top: clamp(28px, 4vh, 48px);
+  padding: clamp(32px, 5vh, 52px) clamp(32px, 8vw, 96px);
   background: var(--ink);
   color: var(--paper);
   text-decoration: none;

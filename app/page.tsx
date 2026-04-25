@@ -52,6 +52,12 @@ export default function HomePage() {
           </div>
         </div>
 
+        <Link href="/join" className="rsvp-band reveal" aria-label="Join Our Guest List">
+          <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
+          <span className="rsvp-band__meta">{siteCopy.heroDateLong}</span>
+          <span className="rsvp-band__arrow" aria-hidden="true">→</span>
+        </Link>
+
         <div className="hero__details" aria-label="Event summary">
           <div>
             <span>Dress</span>
@@ -68,12 +74,6 @@ export default function HomePage() {
         </div>
         </div>
       </section>
-
-      <Link href="/join" className="rsvp-band reveal-on-scroll" aria-label="Join Our Guest List">
-        <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
-        <span className="rsvp-band__meta">{siteCopy.heroDateLong}</span>
-        <span className="rsvp-band__arrow" aria-hidden="true">→</span>
-      </Link>
 
       <section className="section-shell reveal-on-scroll">
         <div className="section-heading">
