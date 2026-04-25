@@ -38,7 +38,6 @@ export default function HomePage() {
           <span className="t-3">arrives.</span>
         </h1>
 
-        <p className="hero__sonogram-caption">the baby, in profile.</p>
 
         <div className="hero__main">
           <div className="hero__content reveal">
@@ -56,7 +55,7 @@ export default function HomePage() {
         <Link href="/join" className="rsvp-band reveal" aria-label="Join Our Guest List">
           <span className="rsvp-band__label">{siteCopy.primaryCta}</span>
           <span className="rsvp-band__rule" aria-hidden="true" />
-          <span className="rsvp-band__meta">{siteCopy.heroDateLong}</span>
+          <span className="rsvp-band__meta">We can&rsquo;t wait to see you.</span>
           <span className="rsvp-band__arrow" aria-hidden="true">→</span>
         </Link>
 

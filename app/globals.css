@@ -127,21 +127,21 @@ button, input, textarea, select {
   height: clamp(34vh, 42vh, 50vh);
   position: relative;
   z-index: 0;
-  opacity: 0.78;
+  opacity: 0.55;
   -webkit-mask-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.7) 32%,
-    rgba(0, 0, 0, 0.45) 60%,
-    rgba(0, 0, 0, 0.18) 82%,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.55) 30%,
+    rgba(0, 0, 0, 0.32) 58%,
+    rgba(0, 0, 0, 0.12) 80%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.7) 32%,
-    rgba(0, 0, 0, 0.45) 60%,
-    rgba(0, 0, 0, 0.18) 82%,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.55) 30%,
+    rgba(0, 0, 0, 0.32) 58%,
+    rgba(0, 0, 0, 0.12) 80%,
     transparent 100%
   );
 }
@@ -151,7 +151,7 @@ button, input, textarea, select {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: sepia(0.22) contrast(0.92) brightness(1.12);
+  filter: sepia(0.25) contrast(0.88) brightness(1.18);
   mix-blend-mode: multiply;
 }
 
@@ -268,15 +268,16 @@ p:last-child {
 .hero__inner::before {
   content: "";
   position: absolute;
-  top: clamp(180px, 24vh, 280px);
+  top: clamp(280px, 38vh, 440px);
   bottom: clamp(140px, 18vh, 220px);
   left: 50%;
   width: 1px;
   background: linear-gradient(
     to bottom,
     rgba(28, 26, 23, 0) 0%,
-    rgba(28, 26, 23, 0.28) 12%,
-    rgba(28, 26, 23, 0.28) 88%,
+    rgba(28, 26, 23, 0.05) 10%,
+    rgba(28, 26, 23, 0.28) 35%,
+    rgba(28, 26, 23, 0.28) 75%,
     rgba(28, 26, 23, 0) 100%
   );
   pointer-events: none;
@@ -302,8 +303,18 @@ p:last-child {
 /* Match top edge of names column to note panel's first line */
 .hero__content {
   padding-top: 16px;
-  border-bottom: 1px solid rgba(28, 26, 23, 0.18);
   padding-bottom: 18px;
+}
+
+/* Single continuous baseline rule spanning both columns */
+.hero__main::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(28, 26, 23, 0.18);
 }
 
 
@@ -315,7 +326,6 @@ p:last-child {
   position: relative;
   padding: 16px 0 18px;
   background: transparent;
-  border-bottom: 1px solid rgba(28, 26, 23, 0.18);
 }
 
 .hero__letter .eyebrow {
@@ -623,12 +633,12 @@ p:last-child {
 
 .rsvp-band__meta {
   font-family: "Fraunces", serif;
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
-  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
-  color: rgba(246, 241, 231, 0.92);
-  letter-spacing: -0.01em;
-  text-align: right;
+  font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+  color: rgba(246, 241, 231, 0.88);
+  letter-spacing: -0.005em;
+  text-align: left;
 }
 
 .rsvp-band__arrow {
