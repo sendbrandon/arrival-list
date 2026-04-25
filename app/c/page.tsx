@@ -10,17 +10,15 @@ export default function CPage() {
 
   return (
     <main className="c">
-      {/* Top marquee — duplicated groups for seamless loop */}
+      {/* Top marquee — many duplicates for true seamless loop on wide screens */}
       <div className="c-marquee" aria-hidden="true">
         <div className="c-marquee__track">
-          <div className="c-marquee__group">
-            <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
-            <span className="c-marquee__mark">✿</span>
-          </div>
-          <div className="c-marquee__group">
-            <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
-            <span className="c-marquee__mark">✿</span>
-          </div>
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div className="c-marquee__group" key={i}>
+              <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
+              <span className="c-marquee__mark">✿</span>
+            </div>
+          ))}
         </div>
       </div>
 

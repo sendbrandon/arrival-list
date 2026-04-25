@@ -41,7 +41,7 @@
   font-weight: 400;
   font-size: clamp(0.95rem, 1.3vw, 1.15rem);
   letter-spacing: -0.005em;
-  animation: c-marquee-slide 42s linear infinite;
+  animation: c-marquee-slide 80s linear infinite;
   will-change: transform;
 }
 

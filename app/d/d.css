@@ -5,11 +5,11 @@
   background: var(--c-paper);
 }
 
-/* Featured invitation image — sits between Invitation marker and Celebrate */
+/* Featured invitation image — full-bleed, fades top + bottom */
 .d-feature {
-  margin: clamp(8px, 1.5vh, 20px) auto clamp(20px, 3vh, 36px);
-  max-width: clamp(420px, 60vw, 760px);
-  height: clamp(38vh, 48vh, 56vh);
+  width: 100vw;
+  margin: clamp(8px, 1.5vh, 20px) calc(50% - 50vw) clamp(20px, 3vh, 36px);
+  height: clamp(44vh, 56vh, 68vh);
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -39,14 +39,17 @@
   height: 100%;
   object-fit: cover;
   /* Zoom & focus on the floral middle of the invitation */
-  object-position: center 38%;
-  transform: scale(1.15);
-  transform-origin: center 38%;
+  object-position: center 35%;
+  transform: scale(1.6);
+  transform-origin: center 35%;
 }
 
 @media (max-width: 800px) {
   .d-feature {
-    height: clamp(34vh, 42vh, 50vh);
-    max-width: 100%;
+    height: clamp(38vh, 48vh, 56vh);
+  }
+
+  .d-feature img {
+    transform: scale(1.4);
   }
 }
