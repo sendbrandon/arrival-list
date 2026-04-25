@@ -205,21 +205,41 @@ p:last-child {
   max-width: 460px;
   justify-self: end;
   text-align: left;
+  position: relative;
+  padding: 28px 24px;
+}
+
+/* soft cream halo behind the note for readability */
+.hero__letter::before {
+  content: "";
+  position: absolute;
+  inset: -28px -40px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(246, 241, 231, 0.85) 0%,
+    rgba(246, 241, 231, 0.55) 50%,
+    rgba(246, 241, 231, 0) 90%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero__letter .eyebrow {
   margin-bottom: 18px;
+  color: var(--accent);
+  text-shadow: 0 1px 0 rgba(246, 241, 231, 0.6);
 }
 
 .hero__letter .letter {
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 350;
+  font-weight: 420;
   font-size: clamp(1.15rem, 1.7vw, 1.45rem);
   line-height: 1.5;
   letter-spacing: -0.005em;
   color: var(--ink);
   margin: 0 0 20px;
+  text-shadow: 0 1px 0 rgba(246, 241, 231, 0.55);
 }
 
 .hero__letter .letter__signoff {
