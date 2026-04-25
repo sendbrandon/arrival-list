@@ -35,7 +35,6 @@ export default function HomePage() {
           <p className="hero__sublabel">{siteCopy.heroSubLabel}</p>
           <div className="button-row">
             <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
-            <Link className="button button--secondary" href="/registry">{siteCopy.secondaryCta}</Link>
           </div>
         </div>
 
@@ -78,10 +77,10 @@ export default function HomePage() {
       <section className="section-shell">
         <div className="section-heading section-heading--inline">
           <div>
-            <p className="eyebrow">Registry preview</p>
-            <h2>Things that help us prepare.</h2>
+            <p className="eyebrow">From the registry</p>
+            <h2>On the list.</h2>
           </div>
-          <Link className="text-link" href="/registry">Open full registry guide</Link>
+          <Link className="text-link" href="/registry">See everything</Link>
         </div>
         <div className="registry-grid">
           {featuredItems.map((item) => <RegistryCard key={item.id} item={item} />)}
