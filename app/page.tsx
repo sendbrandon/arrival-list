@@ -8,7 +8,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="hero section-shell">
+      <section className="hero">
         <div className="hero__video-wrap" aria-hidden="true">
           <video
             className="hero__video"
@@ -22,6 +22,7 @@ export default function HomePage() {
           <div className="hero__video-overlay" />
         </div>
 
+        <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.name}</span>
           <span>{siteCopy.eventDate}</span>
@@ -50,6 +51,7 @@ export default function HomePage() {
             <span>Reminders</span>
             <strong>Email / optional SMS</strong>
           </div>
+        </div>
         </div>
       </section>
 

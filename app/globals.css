@@ -177,11 +177,20 @@ p:last-child {
 
 .hero {
   position: relative;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   min-height: 92vh;
   padding-bottom: 60px;
   isolation: isolate;
+  overflow: hidden;
+}
+
+.hero__inner {
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: inherit;
 }
 
 .hero__video-wrap {
@@ -189,8 +198,6 @@ p:last-child {
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  border-radius: 6px;
-  margin: 12px -12px;
 }
 
 .hero__video {
