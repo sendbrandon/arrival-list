@@ -311,26 +311,14 @@ p:last-child {
   text-align: center;
 }
 
-.hero__title--emigre .t-mark {
-  font-family: "Inter", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 12px;
-  padding-right: 0.4em;
-}
-
 .hero__title--emigre .t-1 {
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.85rem, 3.4vw, 2.65rem);
+  font-weight: 350;
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
   text-transform: lowercase;
-  color: var(--ink);
-  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  letter-spacing: 0;
   text-align: center;
   font-variation-settings: "opsz" 9, "SOFT" 100;
   line-height: 1;
@@ -338,27 +326,28 @@ p:last-child {
 
 .hero__title--emigre .t-2 {
   font-family: "Fraunces", serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: clamp(5rem, 18vw, 14rem);
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
-  line-height: 0.85;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(5.5rem, 18vw, 13rem);
+  text-transform: none;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
   color: var(--ink);
-  font-variation-settings: "opsz" 144, "SOFT" 0;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
   display: block;
+  margin: clamp(-12px, -1vh, -4px) 0 clamp(-12px, -1vh, -4px);
 }
 
 .hero__title--emigre .t-3 {
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(3.25rem, 6.5vw, 5.25rem);
-  letter-spacing: -0.025em;
-  color: var(--ink);
-  margin: clamp(-16px, -1.5vh, -8px) 0 0;
-  line-height: 0.95;
-  font-variation-settings: "opsz" 96, "SOFT" 80;
+  font-weight: 350;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1;
+  font-variation-settings: "opsz" 60, "SOFT" 100;
 }
 
 .hero__names {
@@ -1093,11 +1082,11 @@ textarea {
   }
 
   .hero__title--emigre .t-2 {
-    font-size: clamp(4.5rem, 22vw, 6rem);
+    font-size: clamp(5rem, 24vw, 7rem);
   }
 
   .hero__title--emigre .t-3 {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2rem, 7.5vw, 3rem);
     margin: 0;
   }
 
