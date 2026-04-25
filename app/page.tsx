@@ -25,16 +25,12 @@ export default function HomePage() {
         <div className="hero__inner">
         <div className="nav-line" aria-label="Site identity">
           <span>{siteCopy.navTitle}</span>
-          <span className="nav-edition">Arrival · No. 001 · MMXXVI</span>
         </div>
 
         <h1 className="hero__title hero__title--emigre reveal">
           <span className="t-1">a new</span>
           <span className="t-2">Life</span>
-          <span className="t-mark" aria-hidden="true">—</span>
-          <span className="t-3">
-            arrives<span className="t-period">.</span>
-          </span>
+          <span className="t-3">arrives.</span>
         </h1>
 
         <figure className="hero__sonogram reveal" aria-label="Ultrasound — our little one">
