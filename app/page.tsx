@@ -31,6 +31,7 @@ export default function HomePage() {
         <div className="hero__content reveal">
           <p className="eyebrow">{siteCopy.eyebrow}</p>
           <h1 className="hero__title">{siteCopy.heroTitle}</h1>
+          <p className="hero__names">{siteCopy.heroNames}</p>
           <div className="button-row">
             <Link className="button button--primary" href="/join">{siteCopy.primaryCta}</Link>
             <Link className="button button--secondary" href="/registry">{siteCopy.secondaryCta}</Link>

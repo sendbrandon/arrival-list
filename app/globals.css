@@ -225,13 +225,22 @@ p:last-child {
 }
 
 .hero__title {
-  font-style: italic;
-  font-weight: 350;
-  font-size: clamp(2.75rem, 6.5vw, 5rem);
+  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 5.5rem);
   letter-spacing: -0.025em;
   line-height: 1.02;
   font-variation-settings: "opsz" 144, "SOFT" 100;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+}
+
+.hero__names {
+  margin: 0 0 32px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--ink);
+  letter-spacing: -0.005em;
 }
 
 .hero__body {
@@ -295,14 +304,16 @@ p:last-child {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-top: 24px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin-top: 32px;
+  background: rgba(246, 241, 231, 0.55);
+  backdrop-filter: blur(4px);
 }
 
 .hero__details > div {
-  padding: 24px 28px;
-  border-right: 1px solid var(--line-soft);
+  padding: 22px 28px;
+  border-right: 1px solid var(--line);
 }
 
 .hero__details > div:last-child {
@@ -310,8 +321,16 @@ p:last-child {
 }
 
 .hero__details span,
-.drop-card > span,
 dt {
+  display: block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.drop-card > span {
   display: block;
   color: var(--muted);
   font-size: 0.7rem;
@@ -320,7 +339,17 @@ dt {
   text-transform: uppercase;
 }
 
-.hero__details strong,
+.hero__details strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-weight: 400;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
 dd {
   display: block;
   margin-top: 8px;
@@ -328,6 +357,7 @@ dd {
   font-weight: 400;
   font-family: "Fraunces", serif;
   font-size: 1.05rem;
+  margin-left: 0;
 }
 
 dd {
