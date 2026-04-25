@@ -108,6 +108,11 @@ button, input, textarea, select {
   opacity: 0.6;
 }
 
+/* Mobile-only: vertical edge text running down left margin (catalog signature) */
+.edge-text {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .nav-serial { display: none; }
 }
@@ -1291,31 +1296,54 @@ textarea {
   }
 
   .hero__sonogram-bleed {
-    height: clamp(26vh, 32vh, 38vh);
-    margin-bottom: clamp(-60px, -8vh, -32px);
+    height: clamp(22vh, 26vh, 32vh);
+    margin-bottom: clamp(-48px, -6vh, -24px);
   }
 
   .hero__title--emigre {
-    margin: 12px 0 20px;
+    margin: 8px 0 16px;
+    gap: 0;
   }
 
   .hero__title--emigre .t-1 {
     font-size: clamp(1.15rem, 4.5vw, 1.6rem);
+    margin-bottom: -2px;
   }
 
   .hero__title--emigre .t-2 {
     font-size: clamp(4rem, 20vw, 6rem);
+    margin: -2px 0 -4px;
   }
 
   .hero__title--emigre .t-3 {
     font-size: clamp(1.75rem, 6.5vw, 2.5rem);
-    margin: 0;
+    margin: -2px 0 0;
+  }
+
+  /* Vertical edge text — Travis catalog signature on mobile */
+  .edge-text {
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 36vh;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    font-family: "Inter", sans-serif;
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.4;
+    white-space: nowrap;
+    z-index: 5;
+    pointer-events: none;
   }
 
   .hero__main {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 4px 0 20px;
+    gap: 18px;
+    padding: 4px 0 14px;
     align-items: start;
   }
 
@@ -1324,11 +1352,11 @@ textarea {
     justify-self: start;
     align-self: start;
     max-width: 100%;
-    padding: 0 0 12px;
+    padding: 0 0 8px;
   }
 
   .hero__content {
-    padding: 12px 0 12px;
+    padding: 8px 0 8px;
   }
 
   .nav-line {
