@@ -3,7 +3,7 @@ export const siteCopy = {
   navTitle: "Baby Shower",
   heroTitle: "A New Life Arrives",
   heroNames: "Celebrate with Brandon & Shenika",
-  heroDateLong: process.env.NEXT_PUBLIC_EVENT_DATE_LONG || "Saturday · June 2026",
+  heroDateLong: process.env.NEXT_PUBLIC_EVENT_DATE_LONG || "Sunday · June 28, 2026",
   heroLocationShort: process.env.NEXT_PUBLIC_EVENT_LOCATION_SHORT || "Location shared with confirmed guests",
   letter: {
     eyebrow: "A note from us",
@@ -13,7 +13,7 @@ export const siteCopy = {
   heroBody: "",
   primaryCta: "Join Our Guest List",
   secondaryCta: "View Registry",
-  eventDate: process.env.NEXT_PUBLIC_EVENT_DATE || "June 2026",
+  eventDate: process.env.NEXT_PUBLIC_EVENT_DATE || "Sunday, June 28, 2026",
   eventCity: process.env.NEXT_PUBLIC_EVENT_CITY || "Location shared with confirmed guests",
   reminderPromise:
     "No noise. Just the details that help everyone show up, celebrate, and prepare."
