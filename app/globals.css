@@ -216,19 +216,19 @@ p:last-child {
 }
 
 .hero__letter {
-  max-width: 380px;
+  max-width: 360px;
   justify-self: end;
   align-self: end;
   text-align: left;
   position: relative;
-  padding: 28px 28px 32px;
-  background: rgba(251, 247, 239, 0.55);
+  padding: 22px 22px 24px;
+  background: rgba(251, 247, 239, 0.6);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
 .hero__letter .eyebrow {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   color: var(--accent);
   text-shadow: 0 1px 0 rgba(246, 241, 231, 0.6);
 }
@@ -237,11 +237,11 @@ p:last-child {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 420;
-  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
-  line-height: 1.5;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.4;
   letter-spacing: -0.005em;
   color: var(--ink);
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   text-shadow: 0 1px 0 rgba(246, 241, 231, 0.55);
 }
 
@@ -311,16 +311,29 @@ p:last-child {
   text-align: center;
 }
 
+.hero__title--emigre .t-mark {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 12px;
+  padding-right: 0.4em;
+}
+
 .hero__title--emigre .t-1 {
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 350;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3.4vw, 2.65rem);
   text-transform: lowercase;
-  color: var(--ink-soft);
-  letter-spacing: 0;
+  color: var(--ink);
+  letter-spacing: -0.005em;
   text-align: center;
   font-variation-settings: "opsz" 9, "SOFT" 100;
+  line-height: 1;
 }
 
 .hero__title--emigre .t-2 {
@@ -339,12 +352,13 @@ p:last-child {
 .hero__title--emigre .t-3 {
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 350;
-  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-  letter-spacing: -0.015em;
+  font-weight: 400;
+  font-size: clamp(3.25rem, 6.5vw, 5.25rem);
+  letter-spacing: -0.025em;
   color: var(--ink);
-  margin: clamp(-12px, -1vh, -4px) 0 0;
-  font-variation-settings: "opsz" 60, "SOFT" 100;
+  margin: clamp(-16px, -1.5vh, -8px) 0 0;
+  line-height: 0.95;
+  font-variation-settings: "opsz" 96, "SOFT" 80;
 }
 
 .hero__names {
@@ -483,7 +497,7 @@ p:last-child {
 
 /* When slab lives inside the note panel, break it out to the panel edges */
 .hero__letter .button-row {
-  margin: 32px -28px -32px;
+  margin: 22px -22px -24px;
 }
 
 .hero__letter .button--slab {
