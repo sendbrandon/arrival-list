@@ -27,16 +27,17 @@ export default function HomePage() {
           <span>{siteCopy.navTitle}</span>
         </div>
 
+        <figure className="hero__sonogram-bleed" aria-label="Ultrasound — our little one">
+          <img src="/sonogram.jpg" alt="Ultrasound profile of the baby" />
+        </figure>
+
         <h1 className="hero__title hero__title--emigre reveal">
           <span className="t-1">a new</span>
           <span className="t-2">Life</span>
           <span className="t-3">arrives.</span>
         </h1>
 
-        <figure className="hero__sonogram reveal" aria-label="Ultrasound — our little one">
-          <img src="/sonogram.jpg" alt="Ultrasound profile of the baby" />
-          <figcaption className="hero__sonogram-caption">the baby, in profile.</figcaption>
-        </figure>
+        <p className="hero__sonogram-caption">the baby, in profile.</p>
 
         <div className="hero__main">
           <div className="hero__content reveal">

@@ -106,32 +106,49 @@ button, input, textarea, select {
   justify-self: center;
 }
 
-.hero__sonogram {
-  margin: clamp(12px, 2vh, 28px) auto clamp(32px, 5vh, 56px);
-  max-width: clamp(320px, 46vw, 580px);
-  padding: 0;
-  background: transparent;
+/* Full-bleed sonogram fading down into the title section */
+.hero__sonogram-bleed {
+  margin: clamp(8px, 1.5vh, 24px) calc(50% - 50vw) clamp(-220px, -22vh, -120px);
+  width: 100vw;
+  height: clamp(50vh, 68vh, 80vh);
   position: relative;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 55%,
+    rgba(0, 0, 0, 0.6) 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 55%,
+    rgba(0, 0, 0, 0.6) 78%,
+    transparent 100%
+  );
 }
 
-.hero__sonogram img {
+.hero__sonogram-bleed img {
   display: block;
   width: 100%;
-  height: auto;
-  filter: sepia(0.18) contrast(1.05) brightness(1.04);
-  box-shadow: 0 24px 60px rgba(28, 26, 23, 0.18);
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.16) contrast(1.06) brightness(1.04);
 }
 
 .hero__sonogram-caption {
-  margin: 18px 0 0;
+  margin: clamp(8px, 1.5vh, 16px) 0 clamp(16px, 3vh, 28px);
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
   color: var(--ink-soft);
   text-align: center;
   font-variation-settings: "opsz" 60, "SOFT" 100;
+  position: relative;
+  z-index: 2;
 }
 
 .mini-nav {
@@ -361,11 +378,13 @@ p:last-child {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(4px, 1vh, 12px);
-  margin: clamp(40px, 8vh, 96px) 0 clamp(36px, 6vh, 64px);
+  margin: 0 0 clamp(8px, 1.5vh, 16px);
   letter-spacing: 0;
   line-height: 1;
   font-weight: 400;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero__title--emigre .t-1 {
@@ -1189,6 +1208,11 @@ textarea {
     margin: 24px 0 28px;
     font-size: clamp(3rem, 14vw, 5rem);
     line-height: 0.95;
+  }
+
+  .hero__sonogram-bleed {
+    height: clamp(40vh, 50vh, 60vh);
+    margin-bottom: clamp(-100px, -12vh, -60px);
   }
 
   .hero__title--emigre {
