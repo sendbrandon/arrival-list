@@ -1,0 +1,200 @@
+.bloom {
+  position: relative;
+  min-height: 100vh;
+  background: #f6f1e7;
+  background-image:
+    radial-gradient(rgba(28, 26, 23, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(48px, 8vh, 96px) clamp(24px, 6vw, 80px);
+  overflow: hidden;
+}
+
+.bloom__frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bloom__border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bloom__sprig {
+  position: absolute;
+  width: clamp(110px, 14vw, 180px);
+  height: auto;
+}
+
+.bloom__sprig--tl {
+  top: 0;
+  left: clamp(40px, 8vw, 100px);
+}
+
+.bloom__sprig--tr {
+  top: 0;
+  right: clamp(40px, 8vw, 100px);
+}
+
+.bloom__flower {
+  position: absolute;
+  width: clamp(28px, 4vw, 44px);
+}
+
+.bloom__flower--1 { top: 22%; left: 8%; }
+.bloom__flower--2 { top: 38%; right: 10%; }
+.bloom__flower--3 { top: 54%; left: 6%; }
+.bloom__flower--4 { top: 68%; right: 14%; transform: rotate(20deg); }
+.bloom__flower--5 { bottom: 14%; left: 22%; transform: rotate(-15deg); }
+.bloom__flower--6 { bottom: 8%; right: 28%; transform: rotate(45deg); }
+
+.bloom__hydrangea {
+  position: absolute;
+  width: clamp(80px, 9vw, 130px);
+  height: auto;
+  bottom: 8%;
+  right: 6%;
+  transform: rotate(-8deg);
+}
+
+.bloom__lily {
+  position: absolute;
+  width: clamp(70px, 8vw, 110px);
+  height: auto;
+  bottom: 12%;
+  left: 8%;
+  transform: rotate(8deg);
+}
+
+.bloom__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bloom__intro {
+  font-family: "Caveat", cursive;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: #2f3d33;
+  margin: 0 0 16px;
+  line-height: 1;
+}
+
+.bloom__title {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(2.75rem, 5.4vw, 4.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  color: #2f3d33;
+  margin: 0 0 32px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.bloom__line {
+  font-family: "Caveat", cursive;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  color: #2f3d33;
+  margin: 0 0 36px;
+  line-height: 1.25;
+}
+
+.bloom__line em {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.bloom__date {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(2.25rem, 4.4vw, 3.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  color: #2f3d33;
+  margin: 0 0 24px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.bloom__date sup {
+  font-size: 0.45em;
+  vertical-align: 0.7em;
+  letter-spacing: 0;
+}
+
+.bloom__location {
+  font-family: "Caveat", cursive;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+  color: #2f3d33;
+  opacity: 0.85;
+  margin: 0 0 40px;
+  line-height: 1.3;
+}
+
+.bloom__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: "Caveat", cursive;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #2f3d33;
+  background: transparent;
+  border: 2px solid #d8a93a;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+  letter-spacing: 0.01em;
+}
+
+.bloom__cta:hover {
+  background: #d8a93a;
+  color: #f6f1e7;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .bloom {
+    padding: 64px 32px;
+  }
+
+  .bloom__sprig--tl,
+  .bloom__sprig--tr {
+    width: 90px;
+    top: 12px;
+  }
+
+  .bloom__sprig--tl { left: 16px; }
+  .bloom__sprig--tr { right: 16px; }
+
+  .bloom__flower--1, .bloom__flower--2, .bloom__flower--3,
+  .bloom__flower--4, .bloom__flower--5, .bloom__flower--6 {
+    width: 22px;
+  }
+
+  .bloom__hydrangea, .bloom__lily {
+    width: 64px;
+  }
+
+  .bloom__title {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+  }
+
+  .bloom__date {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+}
