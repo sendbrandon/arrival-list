@@ -306,72 +306,74 @@
   /* Mobile — shorter, wider photo so Join CTA sits above the fold.
      Square aspect with capped height. Text overlay tightened to fit. */
   .d-feature.d-feature--portrait {
-    /* Drop aspect-ratio + min/max combo (was producing a stretch that
-       hid the bottom keyline on Safari). Use a clean fixed vh height.
-       Image inside fills with object-fit: cover. */
-    aspect-ratio: auto;
-    height: 50vh;
+    /* Mobile inherits the 16:9 aspect from the base rule —
+       wider, shorter band that lets the floral background read
+       even on a narrow phone. */
+    aspect-ratio: 16 / 9;
+    height: auto;
     min-height: unset;
     max-height: unset;
     width: calc(100% - 24px);
     margin: 8px auto 4px;
-    padding: 10px;
+    padding: 8px;
   }
 
   /* Inner hairline more clearly inset on mobile so the keyline reads
      distinctly all the way around — including the bottom edge */
   .d-feature.d-feature--portrait::before {
-    inset: 5px;
+    inset: 4px;
   }
 
   /* Match burnt-edge inset to mobile padding so it sits on the image */
   .d-feature.d-feature--portrait::after {
-    inset: 10px;
+    inset: 8px;
   }
 
   .d-feature.d-feature--portrait img {
     transform: scale(1);
-    /* Faces sit higher in the frame so the lower-third dress/jacket
-       area is the quiet zone for type */
-    object-position: center 14%;
-    transform-origin: center 14%;
+    /* In the 16:9 phone band, anchor the image so faces sit upper-third
+       and the lower portion (dress/jacket/garden) hosts the inscription */
+    object-position: center 32%;
+    transform-origin: center 32%;
   }
 
-  /* Overlay sits LOW in the photo — closer to the bottom edge,
-     in the dress/jacket quiet zone, not crashing into chest area */
+  /* Overlay sits LOW in the 16:9 band — tight bottom margin since
+     the photo is a horizontal stripe on mobile */
   .d-feature__overlay {
     position: absolute;
     top: auto;
-    bottom: clamp(10px, 2.4vh, 22px);
+    bottom: clamp(6px, 1.4vh, 14px);
     left: 0;
     right: 0;
-    padding: 0 16px;
-    gap: 4px;
+    padding: 0 14px;
+    gap: 2px;
     filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.55))
             drop-shadow(0 1px 2px rgba(20, 16, 12, 0.32));
   }
 
   .d-overlay__headline {
-    font-size: clamp(1.15rem, 5.4vw, 1.7rem);
-    letter-spacing: 0.22em;
+    /* Scaled down for the 16:9 horizontal band on mobile */
+    font-size: clamp(0.92rem, 4.6vw, 1.35rem);
+    letter-spacing: 0.18em;
     gap: 0;
     color: var(--c-paper);
   }
 
   .d-overlay__amp {
-    font-size: 1.55em;
-    margin: -0.06em 0;
+    font-size: 1.35em;
+    margin: -0.04em 0;
     color: var(--c-accent-soft);
   }
 
   .d-overlay__date {
-    font-size: 0.88rem;
+    font-size: 0.72rem;
     color: rgba(246, 231, 208, 0.92);
+    margin-top: 4px;
   }
 
   .d-overlay__location {
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
     color: rgba(246, 231, 208, 0.72);
   }
 
