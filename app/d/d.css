@@ -183,18 +183,16 @@
 }
 
 @media (max-width: 800px) {
-  /* Mobile — overlay on photo: names + date + location.
-     The "An invitation to Baby in Bloom" phrase lives in the
-     section marker above, not on the photo, so the photo carries
-     just WHO + WHEN + WHERE. */
+  /* Mobile — shorter, wider photo so Join CTA sits above the fold.
+     Square aspect with capped height. Text overlay tightened to fit. */
   .d-feature.d-feature--portrait {
     height: auto;
-    aspect-ratio: 4 / 5;
-    min-height: 60vh;
-    max-height: 76vh;
+    aspect-ratio: 1 / 1;
+    min-height: 42vh;
+    max-height: 52vh;
     width: calc(100% - 24px);
-    margin: 12px auto 6px;
-    padding: 8px;
+    margin: 8px auto 4px;
+    padding: 7px;
   }
 
   .d-feature.d-feature--portrait::before {
@@ -203,25 +201,25 @@
 
   .d-feature.d-feature--portrait img {
     transform: scale(1);
-    object-position: center 18%;
-    transform-origin: center 18%;
+    object-position: center 22%;
+    transform-origin: center 22%;
   }
 
   .d-feature__overlay {
     position: absolute;
     top: auto;
-    bottom: clamp(28px, 6vh, 56px);
+    bottom: clamp(16px, 4vh, 32px);
     left: 0;
     right: 0;
-    padding: 0 18px;
-    gap: 8px;
+    padding: 0 16px;
+    gap: 5px;
     filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.55))
             drop-shadow(0 1px 2px rgba(20, 16, 12, 0.32));
   }
 
   .d-overlay__headline {
-    font-size: clamp(2.1rem, 10.5vw, 3.4rem);
-    gap: 8px;
+    font-size: clamp(1.85rem, 9vw, 2.9rem);
+    gap: 6px;
     line-height: 0.95;
     color: var(--c-paper);
   }
@@ -231,18 +229,39 @@
   }
 
   .d-overlay__date {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: rgba(246, 231, 208, 0.92);
   }
 
   .d-overlay__location {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: rgba(246, 231, 208, 0.72);
+  }
+
+  /* Tighten the masthead chrome ABOVE the portrait photo only, so the
+     image + caption + Join CTA sit above the fold. :has() scopes this to
+     hero-test pages — the live home (/) is unaffected. */
+  .c-hero__inner:has(.d-feature--portrait) .c-nav {
+    padding: 14px 0 14px;
+  }
+
+  .c-hero__inner:has(.d-feature--portrait) .c-marker {
+    margin: 0 0 10px;
+    gap: 10px;
+  }
+
+  .c-hero__inner:has(.d-feature--portrait) .c-marker__label {
     font-size: 0.62rem;
     letter-spacing: 0.22em;
-    color: rgba(246, 231, 208, 0.75);
+  }
+
+  .c-hero__inner:has(.d-feature--portrait) .c-marker__num {
+    font-size: 1rem;
   }
 
   .c-rsvp.c-rsvp--inline {
-    margin-top: 14px;
+    margin-top: 10px;
   }
 }
 
