@@ -183,21 +183,21 @@
 }
 
 @media (max-width: 800px) {
-  /* Mobile — Join CTA above the fold.
-     Tighter container (max 58vh) so masthead + image + button all fit.
-     Aspect ratio kept square-ish to retain editorial feel. */
+  /* Mobile — photo as art, text as caption.
+     The headline LEAVES the image and sits in paper space below.
+     Photo stays clean inside its keyline, type breathes in margin. */
   .d-feature.d-feature--portrait {
     height: auto;
-    aspect-ratio: 1 / 1;
-    min-height: 48vh;
-    max-height: 58vh;
+    aspect-ratio: 4 / 5;
+    min-height: 44vh;
+    max-height: 56vh;
     width: calc(100% - 24px);
-    margin: 12px auto 6px;
-    padding: 10px;
+    margin: 12px auto 158px;
+    padding: 8px;
   }
 
   .d-feature.d-feature--portrait::before {
-    inset: 4px;
+    inset: 3px;
   }
 
   .d-feature.d-feature--portrait img {
@@ -206,34 +206,53 @@
     transform-origin: center 22%;
   }
 
+  /* Pull the figcaption OUT of the image into paper space */
   .d-feature__overlay {
-    bottom: clamp(20px, 4vh, 40px);
+    position: absolute;
+    top: calc(100% + 18px);
+    bottom: auto;
+    left: 0;
+    right: 0;
     padding: 0 18px;
-    gap: 6px;
+    gap: 4px;
+    /* Drop the dark halo — text now sits on cream paper, not on image */
+    filter: none;
   }
 
+  /* Flip color hierarchy for paper space — dark ink on cream */
   .d-overlay__eyebrow {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
+    color: var(--c-accent);
+    margin-bottom: 8px;
   }
 
   .d-overlay__headline {
     font-size: clamp(2.1rem, 10.5vw, 3.4rem);
     gap: 6px;
     line-height: 0.95;
+    color: var(--c-ink);
+  }
+
+  .d-overlay__amp {
+    color: var(--c-accent);
   }
 
   .d-overlay__date {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
+    color: var(--c-ink-soft);
+    margin-top: 4px;
   }
 
   .d-overlay__location {
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--c-muted);
+    margin-top: 2px;
   }
 
   /* Inline Join CTA — tighter on mobile so it sits above fold */
   .c-rsvp.c-rsvp--inline {
-    margin-top: 8px;
+    margin-top: 14px;
   }
 }
 
