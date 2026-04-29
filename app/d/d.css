@@ -128,10 +128,9 @@
 
 /* Overlay caption on the image — sits in the lower-left, inside the soft
    bottom fade so it feels embedded in the image, not stamped on top. */
-/* Engraved-invitation overlay — names + hairline rule + date + location.
-   Refined for premium baby-shower warmth: looser tracking, softer
-   ampersand, ceremonial divider, opsz/SOFT axis dialed for warm
-   letterforms. */
+/* Engraver's love note overlay — italic names, hairline rule, date,
+   location. Tight rhythm so the inscription reads as one quiet block
+   rather than spaced-out facts. */
 .d-feature__overlay {
   position: absolute;
   left: 0;
@@ -141,24 +140,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(4px, 0.7vh, 10px);
+  gap: clamp(2px, 0.4vh, 6px);
   text-align: center;
   pointer-events: none;
   padding: 0 clamp(20px, 5vw, 60px);
-  /* Softer halo — cream type still reads, but the dark drop is a
-     whisper, not a stamp. */
   filter: drop-shadow(0 2px 18px rgba(20, 16, 12, 0.4))
           drop-shadow(0 1px 2px rgba(20, 16, 12, 0.26));
 }
 
-/* Hairline rule between names and date — the wedding invitation
-   engraver's breath between WHO and WHEN. */
+/* Hairline rule — short and tight to the headline above and date below */
 .d-overlay__rule {
   display: block;
-  width: clamp(48px, 6vw, 80px);
+  width: clamp(36px, 4.5vw, 60px);
   height: 1px;
   background: rgba(246, 231, 208, 0.55);
-  margin: clamp(10px, 1.6vh, 18px) 0 clamp(8px, 1.2vh, 14px);
+  margin: clamp(6px, 1vh, 10px) 0 clamp(4px, 0.8vh, 8px);
 }
 
 .d-overlay__eyebrow {
@@ -176,52 +172,52 @@
   font-weight: 400;
 }
 
-/* Engraved inscription — names stacked on a center axis, roman caps,
-   light Fraunces, generously tracked. SOFT axis at 100 for warmer
-   letterforms (baby shower vs hymnal frontispiece). */
+/* Engraver's love note — names horizontal, italic Fraunces, sentence
+   case. Warm, intimate baby-shower energy: a couple in love, not an
+   engraved monument. Tight gap between elements, swash ampersand as
+   the natural centerpiece. */
 .d-overlay__headline {
   margin: 0;
   font-family: "Fraunces", serif;
-  font-weight: 300;
-  font-style: normal;
-  font-size: clamp(1.4rem, 3.6vw, 2.15rem);
+  font-weight: 350;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
   line-height: 1;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  letter-spacing: -0.005em;
   color: var(--c-paper);
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: baseline;
   justify-content: center;
-  gap: 0;
-  /* SOFT 100 = warmer, rounder letterforms — perfect for baby shower */
+  flex-wrap: nowrap;
+  gap: 0.18em;
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
-/* Each name sits on its own line — pristine, structured, no wrap */
+/* Names — italic Fraunces, sentence case (NOT all caps) */
 .d-overlay__headline em {
-  font-style: normal;
-  font-weight: 300;
-  display: block;
-  /* Optical compensation for trailing letter-spacing */
-  text-indent: 0.24em;
+  font-style: italic;
+  font-weight: 350;
+  display: inline;
+  text-indent: 0;
+  letter-spacing: -0.005em;
 }
 
-/* Ampersand — refined italic bridge, not a centerpiece glyph.
-   Slightly larger than the names but graceful, never aggressive. */
+/* Ampersand — italic swash, the romantic centerpiece. Slightly
+   bigger than the names, warmer with optical size + SOFT axis. */
 .d-overlay__amp {
-  display: block;
+  display: inline;
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: 1.2em;
+  font-size: 1.08em;
   letter-spacing: 0;
   text-indent: 0;
   color: var(--c-accent-soft);
   font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
   font-variation-settings: "opsz" 144, "SOFT" 100;
-  line-height: 0.92;
-  margin: -0.04em 0;
+  line-height: 1;
+  margin: 0;
 }
 
 .d-overlay__date {
