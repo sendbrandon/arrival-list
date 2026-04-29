@@ -1,0 +1,157 @@
+/* Hero Test — internal page for previewing 5 hero candidates */
+
+.hero-test {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 120px;
+}
+
+.hero-test__intro {
+  width: min(960px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 80px 0 56px;
+  text-align: center;
+}
+
+.hero-test__intro h1 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+  margin: 18px 0 16px;
+  color: var(--ink);
+}
+
+.hero-test__intro p {
+  max-width: 540px;
+  margin: 0 auto;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* Each hero bay — full-bleed image, faded the same way the sonogram is faded */
+.hero-test__bay {
+  position: relative;
+  width: 100%;
+  margin: 24px 0 64px;
+}
+
+.hero-test__bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: clamp(46vh, 64vh, 78vh);
+  position: relative;
+  overflow: hidden;
+  opacity: 0.85;
+
+  /* Soft fade top + bottom — same shape as .hero__sonogram-bleed mask */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 8%,
+    rgba(0, 0, 0, 0.78) 22%,
+    rgba(0, 0, 0, 0.92) 50%,
+    rgba(0, 0, 0, 0.78) 78%,
+    rgba(0, 0, 0, 0.18) 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 8%,
+    rgba(0, 0, 0, 0.78) 22%,
+    rgba(0, 0, 0, 0.92) 50%,
+    rgba(0, 0, 0, 0.78) 78%,
+    rgba(0, 0, 0, 0.18) 92%,
+    transparent 100%
+  );
+}
+
+.hero-test__bleed img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+
+  /* Match the live treatment: subtle warm cast, lifted shadows */
+  filter: sepia(0.18) contrast(0.94) brightness(1.06) saturate(0.92);
+  mix-blend-mode: multiply;
+}
+
+/* Caption sits centered under each hero, matching the editorial system */
+.hero-test__caption {
+  width: min(720px, calc(100% - 40px));
+  margin: 24px auto 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.hero-test__num {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: 1.6rem;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.hero-test__note {
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-test__bay--link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease, transform 240ms ease;
+}
+
+.hero-test__bay--link:hover {
+  opacity: 0.92;
+}
+
+.hero-test__bay--link:hover .hero-test__cta {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.hero-test__cta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.hero-test__foot {
+  text-align: center;
+  padding: 80px 20px 0;
+}
+
+@media (max-width: 640px) {
+  .hero-test__bleed {
+    height: 56vh;
+  }
+  .hero-test__caption {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
