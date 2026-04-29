@@ -82,41 +82,10 @@
   z-index: 3;
 }
 
-/* Burnt-edge vignette — subtle aged-photograph treatment.
-   Two layers: a soft corner-darkening radial, plus a four-sided
-   linear edge burn. Sits over the image, under the keyline + text.
-   Multiply blend so it darkens whatever's behind without flat tint. */
+/* Burnt-edge vignette removed — keep the photo bright and clean.
+   No darkening overlays on the image. */
 .d-feature.d-feature--portrait::after {
-  content: "";
-  position: absolute;
-  inset: 14px; /* matches outer padding on desktop */
-  pointer-events: none;
-  z-index: 1;
-  mix-blend-mode: multiply;
-  background:
-    /* corner darkening — soft radial vignette */
-    radial-gradient(
-      ellipse 90% 88% at center,
-      transparent 58%,
-      rgba(22, 14, 8, 0.18) 84%,
-      rgba(22, 14, 8, 0.34) 100%
-    ),
-    /* horizontal edge burn — left + right */
-    linear-gradient(
-      to right,
-      rgba(22, 14, 8, 0.22),
-      transparent 7%,
-      transparent 93%,
-      rgba(22, 14, 8, 0.22)
-    ),
-    /* vertical edge burn — top + bottom */
-    linear-gradient(
-      to bottom,
-      rgba(22, 14, 8, 0.22),
-      transparent 7%,
-      transparent 93%,
-      rgba(22, 14, 8, 0.22)
-    );
+  display: none;
 }
 
 .d-feature.d-feature--portrait img {
@@ -306,30 +275,33 @@
   /* Mobile — shorter, wider photo so Join CTA sits above the fold.
      Square aspect with capped height. Text overlay tightened to fit. */
   .d-feature.d-feature--portrait {
-    /* Mobile inherits the 16:9 aspect from the base rule —
-       wider, shorter band that lets the floral background read
-       even on a narrow phone. */
+    /* Mobile uses a thin paper-mounted plate with NO padding —
+       single outer hairline only. The double hairline was causing
+       the bottom-cutting issue on Safari at small sizes; dropping
+       it and letting the image fill the frame edge-to-edge is
+       both cleaner and more bulletproof. */
     aspect-ratio: 16 / 9;
     height: auto;
     min-height: unset;
     max-height: unset;
     width: calc(100% - 24px);
-    margin: 8px auto 4px;
-    /* Bump padding so the paper gap between image edge and inner
-       hairline is clearly visible — fixes the bottom-cutting issue
-       at small scale */
-    padding: 12px;
+    margin: 8px auto 0;
+    padding: 0;
+    /* Slightly heavier outer keyline so the single line carries the
+       editorial detail on its own */
+    border: 1px solid rgba(28, 26, 23, 0.5);
+    box-shadow: 0 8px 24px rgba(28, 26, 23, 0.06);
   }
 
-  /* Inner hairline sits centered in the paper gap (12px padding,
-     hairline at 6px = 6px image-side + 6px border-side gap) */
+  /* Drop the inner hairline on mobile — single keyline reads cleaner
+     at phone scale and removes the recurring bottom-overlap issue. */
   .d-feature.d-feature--portrait::before {
-    inset: 6px;
+    display: none;
   }
 
-  /* Match burnt-edge inset to mobile padding so it sits on the image */
+  /* Burnt-edge sits flush at frame edge since there's no padding */
   .d-feature.d-feature--portrait::after {
-    inset: 12px;
+    inset: 0;
   }
 
   .d-feature.d-feature--portrait img {
@@ -340,35 +312,43 @@
     transform-origin: center 32%;
   }
 
-  /* Overlay shifts to LOWER-LEFT on mobile — magazine name-plate
-     position so the subjects breathe on the right side of the photo */
+  /* Mobile: overlay moves OUT of the photo into paper space below.
+     16:9 horizontal band on phones doesn't have vertical room to
+     host the type without crowding faces. Photo as art, type as
+     caption — premium editorial hierarchy. */
   .d-feature__overlay {
     position: absolute;
-    top: auto;
-    bottom: clamp(10px, 2.2vh, 20px);
-    left: clamp(14px, 4vw, 22px);
-    right: auto;
-    padding: 0;
-    gap: 3px;
-    align-items: flex-start;
-    text-align: left;
-    max-width: 70%;
-    filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.6))
-            drop-shadow(0 1px 2px rgba(20, 16, 12, 0.35));
+    top: calc(100% + 16px);
+    bottom: auto;
+    left: 0;
+    right: 0;
+    padding: 0 16px;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+    max-width: none;
+    /* Drop the dark drop-shadow halo — text now sits on cream paper */
+    filter: none;
+  }
+
+  /* Need bottom space below the figure for the absolute caption */
+  .d-feature.d-feature--portrait {
+    margin-bottom: 90px;
   }
 
   .d-overlay__headline {
-    /* Inline names on mobile — single line, lower-left, name-plate
-       caption position. Stack only works on desktop where there's
-       horizontal room for centered short lines. */
+    /* Inline names on mobile — single line caption underneath photo.
+       Stack only works on desktop where there's horizontal room. */
     flex-direction: row;
     align-items: baseline;
     flex-wrap: nowrap;
-    font-size: clamp(0.78rem, 3.8vw, 1.1rem);
+    justify-content: center;
+    font-size: clamp(0.95rem, 4.6vw, 1.35rem);
     letter-spacing: 0.16em;
     gap: 0.35em;
     line-height: 1;
-    color: var(--c-paper);
+    /* Ink on paper now — text lives below the image */
+    color: var(--c-ink);
   }
 
   .d-overlay__amp {
@@ -376,21 +356,23 @@
     font-size: 1.15em;
     line-height: 1;
     margin: 0;
-    color: var(--c-accent-soft);
+    /* Use full clay accent (not soft) since it's on cream paper */
+    color: var(--c-accent);
   }
 
   .d-overlay__date {
-    font-size: 0.7rem;
-    color: rgba(246, 231, 208, 0.92);
+    font-size: 0.85rem;
+    color: var(--c-ink-soft);
     margin-top: 4px;
-    text-align: left;
+    text-align: center;
   }
 
   .d-overlay__location {
-    font-size: 0.5rem;
-    letter-spacing: 0.18em;
-    color: rgba(246, 231, 208, 0.72);
-    text-align: left;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--c-muted);
+    text-align: center;
+    margin-top: 2px;
   }
 
   /* Tighten the masthead chrome ABOVE the portrait photo only, so the
