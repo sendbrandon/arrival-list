@@ -41,10 +41,12 @@ export default function DPage({
             <span className="c-nav__edition">Vol. I &mdash; Summer &rsquo;26</span>
           </div>
 
-          {/* Section marker — 00 The Invitation */}
+          {/* Section marker — 00 The Invitation (or eyebrow phrase in portrait variant) */}
           <div className="c-marker">
             <span className="c-marker__num">00</span>
-            <span className="c-marker__label">The Invitation</span>
+            <span className="c-marker__label">
+              {isPortrait ? "An Invitation to Baby in Bloom" : "The Invitation"}
+            </span>
             <span className="c-marker__rule" aria-hidden="true" />
           </div>
 
@@ -53,9 +55,6 @@ export default function DPage({
             <img src={featuredImage} alt="Baby in Bloom invitation" />
             {isPortrait && (
               <figcaption className="d-feature__overlay">
-                <p className="d-overlay__eyebrow">
-                  <em>An invitation to Baby in Bloom</em>
-                </p>
                 <h1 className="d-overlay__headline">
                   <em>Brandon</em>
                   <span className="d-overlay__amp">&amp;</span>
