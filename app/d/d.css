@@ -187,20 +187,22 @@
   /* Mobile — shorter, wider photo so Join CTA sits above the fold.
      Square aspect with capped height. Text overlay tightened to fit. */
   .d-feature.d-feature--portrait {
-    height: auto;
-    aspect-ratio: 1 / 1;
-    min-height: 42vh;
-    max-height: 52vh;
+    /* Drop aspect-ratio + min/max combo (was producing a stretch that
+       hid the bottom keyline on Safari). Use a clean fixed vh height.
+       Image inside fills with object-fit: cover. */
+    aspect-ratio: auto;
+    height: 50vh;
+    min-height: unset;
+    max-height: unset;
     width: calc(100% - 24px);
     margin: 8px auto 4px;
-    /* Slightly wider padding for clearer keyline separation on small screens */
-    padding: 8px;
+    padding: 10px;
   }
 
   /* Inner hairline more clearly inset on mobile so the keyline reads
      distinctly all the way around — including the bottom edge */
   .d-feature.d-feature--portrait::before {
-    inset: 4px;
+    inset: 5px;
   }
 
   .d-feature.d-feature--portrait img {
@@ -266,6 +268,27 @@
 
   .c-hero__inner:has(.d-feature--portrait) .c-marker__num {
     font-size: 1rem;
+  }
+}
+
+/* Tighten gap between "A note from us" and "What to expect" on the
+   portrait variant. The default .c-hero has min-height:100vh which leaves
+   dead space below the inline CTA; the next section then adds 72-120px of
+   padding on top of that. Scoped to portrait variant only. */
+.c-hero:has(.d-feature--portrait) {
+  min-height: 0;
+}
+
+.c-hero:has(.d-feature--portrait) + .c-section {
+  padding-top: clamp(36px, 6vw, 64px);
+}
+
+@media (max-width: 800px) {
+  .c-hero:has(.d-feature--portrait) + .c-section {
+    padding-top: 28px;
+  }
+  .c-hero:has(.d-feature--portrait) .c-letter {
+    margin-bottom: 0;
   }
 
   .c-rsvp.c-rsvp--inline {
