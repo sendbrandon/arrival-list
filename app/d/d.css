@@ -412,6 +412,14 @@
   padding-bottom: clamp(36px, 6vw, 64px);
 }
 
+/* Kill the footer's giant margin-top on the portrait variant —
+   default is clamp(64px, 10vw, 120px) which compounds with the
+   already-tightened section padding to leave a big paper canyon
+   between the category stripe and the footer. */
+.c-hero:has(.d-feature--portrait) ~ .c-footer {
+  margin-top: 0;
+}
+
 @media (max-width: 800px) {
   .c-hero:has(.d-feature--portrait) + .c-section {
     padding-top: 28px;
