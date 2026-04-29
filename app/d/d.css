@@ -315,18 +315,21 @@
     max-height: unset;
     width: calc(100% - 24px);
     margin: 8px auto 4px;
-    padding: 8px;
+    /* Bump padding so the paper gap between image edge and inner
+       hairline is clearly visible — fixes the bottom-cutting issue
+       at small scale */
+    padding: 12px;
   }
 
-  /* Inner hairline more clearly inset on mobile so the keyline reads
-     distinctly all the way around — including the bottom edge */
+  /* Inner hairline sits centered in the paper gap (12px padding,
+     hairline at 6px = 6px image-side + 6px border-side gap) */
   .d-feature.d-feature--portrait::before {
-    inset: 4px;
+    inset: 6px;
   }
 
   /* Match burnt-edge inset to mobile padding so it sits on the image */
   .d-feature.d-feature--portrait::after {
-    inset: 8px;
+    inset: 12px;
   }
 
   .d-feature.d-feature--portrait img {
@@ -337,44 +340,57 @@
     transform-origin: center 32%;
   }
 
-  /* Overlay sits LOW in the 16:9 band — tight bottom margin since
-     the photo is a horizontal stripe on mobile */
+  /* Overlay shifts to LOWER-LEFT on mobile — magazine name-plate
+     position so the subjects breathe on the right side of the photo */
   .d-feature__overlay {
     position: absolute;
     top: auto;
-    bottom: clamp(6px, 1.4vh, 14px);
-    left: 0;
-    right: 0;
-    padding: 0 14px;
-    gap: 2px;
-    filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.55))
-            drop-shadow(0 1px 2px rgba(20, 16, 12, 0.32));
+    bottom: clamp(10px, 2.2vh, 20px);
+    left: clamp(14px, 4vw, 22px);
+    right: auto;
+    padding: 0;
+    gap: 3px;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 70%;
+    filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.6))
+            drop-shadow(0 1px 2px rgba(20, 16, 12, 0.35));
   }
 
   .d-overlay__headline {
-    /* Scaled down for the 16:9 horizontal band on mobile */
-    font-size: clamp(0.92rem, 4.6vw, 1.35rem);
-    letter-spacing: 0.18em;
-    gap: 0;
+    /* Inline names on mobile — single line, lower-left, name-plate
+       caption position. Stack only works on desktop where there's
+       horizontal room for centered short lines. */
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    font-size: clamp(0.78rem, 3.8vw, 1.1rem);
+    letter-spacing: 0.16em;
+    gap: 0.35em;
+    line-height: 1;
     color: var(--c-paper);
   }
 
   .d-overlay__amp {
-    font-size: 1.35em;
-    margin: -0.04em 0;
+    display: inline;
+    font-size: 1.15em;
+    line-height: 1;
+    margin: 0;
     color: var(--c-accent-soft);
   }
 
   .d-overlay__date {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: rgba(246, 231, 208, 0.92);
     margin-top: 4px;
+    text-align: left;
   }
 
   .d-overlay__location {
     font-size: 0.5rem;
     letter-spacing: 0.18em;
     color: rgba(246, 231, 208, 0.72);
+    text-align: left;
   }
 
   /* Tighten the masthead chrome ABOVE the portrait photo only, so the
