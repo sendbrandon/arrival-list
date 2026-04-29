@@ -289,8 +289,13 @@
     padding: 0;
     /* Slightly heavier outer keyline so the single line carries the
        editorial detail on its own */
-    border: 1px solid rgba(28, 26, 23, 0.5);
+    border: 1px solid rgba(28, 26, 23, 0.55);
     box-shadow: 0 8px 24px rgba(28, 26, 23, 0.06);
+    /* CRITICAL: overflow visible so the absolute-positioned caption
+       below the figure is NOT clipped. Image is 100%×100% of content
+       box (padding:0 so equals border-box minus 1px border each side)
+       and can't bleed past the frame anyway. */
+    overflow: visible;
   }
 
   /* Drop the inner hairline on mobile — single keyline reads cleaner
