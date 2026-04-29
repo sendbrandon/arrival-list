@@ -183,16 +183,17 @@
 }
 
 @media (max-width: 800px) {
-  /* Mobile — photo as art, text as caption.
-     The headline LEAVES the image and sits in paper space below.
-     Photo stays clean inside its keyline, type breathes in margin. */
+  /* Mobile — overlay stays ON the photo, but RUTHLESSLY edited:
+     just names + date. Eyebrow lives in the masthead above ("Baby in
+     Bloom"), location is for confirmed guests. Photo dominant, type a
+     refined whisper. */
   .d-feature.d-feature--portrait {
     height: auto;
     aspect-ratio: 4 / 5;
-    min-height: 44vh;
-    max-height: 56vh;
+    min-height: 50vh;
+    max-height: 62vh;
     width: calc(100% - 24px);
-    margin: 12px auto 158px;
+    margin: 12px auto 6px;
     padding: 8px;
   }
 
@@ -202,55 +203,59 @@
 
   .d-feature.d-feature--portrait img {
     transform: scale(1);
-    object-position: center 22%;
-    transform-origin: center 22%;
+    /* Push image up slightly so the lower-third (dress/jacket) is the
+       quiet zone where type can sit without crashing into faces */
+    object-position: center 18%;
+    transform-origin: center 18%;
   }
 
-  /* Pull the figcaption OUT of the image into paper space */
+  /* Overlay sits ON the image, in the lower quiet zone (dress/jacket),
+     with the cream + halo treatment that worked. */
   .d-feature__overlay {
     position: absolute;
-    top: calc(100% + 18px);
-    bottom: auto;
+    top: auto;
+    bottom: clamp(20px, 5vh, 44px);
     left: 0;
     right: 0;
-    padding: 0 18px;
+    padding: 0 16px;
     gap: 4px;
-    /* Drop the dark halo — text now sits on cream paper, not on image */
-    filter: none;
+    /* Cream + dark halo — readable on dress, hair, jacket, anywhere */
+    filter: drop-shadow(0 2px 14px rgba(20, 16, 12, 0.55))
+            drop-shadow(0 1px 2px rgba(20, 16, 12, 0.32));
   }
 
-  /* Flip color hierarchy for paper space — dark ink on cream */
-  .d-overlay__eyebrow {
-    font-size: 0.78rem;
-    color: var(--c-accent);
-    margin-bottom: 8px;
+  /* MOBILE EDIT: hide the eyebrow + location.
+     Masthead already says "Baby in Bloom" — the eyebrow is redundant.
+     Location goes to confirmed guests via email — don't carry it in hero. */
+  .d-overlay__eyebrow,
+  .d-overlay__location {
+    display: none;
   }
 
+  /* Names — single line, properly scaled to fit phone width */
   .d-overlay__headline {
-    font-size: clamp(2.1rem, 10.5vw, 3.4rem);
-    gap: 6px;
-    line-height: 0.95;
-    color: var(--c-ink);
+    font-size: clamp(1.7rem, 7.8vw, 2.5rem);
+    gap: 4px;
+    line-height: 1;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    color: var(--c-paper);
+    letter-spacing: -0.025em;
   }
 
   .d-overlay__amp {
-    color: var(--c-accent);
+    color: var(--c-accent-soft);
+    font-size: 0.95em;
   }
 
+  /* Date — italic kicker, smaller, paper-tinted */
   .d-overlay__date {
     font-size: 0.95rem;
-    color: var(--c-ink-soft);
+    color: rgba(246, 231, 208, 0.92);
     margin-top: 4px;
   }
 
-  .d-overlay__location {
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    color: var(--c-muted);
-    margin-top: 2px;
-  }
-
-  /* Inline Join CTA — tighter on mobile so it sits above fold */
+  /* Inline Join CTA — tight under the photo */
   .c-rsvp.c-rsvp--inline {
     margin-top: 14px;
   }
