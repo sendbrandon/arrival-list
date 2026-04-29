@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       {
         url: "/opengraph-image.png",
         width: 1200,
-        height: 663,
+        height: 630,
         alt: "Baby in Bloom — Brandon & Shenika's Baby Shower"
       }
     ]
