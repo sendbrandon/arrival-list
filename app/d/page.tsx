@@ -53,6 +53,9 @@ export default function DPage({
             <img src={featuredImage} alt="Baby in Bloom invitation" />
             {isPortrait && (
               <figcaption className="d-feature__overlay">
+                <p className="d-overlay__eyebrow">
+                  <em>An invitation to Baby in Bloom</em>
+                </p>
                 <h1 className="d-overlay__headline">
                   <em>Brandon</em>
                   <span className="d-overlay__amp">&amp;</span>

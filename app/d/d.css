@@ -51,46 +51,33 @@
    ============================================================ */
 
 .d-feature.d-feature--portrait {
-  /* Stamp variant — no full-bleed, no soft fade. A single stamp on paper. */
+  /* Editorial frontispiece — hymnal/museum keyline.
+     Outer hairline at the edge, inner hairline 8px in, image at 14px in.
+     The paper gap between hairlines is the classic plate-mounting move. */
   -webkit-mask-image: none;
   mask-image: none;
   width: min(1180px, calc(100% - 40px));
   margin: clamp(20px, 4vh, 48px) auto clamp(8px, 2vh, 20px);
   height: clamp(58vh, 74vh, 82vh);
-  /* Subtle relief — the stamp sits on paper, slightly lifted */
+  padding: 14px;
+  background: var(--c-paper);
+  /* Outer hairline */
+  border: 1px solid rgba(28, 26, 23, 0.55);
+  /* Whisper of relief — the plate sits on paper */
   box-shadow:
-    0 1px 0 rgba(28, 26, 23, 0.06),
-    0 18px 44px rgba(28, 26, 23, 0.1);
+    0 1px 0 rgba(28, 26, 23, 0.04),
+    0 14px 36px rgba(28, 26, 23, 0.07);
+  overflow: visible;
 }
 
-/* Postage-stamp perforations along all four edges. Paper-colored
-   half-circles bite into the image to read as "stamp" without the
-   craft-fair drop-shadow cliché. */
+/* Inner hairline — sits 6px inside the outer, paper showing in the gap */
 .d-feature.d-feature--portrait::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 6px;
+  border: 0.5px solid rgba(28, 26, 23, 0.4);
   pointer-events: none;
   z-index: 3;
-  --perf-r: 7px;          /* radius of each perforation */
-  --perf-space: 20px;     /* center-to-center spacing */
-  background:
-    /* top edge */
-    radial-gradient(circle var(--perf-r) at center,
-      var(--c-paper) 99%, transparent 100%)
-      0 calc(-1 * var(--perf-r)) / var(--perf-space) calc(var(--perf-r) * 2) repeat-x,
-    /* bottom edge */
-    radial-gradient(circle var(--perf-r) at center,
-      var(--c-paper) 99%, transparent 100%)
-      0 calc(100% + var(--perf-r)) / var(--perf-space) calc(var(--perf-r) * 2) repeat-x,
-    /* left edge */
-    radial-gradient(circle var(--perf-r) at center,
-      var(--c-paper) 99%, transparent 100%)
-      calc(-1 * var(--perf-r)) 0 / calc(var(--perf-r) * 2) var(--perf-space) repeat-y,
-    /* right edge */
-    radial-gradient(circle var(--perf-r) at center,
-      var(--c-paper) 99%, transparent 100%)
-      calc(100% + var(--perf-r)) 0 / calc(var(--perf-r) * 2) var(--perf-space) repeat-y;
 }
 
 .d-feature.d-feature--portrait img {
@@ -121,6 +108,21 @@
   /* Soft dark halo lifts cream type off any backdrop */
   filter: drop-shadow(0 2px 16px rgba(20, 16, 12, 0.5))
           drop-shadow(0 1px 3px rgba(20, 16, 12, 0.35));
+}
+
+.d-overlay__eyebrow {
+  margin: 0 0 clamp(6px, 1.2vh, 14px);
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  letter-spacing: 0.005em;
+  color: rgba(246, 231, 208, 0.85);
+}
+
+.d-overlay__eyebrow em {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .d-overlay__headline {
@@ -181,20 +183,21 @@
 }
 
 @media (max-width: 800px) {
-  /* Match desktop framing on mobile — taller, with breathing room above the
-     headline. Image faces sit upper third, headline anchors the lower third. */
+  /* Mobile — Join CTA above the fold.
+     Tighter container (max 58vh) so masthead + image + button all fit.
+     Aspect ratio kept square-ish to retain editorial feel. */
   .d-feature.d-feature--portrait {
     height: auto;
-    aspect-ratio: 4 / 5;
-    min-height: 70vh;
-    max-height: 88vh;
+    aspect-ratio: 1 / 1;
+    min-height: 48vh;
+    max-height: 58vh;
     width: calc(100% - 24px);
-    margin: 16px auto 8px;
+    margin: 12px auto 6px;
+    padding: 10px;
   }
 
   .d-feature.d-feature--portrait::before {
-    --perf-r: 6px;
-    --perf-space: 17px;
+    inset: 4px;
   }
 
   .d-feature.d-feature--portrait img {
@@ -204,23 +207,33 @@
   }
 
   .d-feature__overlay {
-    bottom: clamp(28px, 6vh, 60px);
-    padding: 0 22px;
-    gap: 10px;
+    bottom: clamp(20px, 4vh, 40px);
+    padding: 0 18px;
+    gap: 6px;
+  }
+
+  .d-overlay__eyebrow {
+    font-size: 0.82rem;
   }
 
   .d-overlay__headline {
-    font-size: clamp(2.5rem, 13vw, 4.5rem);
-    gap: 8px;
+    font-size: clamp(2.1rem, 10.5vw, 3.4rem);
+    gap: 6px;
+    line-height: 0.95;
   }
 
   .d-overlay__date {
-    font-size: 1rem;
+    font-size: 0.92rem;
   }
 
   .d-overlay__location {
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* Inline Join CTA — tighter on mobile so it sits above fold */
+  .c-rsvp.c-rsvp--inline {
+    margin-top: 8px;
   }
 }
 
