@@ -44,6 +44,22 @@
   transform-origin: center 35%;
 }
 
+/* Portrait variant — for the hero-test pages where the image is a couple, not the invite.
+   Pulls back the zoom so we see chest-up, not faces pressed into the screen. */
+.d-feature.d-feature--portrait img {
+  transform: scale(1);
+  object-position: center 28%;
+  transform-origin: center 28%;
+}
+
+@media (max-width: 800px) {
+  .d-feature.d-feature--portrait img {
+    transform: scale(1);
+    object-position: center 24%;
+    transform-origin: center 24%;
+  }
+}
+
 @media (max-width: 800px) {
   .d-feature {
     height: clamp(40vh, 50vh, 58vh);

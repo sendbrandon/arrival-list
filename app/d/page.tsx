@@ -5,7 +5,10 @@ import { reminderDrops, siteCopy } from "@/lib/copy";
 import "../c/c.css";
 import "./d.css";
 
-export default function DPage({ featuredImage = "/baby-in-bloom-invite.jpg" }: { featuredImage?: string } = {}) {
+export default function DPage({
+  featuredImage = "/baby-in-bloom-invite.jpg",
+  featuredVariant = "",
+}: { featuredImage?: string; featuredVariant?: string } = {}) {
   const featuredItems = registryItems.slice(0, 3);
 
   return (
@@ -45,7 +48,7 @@ export default function DPage({ featuredImage = "/baby-in-bloom-invite.jpg" }: {
           </div>
 
           {/* Featured invitation image — fades top + bottom */}
-          <figure className="d-feature" aria-label="Baby in Bloom invitation">
+          <figure className={`d-feature${featuredVariant ? " " + featuredVariant : ""}`} aria-label="Baby in Bloom invitation">
             <img src={featuredImage} alt="Baby in Bloom invitation" />
           </figure>
 

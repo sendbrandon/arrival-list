@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function HeroTestV4() {
-  return <DPage featuredImage="/hero-tests/04.jpg" />;
+  return <DPage featuredImage="/hero-tests/04.jpg" featuredVariant="d-feature--portrait" />;
 }
