@@ -51,106 +51,128 @@
    ============================================================ */
 
 .d-feature.d-feature--portrait {
-  /* More gradual mask — feels like the image is breathing into the paper,
-     not stamped onto it. Longer transition tails, softer mid-zone. */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.08) 6%,
-    rgba(0, 0, 0, 0.32) 14%,
-    rgba(0, 0, 0, 0.7) 24%,
-    rgba(0, 0, 0, 0.95) 38%,
-    rgba(0, 0, 0, 0.95) 62%,
-    rgba(0, 0, 0, 0.7) 76%,
-    rgba(0, 0, 0, 0.32) 86%,
-    rgba(0, 0, 0, 0.08) 94%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.08) 6%,
-    rgba(0, 0, 0, 0.32) 14%,
-    rgba(0, 0, 0, 0.7) 24%,
-    rgba(0, 0, 0, 0.95) 38%,
-    rgba(0, 0, 0, 0.95) 62%,
-    rgba(0, 0, 0, 0.7) 76%,
-    rgba(0, 0, 0, 0.32) 86%,
-    rgba(0, 0, 0, 0.08) 94%,
-    transparent 100%
-  );
+  /* Stamp variant — no full-bleed, no soft fade. A single stamp on paper. */
+  -webkit-mask-image: none;
+  mask-image: none;
+  width: min(1180px, calc(100% - 40px));
+  margin: clamp(20px, 4vh, 48px) auto clamp(8px, 2vh, 20px);
+  height: clamp(58vh, 74vh, 82vh);
+  /* Subtle relief — the stamp sits on paper, slightly lifted */
+  box-shadow:
+    0 1px 0 rgba(28, 26, 23, 0.06),
+    0 18px 44px rgba(28, 26, 23, 0.1);
+}
+
+/* Postage-stamp perforations along all four edges. Paper-colored
+   half-circles bite into the image to read as "stamp" without the
+   craft-fair drop-shadow cliché. */
+.d-feature.d-feature--portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  --perf-r: 7px;          /* radius of each perforation */
+  --perf-space: 20px;     /* center-to-center spacing */
+  background:
+    /* top edge */
+    radial-gradient(circle var(--perf-r) at center,
+      var(--c-paper) 99%, transparent 100%)
+      0 calc(-1 * var(--perf-r)) / var(--perf-space) calc(var(--perf-r) * 2) repeat-x,
+    /* bottom edge */
+    radial-gradient(circle var(--perf-r) at center,
+      var(--c-paper) 99%, transparent 100%)
+      0 calc(100% + var(--perf-r)) / var(--perf-space) calc(var(--perf-r) * 2) repeat-x,
+    /* left edge */
+    radial-gradient(circle var(--perf-r) at center,
+      var(--c-paper) 99%, transparent 100%)
+      calc(-1 * var(--perf-r)) 0 / calc(var(--perf-r) * 2) var(--perf-space) repeat-y,
+    /* right edge */
+    radial-gradient(circle var(--perf-r) at center,
+      var(--c-paper) 99%, transparent 100%)
+      calc(100% + var(--perf-r)) 0 / calc(var(--perf-r) * 2) var(--perf-space) repeat-y;
 }
 
 .d-feature.d-feature--portrait img {
   transform: scale(1);
-  object-position: center 28%;
-  transform-origin: center 28%;
+  /* Push the image up so faces sit in the upper third —
+     leaves room for the monumental headline overlay below. */
+  object-position: center 18%;
+  transform-origin: center 18%;
 }
 
 /* Overlay caption on the image — sits in the lower-left, inside the soft
    bottom fade so it feels embedded in the image, not stamped on top. */
+/* Monumental headline overlay — names ARE the page, photo is the ground.
+   Centered, lower-third of image, sitting in the soft fade for legibility. */
 .d-feature__overlay {
   position: absolute;
-  left: clamp(24px, 6vw, 80px);
-  right: clamp(24px, 6vw, 80px);
-  bottom: clamp(56px, 9vh, 110px);
+  left: 0;
+  right: 0;
+  bottom: clamp(40px, 7vh, 80px);
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  text-align: left;
+  align-items: center;
+  gap: clamp(8px, 1.4vh, 16px);
+  text-align: center;
   pointer-events: none;
-  /* Soft dark drop-shadow lifts cream text off any backdrop —
-     hair, dress, foliage, sky. Editorial, never harsh. */
-  filter: drop-shadow(0 2px 12px rgba(20, 16, 12, 0.55))
-          drop-shadow(0 1px 2px rgba(20, 16, 12, 0.3));
+  padding: 0 clamp(20px, 5vw, 60px);
+  /* Soft dark halo lifts cream type off any backdrop */
+  filter: drop-shadow(0 2px 16px rgba(20, 16, 12, 0.5))
+          drop-shadow(0 1px 3px rgba(20, 16, 12, 0.35));
 }
 
-.d-overlay__names,
-.d-overlay__date,
-.d-overlay__location {
+.d-overlay__headline {
   margin: 0;
-  color: var(--c-paper);
-}
-
-.d-overlay__names {
   font-family: "Fraunces", serif;
-  font-style: normal;
   font-weight: 400;
-  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
-  letter-spacing: -0.018em;
-  line-height: 1.15;
+  font-size: clamp(3.25rem, 9vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
   color: var(--c-paper);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: clamp(8px, 1.4vw, 18px);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
-.d-overlay__names em {
-  font-style: italic;
-  font-weight: 450;
-}
-
-.d-overlay__names .c-amp {
+.d-overlay__headline em {
   font-style: italic;
   font-weight: 400;
+}
+
+.d-overlay__amp {
+  font-style: italic;
+  font-weight: 350;
+  font-size: 0.92em;
   color: var(--c-accent-soft);
+  font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  margin: 0 0.05em;
+  /* The single jewel — clay-rose ampersand */
 }
 
 .d-overlay__date {
+  margin: 0;
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-  letter-spacing: -0.005em;
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  letter-spacing: 0;
   color: rgba(246, 231, 208, 0.92);
 }
 
 .d-overlay__location {
+  margin: 0;
   font-family: "Inter", sans-serif;
-  font-size: clamp(0.7rem, 1vw, 0.78rem);
+  font-size: clamp(0.65rem, 0.9vw, 0.74rem);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(246, 231, 208, 0.78);
-  margin-top: 6px;
+  color: rgba(246, 231, 208, 0.7);
 }
 
 /* Tight inline Join CTA right under the portrait hero — less margin */
@@ -159,30 +181,37 @@
 }
 
 @media (max-width: 800px) {
-  /* Match desktop framing on mobile — landscape container so the couple
-     reads chest-up, not faces-only. */
+  /* Match desktop framing on mobile — taller, with breathing room above the
+     headline. Image faces sit upper third, headline anchors the lower third. */
   .d-feature.d-feature--portrait {
     height: auto;
-    aspect-ratio: 16 / 11;
-    min-height: 56vh;
-    max-height: 76vh;
+    aspect-ratio: 4 / 5;
+    min-height: 70vh;
+    max-height: 88vh;
+    width: calc(100% - 24px);
+    margin: 16px auto 8px;
+  }
+
+  .d-feature.d-feature--portrait::before {
+    --perf-r: 6px;
+    --perf-space: 17px;
   }
 
   .d-feature.d-feature--portrait img {
     transform: scale(1);
-    object-position: center 30%;
-    transform-origin: center 30%;
+    object-position: center 22%;
+    transform-origin: center 22%;
   }
 
   .d-feature__overlay {
-    left: 22px;
-    right: 22px;
-    bottom: clamp(28px, 6vh, 56px);
-    gap: 4px;
+    bottom: clamp(28px, 6vh, 60px);
+    padding: 0 22px;
+    gap: 10px;
   }
 
-  .d-overlay__names {
-    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  .d-overlay__headline {
+    font-size: clamp(2.5rem, 13vw, 4.5rem);
+    gap: 8px;
   }
 
   .d-overlay__date {
@@ -190,8 +219,8 @@
   }
 
   .d-overlay__location {
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
   }
 }
 

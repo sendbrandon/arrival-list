@@ -53,11 +53,13 @@ export default function DPage({
             <img src={featuredImage} alt="Baby in Bloom invitation" />
             {isPortrait && (
               <figcaption className="d-feature__overlay">
-                <p className="c-names d-overlay__names">
-                  Celebrate with <em>Brandon <span className="c-amp">&amp;</span> Shenika</em>
-                </p>
-                <p className="c-date d-overlay__date">{siteCopy.heroDateLong}</p>
-                <p className="c-location d-overlay__location">{siteCopy.heroLocationShort}</p>
+                <h1 className="d-overlay__headline">
+                  <em>Brandon</em>
+                  <span className="d-overlay__amp">&amp;</span>
+                  <em>Shenika</em>
+                </h1>
+                <p className="d-overlay__date">{siteCopy.heroDateLong}</p>
+                <p className="d-overlay__location">Location shared with confirmed guests</p>
               </figcaption>
             )}
           </figure>
