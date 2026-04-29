@@ -52,13 +52,14 @@
 
 .d-feature.d-feature--portrait {
   /* Editorial frontispiece — hymnal/museum keyline.
-     Outer hairline at the edge, inner hairline ~6px in, image at 14px in.
-     The paper gap between hairlines is the classic plate-mounting move. */
+     16:9 aspect on desktop lets the floral background breathe around
+     the couple instead of cropping into the close-up. */
   -webkit-mask-image: none;
   mask-image: none;
   width: min(1180px, calc(100% - 40px));
   margin: clamp(20px, 4vh, 48px) auto clamp(8px, 2vh, 20px);
-  height: clamp(58vh, 74vh, 82vh);
+  aspect-ratio: 16 / 9;
+  height: auto;
   padding: 14px;
   background: var(--c-paper);
   /* Outer hairline */
@@ -120,26 +121,28 @@
 
 .d-feature.d-feature--portrait img {
   transform: scale(1);
-  /* Push the image up so faces sit in the upper third —
-     leaves room for the monumental headline overlay below. */
-  object-position: center 18%;
-  transform-origin: center 18%;
+  /* In 16:9 the floral background breathes around the couple.
+     Keep faces in the upper-third so the lower body + garden zone
+     hosts the inscription overlay without crashing into anyone. */
+  object-position: center 32%;
+  transform-origin: center 32%;
 }
 
 /* Overlay caption on the image — sits in the lower-left, inside the soft
    bottom fade so it feels embedded in the image, not stamped on top. */
 /* Monumental headline overlay — names ARE the page, photo is the ground.
-   Centered, lower-third of image, sitting in the soft fade for legibility. */
+   Centered low in the frame so the lower-third (dress/jacket/garden)
+   carries the type, faces stay clear in the upper portion. */
 .d-feature__overlay {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(40px, 7vh, 80px);
+  bottom: clamp(20px, 3.5vh, 44px);
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1.4vh, 16px);
+  gap: clamp(6px, 1.1vh, 12px);
   text-align: center;
   pointer-events: none;
   padding: 0 clamp(20px, 5vw, 60px);
