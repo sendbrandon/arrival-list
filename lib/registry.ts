@@ -17,7 +17,7 @@ export const registryItems: RegistryItem[] = [
     retailer: "Babylist",
     price: "$300+",
     note: "Group contributions welcome.",
-    href: "#replace-with-registry-link"
+    href: "https://my.babylist.com/shenika-king"
   },
   {
     id: "diapers-wipes",
@@ -26,7 +26,7 @@ export const registryItems: RegistryItem[] = [
     retailer: "Babylist",
     price: "Any amount",
     note: "Used daily. Always needed.",
-    href: "#replace-with-registry-link"
+    href: "https://my.babylist.com/shenika-king"
   },
   {
     id: "bottle-set",
@@ -35,7 +35,7 @@ export const registryItems: RegistryItem[] = [
     retailer: "Babylist",
     price: "$39",
     note: "Everyday essential.",
-    href: "#replace-with-registry-link"
+    href: "https://my.babylist.com/shenika-king"
   },
   {
     id: "swaddles",
@@ -44,7 +44,7 @@ export const registryItems: RegistryItem[] = [
     retailer: "Babylist",
     price: "$28",
     note: "First weeks. High use.",
-    href: "#replace-with-registry-link"
+    href: "https://my.babylist.com/shenika-king"
   },
   {
     id: "monitor",
@@ -54,7 +54,7 @@ export const registryItems: RegistryItem[] = [
     price: "$149",
     salePrice: "$119",
     note: "Currently discounted.",
-    href: "#replace-with-registry-link"
+    href: "https://my.babylist.com/shenika-king"
   }
 ];
 

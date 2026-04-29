@@ -144,7 +144,14 @@ export default function DPage({
             <RegistryCard key={item.id} item={item} />
           ))}
         </div>
-        <Link href="/registry" className="c-text-link">See everything →</Link>
+        <a
+          href="https://my.babylist.com/shenika-king"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="c-text-link"
+        >
+          See everything on Babylist →
+        </a>
       </section>
 
       <footer className="c-footer">

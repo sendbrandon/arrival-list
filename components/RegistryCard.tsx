@@ -2,7 +2,13 @@ import type { RegistryItem } from "@/lib/registry";
 
 export function RegistryCard({ item }: { item: RegistryItem }) {
   return (
-    <a className="registry-card" href={item.href} aria-label={`Open registry item: ${item.title}`}>
+    <a
+      className="registry-card"
+      href={item.href}
+      target={item.href.startsWith("http") ? "_blank" : undefined}
+      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+      aria-label={`Open registry item: ${item.title}`}
+    >
       <span className="registry-card__category">{item.category}</span>
       <h3 className="registry-card__title">{item.title}</h3>
       <p className="registry-card__note">{item.note}</p>
