@@ -44,19 +44,155 @@
   transform-origin: center 35%;
 }
 
-/* Portrait variant — for the hero-test pages where the image is a couple, not the invite.
-   Pulls back the zoom so we see chest-up, not faces pressed into the screen. */
+/* ============================================================
+   Portrait variant — for couple portraits (hero-test pages).
+   Pulls back the zoom, softens the fade, and overlays the
+   "Celebrate" copy onto the image with a Join CTA right below.
+   ============================================================ */
+
+.d-feature.d-feature--portrait {
+  /* More gradual mask — feels like the image is breathing into the paper,
+     not stamped onto it. Longer transition tails, softer mid-zone. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 6%,
+    rgba(0, 0, 0, 0.32) 14%,
+    rgba(0, 0, 0, 0.7) 24%,
+    rgba(0, 0, 0, 0.95) 38%,
+    rgba(0, 0, 0, 0.95) 62%,
+    rgba(0, 0, 0, 0.7) 76%,
+    rgba(0, 0, 0, 0.32) 86%,
+    rgba(0, 0, 0, 0.08) 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 6%,
+    rgba(0, 0, 0, 0.32) 14%,
+    rgba(0, 0, 0, 0.7) 24%,
+    rgba(0, 0, 0, 0.95) 38%,
+    rgba(0, 0, 0, 0.95) 62%,
+    rgba(0, 0, 0, 0.7) 76%,
+    rgba(0, 0, 0, 0.32) 86%,
+    rgba(0, 0, 0, 0.08) 94%,
+    transparent 100%
+  );
+}
+
 .d-feature.d-feature--portrait img {
   transform: scale(1);
   object-position: center 28%;
   transform-origin: center 28%;
 }
 
+/* Overlay caption on the image — sits in the lower-left, inside the soft
+   bottom fade so it feels embedded in the image, not stamped on top. */
+.d-feature__overlay {
+  position: absolute;
+  left: clamp(24px, 6vw, 80px);
+  right: clamp(24px, 6vw, 80px);
+  bottom: clamp(56px, 9vh, 110px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  pointer-events: none;
+  /* Subtle soft shadow so the cream text/dark text reads cleanly against any
+     image variant — no hard drop, just a breath. */
+  filter: drop-shadow(0 1px 0 rgba(28, 26, 23, 0.06));
+}
+
+.d-overlay__names,
+.d-overlay__date,
+.d-overlay__location {
+  margin: 0;
+  color: var(--c-ink);
+}
+
+.d-overlay__names {
+  font-family: "Fraunces", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  /* Lift the text slightly off the image with a paper-warm halo for legibility */
+  text-shadow: 0 1px 14px rgba(246, 241, 231, 0.55), 0 0 28px rgba(246, 241, 231, 0.4);
+}
+
+.d-overlay__names em {
+  font-style: italic;
+  font-weight: 450;
+}
+
+.d-overlay__names .c-amp {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-accent);
+}
+
+.d-overlay__date {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  letter-spacing: -0.005em;
+  text-shadow: 0 1px 12px rgba(246, 241, 231, 0.5);
+}
+
+.d-overlay__location {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.78rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-top: 4px;
+  text-shadow: 0 1px 10px rgba(246, 241, 231, 0.5);
+}
+
+/* Tight inline Join CTA right under the portrait hero — less margin */
+.c-rsvp.c-rsvp--inline {
+  margin-top: clamp(12px, 2vh, 24px);
+}
+
 @media (max-width: 800px) {
+  /* Match desktop framing on mobile — landscape container so the couple
+     reads chest-up, not faces-only. */
+  .d-feature.d-feature--portrait {
+    height: auto;
+    aspect-ratio: 16 / 11;
+    min-height: 56vh;
+    max-height: 76vh;
+  }
+
   .d-feature.d-feature--portrait img {
     transform: scale(1);
-    object-position: center 24%;
-    transform-origin: center 24%;
+    object-position: center 30%;
+    transform-origin: center 30%;
+  }
+
+  .d-feature__overlay {
+    left: 22px;
+    right: 22px;
+    bottom: clamp(28px, 6vh, 56px);
+    gap: 4px;
+  }
+
+  .d-overlay__names {
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  }
+
+  .d-overlay__date {
+    font-size: 1rem;
+  }
+
+  .d-overlay__location {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
   }
 }
 

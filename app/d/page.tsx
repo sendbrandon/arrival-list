@@ -10,6 +10,7 @@ export default function DPage({
   featuredVariant = "",
 }: { featuredImage?: string; featuredVariant?: string } = {}) {
   const featuredItems = registryItems.slice(0, 3);
+  const isPortrait = featuredVariant.includes("d-feature--portrait");
 
   return (
     <main className="c d">
@@ -50,17 +51,38 @@ export default function DPage({
           {/* Featured invitation image — fades top + bottom */}
           <figure className={`d-feature${featuredVariant ? " " + featuredVariant : ""}`} aria-label="Baby in Bloom invitation">
             <img src={featuredImage} alt="Baby in Bloom invitation" />
+            {isPortrait && (
+              <figcaption className="d-feature__overlay">
+                <p className="c-names d-overlay__names">
+                  Celebrate with <em>Brandon <span className="c-amp">&amp;</span> Shenika</em>
+                </p>
+                <p className="c-date d-overlay__date">{siteCopy.heroDateLong}</p>
+                <p className="c-location d-overlay__location">{siteCopy.heroLocationShort}</p>
+              </figcaption>
+            )}
           </figure>
+
+          {/* Portrait variant: Join CTA sits right under the overlay image */}
+          {isPortrait && (
+            <Link href="/join" className="c-rsvp c-rsvp--tight c-rsvp--inline">
+              <span className="c-rsvp__label">Join Our Guest List</span>
+              <span className="c-rsvp__rule" aria-hidden="true" />
+              <span className="c-rsvp__meta">Address · Reminders · Registry</span>
+              <span className="c-rsvp__arrow" aria-hidden="true">→</span>
+            </Link>
+          )}
 
           {/* Main row — names + note */}
           <div className="c-main">
-            <div className="c-content">
-              <p className="c-names">
-                Celebrate with <em>Brandon <span className="c-amp">&amp;</span> Shenika</em>
-              </p>
-              <p className="c-date">{siteCopy.heroDateLong}</p>
-              <p className="c-location">{siteCopy.heroLocationShort}</p>
-            </div>
+            {!isPortrait && (
+              <div className="c-content">
+                <p className="c-names">
+                  Celebrate with <em>Brandon <span className="c-amp">&amp;</span> Shenika</em>
+                </p>
+                <p className="c-date">{siteCopy.heroDateLong}</p>
+                <p className="c-location">{siteCopy.heroLocationShort}</p>
+              </div>
+            )}
 
             <div className="c-letter">
               <p className="c-eyebrow">A note from us</p>
@@ -70,13 +92,15 @@ export default function DPage({
           </div>
         </div>
 
-        {/* Black slab CTA */}
-        <Link href="/join" className="c-rsvp">
-          <span className="c-rsvp__label">Join Our Guest List</span>
-          <span className="c-rsvp__rule" aria-hidden="true" />
-          <span className="c-rsvp__meta">Address · Reminders · Registry</span>
-          <span className="c-rsvp__arrow" aria-hidden="true">→</span>
-        </Link>
+        {/* Black slab CTA — bottom of hero (default layout only) */}
+        {!isPortrait && (
+          <Link href="/join" className="c-rsvp">
+            <span className="c-rsvp__label">Join Our Guest List</span>
+            <span className="c-rsvp__rule" aria-hidden="true" />
+            <span className="c-rsvp__meta">Address · Reminders · Registry</span>
+            <span className="c-rsvp__arrow" aria-hidden="true">→</span>
+          </Link>
+        )}
       </section>
 
       {/* Schedule */}
