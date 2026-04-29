@@ -100,27 +100,27 @@
   gap: 6px;
   text-align: left;
   pointer-events: none;
-  /* Subtle soft shadow so the cream text/dark text reads cleanly against any
-     image variant — no hard drop, just a breath. */
-  filter: drop-shadow(0 1px 0 rgba(28, 26, 23, 0.06));
+  /* Soft dark drop-shadow lifts cream text off any backdrop —
+     hair, dress, foliage, sky. Editorial, never harsh. */
+  filter: drop-shadow(0 2px 12px rgba(20, 16, 12, 0.55))
+          drop-shadow(0 1px 2px rgba(20, 16, 12, 0.3));
 }
 
 .d-overlay__names,
 .d-overlay__date,
 .d-overlay__location {
   margin: 0;
-  color: var(--c-ink);
+  color: var(--c-paper);
 }
 
 .d-overlay__names {
   font-family: "Fraunces", serif;
   font-style: normal;
   font-weight: 400;
-  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
   letter-spacing: -0.018em;
   line-height: 1.15;
-  /* Lift the text slightly off the image with a paper-warm halo for legibility */
-  text-shadow: 0 1px 14px rgba(246, 241, 231, 0.55), 0 0 28px rgba(246, 241, 231, 0.4);
+  color: var(--c-paper);
 }
 
 .d-overlay__names em {
@@ -131,27 +131,26 @@
 .d-overlay__names .c-amp {
   font-style: italic;
   font-weight: 400;
-  color: var(--c-accent);
+  color: var(--c-accent-soft);
 }
 
 .d-overlay__date {
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 350;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   letter-spacing: -0.005em;
-  text-shadow: 0 1px 12px rgba(246, 241, 231, 0.5);
+  color: rgba(246, 231, 208, 0.92);
 }
 
 .d-overlay__location {
   font-family: "Inter", sans-serif;
   font-size: clamp(0.7rem, 1vw, 0.78rem);
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--c-muted);
-  margin-top: 4px;
-  text-shadow: 0 1px 10px rgba(246, 241, 231, 0.5);
+  color: rgba(246, 231, 208, 0.78);
+  margin-top: 6px;
 }
 
 /* Tight inline Join CTA right under the portrait hero — less margin */
