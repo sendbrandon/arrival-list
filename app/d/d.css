@@ -128,8 +128,10 @@
 
 /* Overlay caption on the image — sits in the lower-left, inside the soft
    bottom fade so it feels embedded in the image, not stamped on top. */
-/* Monumental headline overlay — names ARE the page, photo is the ground.
-   Centered, lower-third of image, sitting in the soft fade for legibility. */
+/* Engraved-invitation overlay — names + hairline rule + date + location.
+   Refined for premium baby-shower warmth: looser tracking, softer
+   ampersand, ceremonial divider, opsz/SOFT axis dialed for warm
+   letterforms. */
 .d-feature__overlay {
   position: absolute;
   left: 0;
@@ -139,13 +141,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1.4vh, 16px);
+  gap: clamp(4px, 0.7vh, 10px);
   text-align: center;
   pointer-events: none;
   padding: 0 clamp(20px, 5vw, 60px);
-  /* Soft dark halo lifts cream type off any backdrop */
-  filter: drop-shadow(0 2px 16px rgba(20, 16, 12, 0.5))
-          drop-shadow(0 1px 3px rgba(20, 16, 12, 0.35));
+  /* Softer halo — cream type still reads, but the dark drop is a
+     whisper, not a stamp. */
+  filter: drop-shadow(0 2px 18px rgba(20, 16, 12, 0.4))
+          drop-shadow(0 1px 2px rgba(20, 16, 12, 0.26));
+}
+
+/* Hairline rule between names and date — the wedding invitation
+   engraver's breath between WHO and WHEN. */
+.d-overlay__rule {
+  display: block;
+  width: clamp(48px, 6vw, 80px);
+  height: 1px;
+  background: rgba(246, 231, 208, 0.55);
+  margin: clamp(10px, 1.6vh, 18px) 0 clamp(8px, 1.2vh, 14px);
 }
 
 .d-overlay__eyebrow {
@@ -163,18 +176,17 @@
   font-weight: 400;
 }
 
-/* Architectural inscription — names stacked on a center axis, roman
-   caps, light Fraunces, tracked. Hymnal title page / Bible flyleaf /
-   monument plaque vocabulary. The ampersand is the focal jewel: a
-   monumental italic glyph that bridges the two roman names. */
+/* Engraved inscription — names stacked on a center axis, roman caps,
+   light Fraunces, generously tracked. SOFT axis at 100 for warmer
+   letterforms (baby shower vs hymnal frontispiece). */
 .d-overlay__headline {
   margin: 0;
   font-family: "Fraunces", serif;
-  font-weight: 350;
+  font-weight: 300;
   font-style: normal;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.4rem, 3.6vw, 2.15rem);
   line-height: 1;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--c-paper);
   display: flex;
@@ -182,53 +194,56 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  font-variation-settings: "opsz" 144, "SOFT" 50;
+  /* SOFT 100 = warmer, rounder letterforms — perfect for baby shower */
+  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
 /* Each name sits on its own line — pristine, structured, no wrap */
 .d-overlay__headline em {
   font-style: normal;
-  font-weight: 350;
+  font-weight: 300;
   display: block;
-  /* Trim the right-side optical space caused by the trailing tracking */
-  text-indent: 0.18em;
+  /* Optical compensation for trailing letter-spacing */
+  text-indent: 0.24em;
 }
 
-/* Ampersand is the centerpiece — bigger than the names, italic clay,
-   tucked tight against both lines so it bridges instead of floats. */
+/* Ampersand — refined italic bridge, not a centerpiece glyph.
+   Slightly larger than the names but graceful, never aggressive. */
 .d-overlay__amp {
   display: block;
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 400;
-  font-size: 1.45em;
+  font-weight: 350;
+  font-size: 1.2em;
   letter-spacing: 0;
   text-indent: 0;
   color: var(--c-accent-soft);
   font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
   font-variation-settings: "opsz" 144, "SOFT" 100;
-  line-height: 0.85;
-  margin: -0.08em 0;
+  line-height: 0.92;
+  margin: -0.04em 0;
 }
 
 .d-overlay__date {
   margin: 0;
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 350;
-  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
-  letter-spacing: 0;
-  color: rgba(246, 231, 208, 0.92);
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.5vw, 1.18rem);
+  letter-spacing: 0.005em;
+  color: rgba(246, 231, 208, 0.9);
+  /* opsz 60 for finer detail at body-text size */
+  font-variation-settings: "opsz" 60, "SOFT" 100;
 }
 
 .d-overlay__location {
   margin: 0;
   font-family: "Inter", sans-serif;
-  font-size: clamp(0.65rem, 0.9vw, 0.74rem);
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-size: clamp(0.6rem, 0.85vw, 0.7rem);
+  font-weight: 400;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(246, 231, 208, 0.7);
+  color: rgba(246, 231, 208, 0.62);
 }
 
 /* Tight inline Join CTA right under the portrait hero — less margin */

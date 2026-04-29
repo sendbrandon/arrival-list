@@ -57,6 +57,7 @@ export default function DPage({
                   <span className="d-overlay__amp">&amp;</span>
                   <em>Shenika</em>
                 </h1>
+                <span className="d-overlay__rule" aria-hidden="true" />
                 <p className="d-overlay__date">{siteCopy.heroDateLong}</p>
                 <p className="d-overlay__location">Location shared with confirmed guests</p>
               </figcaption>
