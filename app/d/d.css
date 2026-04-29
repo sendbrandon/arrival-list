@@ -81,6 +81,43 @@
   z-index: 3;
 }
 
+/* Burnt-edge vignette — subtle aged-photograph treatment.
+   Two layers: a soft corner-darkening radial, plus a four-sided
+   linear edge burn. Sits over the image, under the keyline + text.
+   Multiply blend so it darkens whatever's behind without flat tint. */
+.d-feature.d-feature--portrait::after {
+  content: "";
+  position: absolute;
+  inset: 14px; /* matches outer padding on desktop */
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  background:
+    /* corner darkening — soft radial vignette */
+    radial-gradient(
+      ellipse 90% 88% at center,
+      transparent 58%,
+      rgba(22, 14, 8, 0.18) 84%,
+      rgba(22, 14, 8, 0.34) 100%
+    ),
+    /* horizontal edge burn — left + right */
+    linear-gradient(
+      to right,
+      rgba(22, 14, 8, 0.22),
+      transparent 7%,
+      transparent 93%,
+      rgba(22, 14, 8, 0.22)
+    ),
+    /* vertical edge burn — top + bottom */
+    linear-gradient(
+      to bottom,
+      rgba(22, 14, 8, 0.22),
+      transparent 7%,
+      transparent 93%,
+      rgba(22, 14, 8, 0.22)
+    );
+}
+
 .d-feature.d-feature--portrait img {
   transform: scale(1);
   /* Push the image up so faces sit in the upper third —
@@ -221,6 +258,11 @@
     inset: 5px;
   }
 
+  /* Match burnt-edge inset to mobile padding so it sits on the image */
+  .d-feature.d-feature--portrait::after {
+    inset: 10px;
+  }
+
   .d-feature.d-feature--portrait img {
     transform: scale(1);
     /* Faces sit higher in the frame so the lower-third dress/jacket
@@ -289,10 +331,9 @@
   }
 }
 
-/* Tighten gap between "A note from us" and "What to expect" on the
-   portrait variant. The default .c-hero has min-height:100vh which leaves
-   dead space below the inline CTA; the next section then adds 72-120px of
-   padding on top of that. Scoped to portrait variant only. */
+/* Tighten section spacing across the portrait variant page.
+   Default .c-section uses 72-120px padding both ends — too generous when
+   the hero already breathes. Scoped to portrait variant via :has(). */
 .c-hero:has(.d-feature--portrait) {
   min-height: 0;
 }
@@ -301,9 +342,20 @@
   padding-top: clamp(36px, 6vw, 64px);
 }
 
+/* All c-sections after the portrait hero get tighter top + bottom padding,
+   so section 2 → 3 gap is in the same rhythm as section 1 → 2 above. */
+.c-hero:has(.d-feature--portrait) ~ .c-section {
+  padding-top: clamp(36px, 6vw, 64px);
+  padding-bottom: clamp(36px, 6vw, 64px);
+}
+
 @media (max-width: 800px) {
   .c-hero:has(.d-feature--portrait) + .c-section {
     padding-top: 28px;
+  }
+  .c-hero:has(.d-feature--portrait) ~ .c-section {
+    padding-top: 28px;
+    padding-bottom: 28px;
   }
   .c-hero:has(.d-feature--portrait) .c-letter {
     margin-bottom: 0;
