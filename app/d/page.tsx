@@ -127,43 +127,44 @@ export default function DPage({
       </section>
 
       {/* Registry — editorial directory, no fake product cards */}
-      <section className="c-shell c-section">
-        <div className="c-marker">
-          <span className="c-marker__num">03</span>
-          <span className="c-marker__label">From the registry</span>
-          <span className="c-marker__rule" aria-hidden="true" />
+      <section className="c-section c-section--registry">
+        <div className="c-shell">
+          <div className="c-marker">
+            <span className="c-marker__num">03</span>
+            <span className="c-marker__label">From the registry</span>
+            <span className="c-marker__rule" aria-hidden="true" />
+          </div>
+          <h2 className="c-h2 c-h2--registry">
+            A small list, <em>thoughtfully</em> kept<span className="c-title__period">.</span>
+          </h2>
         </div>
-        <h2 className="c-h2">
-          A small list, <em>thoughtfully</em> kept<span className="c-title__period">.</span>
-        </h2>
-        <p className="c-registry-letter">
-          Most-needed first, then group gifts and on-sale finds.
-          The whole list lives on Babylist — open it any time.
-        </p>
 
-        <ul className="c-registry-cats" aria-label="Registry categories">
-          <li>Most needed</li>
-          <li aria-hidden="true">·</li>
-          <li>Group gifts</li>
-          <li aria-hidden="true">·</li>
-          <li>On sale</li>
-          <li aria-hidden="true">·</li>
-          <li>Diaper fund</li>
-          <li aria-hidden="true">·</li>
-          <li>Real ones</li>
-        </ul>
-
+        {/* Full-bleed Babylist slab — sits tight under the H2, mirrors hero CTA */}
         <a
           href="https://my.babylist.com/shenika-king"
           target="_blank"
           rel="noopener noreferrer"
-          className="c-rsvp c-rsvp--inline c-rsvp--registry"
+          className="c-rsvp c-rsvp--registry"
         >
           <span className="c-rsvp__label">Open the Babylist Registry</span>
           <span className="c-rsvp__rule" aria-hidden="true" />
           <span className="c-rsvp__meta">my.babylist.com / shenika-king</span>
           <span className="c-rsvp__arrow" aria-hidden="true">→</span>
         </a>
+
+        <div className="c-shell">
+          <ul className="c-registry-cats" aria-label="Registry categories">
+            <li>Most needed</li>
+            <li aria-hidden="true">·</li>
+            <li>Group gifts</li>
+            <li aria-hidden="true">·</li>
+            <li>On sale</li>
+            <li aria-hidden="true">·</li>
+            <li>Diaper fund</li>
+            <li aria-hidden="true">·</li>
+            <li>Real ones</li>
+          </ul>
+        </div>
       </section>
 
       <footer className="c-footer">

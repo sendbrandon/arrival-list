@@ -237,25 +237,34 @@
 }
 
 /* Registry section — editorial directory layout */
-.c-registry-letter {
-  font-family: "Fraunces", serif;
-  font-style: italic;
-  font-weight: 350;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-  line-height: 1.5;
-  color: var(--c-ink-soft);
-  max-width: 640px;
-  margin: 0 0 clamp(28px, 4vw, 44px);
-  letter-spacing: -0.005em;
+
+/* Section uses c-section padding but renders the slab as a sibling
+   outside the shell, so the CTA can go full-bleed. */
+.c-section--registry {
+  padding: clamp(72px, 10vw, 120px) 0;
+}
+
+/* Tighten H2 bottom margin so the slab sits TIGHT underneath */
+.c-h2.c-h2--registry {
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+/* Full-bleed Babylist slab — inherits 100vw from base .c-rsvp,
+   we just need to make sure no override is constraining it. */
+.c-rsvp.c-rsvp--registry {
+  margin-top: 0;
+  margin-bottom: clamp(36px, 5vw, 56px);
+  text-decoration: none;
 }
 
 .c-registry-cats {
   list-style: none;
-  margin: 0 0 clamp(32px, 5vw, 56px);
+  margin: 0;
   padding: clamp(20px, 3vw, 32px) 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: clamp(10px, 2vw, 22px);
   border-top: 1px solid var(--c-line);
   border-bottom: 1px solid var(--c-line);
@@ -277,20 +286,16 @@
   text-transform: none;
 }
 
-/* Registry slab CTA — same architecture as hero RSVP, distinct from inline */
-.c-rsvp.c-rsvp--registry {
-  display: grid;
-  width: 100%;
-  margin-top: 0;
-  text-decoration: none;
-}
-
 @media (max-width: 800px) {
   .c-registry-cats {
     gap: 8px;
     padding: 16px 0;
     font-size: 0.66rem;
     letter-spacing: 0.18em;
+  }
+
+  .c-rsvp.c-rsvp--registry {
+    margin-bottom: 24px;
   }
 }
 
