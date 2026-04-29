@@ -127,15 +127,16 @@
 }
 
 /* Architectural inscription — names stacked on a center axis, roman
-   caps, light Fraunces, tracked. Pairs with the keyline frame DNA.
-   Hymnal title page / Bible flyleaf / monument plaque vocabulary. */
+   caps, light Fraunces, tracked. Hymnal title page / Bible flyleaf /
+   monument plaque vocabulary. The ampersand is the focal jewel: a
+   monumental italic glyph that bridges the two roman names. */
 .d-overlay__headline {
   margin: 0;
   font-family: "Fraunces", serif;
   font-weight: 350;
   font-style: normal;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--c-paper);
@@ -143,7 +144,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(2px, 0.5vh, 6px);
+  gap: 0;
   font-variation-settings: "opsz" 144, "SOFT" 50;
 }
 
@@ -156,22 +157,21 @@
   text-indent: 0.18em;
 }
 
-/* Ampersand is the single italic ornament — clay-rose, smaller,
-   centered between the two names like a printer's fleuron */
+/* Ampersand is the centerpiece — bigger than the names, italic clay,
+   tucked tight against both lines so it bridges instead of floats. */
 .d-overlay__amp {
   display: block;
   font-family: "Fraunces", serif;
   font-style: italic;
-  font-weight: 350;
-  font-size: 0.78em;
+  font-weight: 400;
+  font-size: 1.45em;
   letter-spacing: 0;
   text-indent: 0;
   color: var(--c-accent-soft);
   font-feature-settings: "swsh" 1, "dlig" 1, "ss01" 1;
   font-variation-settings: "opsz" 144, "SOFT" 100;
-  line-height: 0.9;
-  /* Subtle vertical rhythm — let the ampersand breathe between the names */
-  margin: clamp(2px, 0.4vh, 6px) 0;
+  line-height: 0.85;
+  margin: -0.08em 0;
 }
 
 .d-overlay__date {
@@ -246,13 +246,13 @@
   .d-overlay__headline {
     font-size: clamp(1.15rem, 5.4vw, 1.7rem);
     letter-spacing: 0.22em;
-    gap: 2px;
+    gap: 0;
     color: var(--c-paper);
   }
 
   .d-overlay__amp {
-    font-size: 0.85em;
-    margin: 4px 0;
+    font-size: 1.55em;
+    margin: -0.06em 0;
     color: var(--c-accent-soft);
   }
 
