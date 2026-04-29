@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { RegistryCard } from "@/components/RegistryCard";
-import { registryItems } from "@/lib/registry";
 import { reminderDrops, siteCopy } from "@/lib/copy";
 import "../c/c.css";
 import "./d.css";
@@ -9,7 +7,6 @@ export default function DPage({
   featuredImage = "/baby-in-bloom-invite.jpg",
   featuredVariant = "",
 }: { featuredImage?: string; featuredVariant?: string } = {}) {
-  const featuredItems = registryItems.slice(0, 3);
   const isPortrait = featuredVariant.includes("d-feature--portrait");
 
   return (
@@ -129,7 +126,7 @@ export default function DPage({
         </ol>
       </section>
 
-      {/* Registry */}
+      {/* Registry — editorial directory, no fake product cards */}
       <section className="c-shell c-section">
         <div className="c-marker">
           <span className="c-marker__num">03</span>
@@ -137,20 +134,35 @@ export default function DPage({
           <span className="c-marker__rule" aria-hidden="true" />
         </div>
         <h2 className="c-h2">
-          Things we&rsquo;d <em>love</em> help with<span className="c-title__period">.</span>
+          A small list, <em>thoughtfully</em> kept<span className="c-title__period">.</span>
         </h2>
-        <div className="c-registry">
-          {featuredItems.map((item) => (
-            <RegistryCard key={item.id} item={item} />
-          ))}
-        </div>
+        <p className="c-registry-letter">
+          Most-needed first, then group gifts and on-sale finds.
+          The whole list lives on Babylist — open it any time.
+        </p>
+
+        <ul className="c-registry-cats" aria-label="Registry categories">
+          <li>Most needed</li>
+          <li aria-hidden="true">·</li>
+          <li>Group gifts</li>
+          <li aria-hidden="true">·</li>
+          <li>On sale</li>
+          <li aria-hidden="true">·</li>
+          <li>Diaper fund</li>
+          <li aria-hidden="true">·</li>
+          <li>Real ones</li>
+        </ul>
+
         <a
           href="https://my.babylist.com/shenika-king"
           target="_blank"
           rel="noopener noreferrer"
-          className="c-text-link"
+          className="c-rsvp c-rsvp--inline c-rsvp--registry"
         >
-          See everything on Babylist →
+          <span className="c-rsvp__label">Open the Babylist Registry</span>
+          <span className="c-rsvp__rule" aria-hidden="true" />
+          <span className="c-rsvp__meta">my.babylist.com / shenika-king</span>
+          <span className="c-rsvp__arrow" aria-hidden="true">→</span>
         </a>
       </section>
 

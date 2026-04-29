@@ -236,6 +236,64 @@
   margin-top: clamp(12px, 2vh, 24px);
 }
 
+/* Registry section — editorial directory layout */
+.c-registry-letter {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--c-ink-soft);
+  max-width: 640px;
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  letter-spacing: -0.005em;
+}
+
+.c-registry-cats {
+  list-style: none;
+  margin: 0 0 clamp(32px, 5vw, 56px);
+  padding: clamp(20px, 3vw, 32px) 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(10px, 2vw, 22px);
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.7rem, 0.95vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+
+.c-registry-cats li[aria-hidden="true"] {
+  color: var(--c-accent);
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  letter-spacing: 0;
+  font-size: 1.1em;
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* Registry slab CTA — same architecture as hero RSVP, distinct from inline */
+.c-rsvp.c-rsvp--registry {
+  display: grid;
+  width: 100%;
+  margin-top: 0;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .c-registry-cats {
+    gap: 8px;
+    padding: 16px 0;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+  }
+}
+
 @media (max-width: 800px) {
   /* Mobile — shorter, wider photo so Join CTA sits above the fold.
      Square aspect with capped height. Text overlay tightened to fit. */
