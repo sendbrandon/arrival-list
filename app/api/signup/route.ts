@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
+import { normalizeName } from "@/lib/names";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -37,7 +38,7 @@ async function fetchPriorMembers(dc: string, audienceId: string, apiKey: string)
     members?: Array<{ merge_fields?: { FNAME?: string; LNAME?: string } }>;
   };
   return (data.members || [])
-    .map((m) => (m.merge_fields?.FNAME || "").trim())
+    .map((m) => normalizeName(m.merge_fields?.FNAME || ""))
     .filter(Boolean);
 }
 
@@ -80,8 +81,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Please enter a valid phone number." }, { status: 400 });
   }
 
-  const [firstName, ...rest] = name.split(" ");
-  const lastName = rest.join(" ");
+  const [rawFirstName, ...rest] = name.split(" ");
+  const firstName = normalizeName(rawFirstName || name);
+  const lastName = normalizeName(rest.join(" "));
 
   const apiKey = process.env.MAILCHIMP_API_KEY;
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
@@ -106,12 +108,13 @@ export async function POST(request: Request) {
   }
 
   const ticketNumPadded = String(ticketNum).padStart(6, "0");
-  const ticketUrl = buildTicketUrl(origin, firstName || name, prev1, prev2, ticketNum);
+  const displayFirst = firstName || normalizeName(name);
+  const ticketUrl = buildTicketUrl(origin, displayFirst, prev1, prev2, ticketNum);
 
   const tags = ["arrival-list-site"];
 
   const mergeFields: Record<string, string | number> = {
-    FNAME: firstName || name,
+    FNAME: displayFirst,
     LNAME: lastName,
     PHONE: phone,
     PREV_1: prev1,

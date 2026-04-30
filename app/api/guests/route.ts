@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { dedupeNames } from "@/lib/names";
 
 const SEED_NAMES = ["Brandon", "Shenika", "Baby"];
 
@@ -8,7 +9,7 @@ export async function GET() {
   const apiKey = process.env.MAILCHIMP_API_KEY;
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 
-  let guests: string[] = [...SEED_NAMES];
+  let combined: string[] = [...SEED_NAMES];
 
   if (apiKey && audienceId) {
     const dc = apiKey.split("-")[1];
@@ -24,7 +25,7 @@ export async function GET() {
           const realGuests = (data.members || [])
             .map((m) => (m.merge_fields?.FNAME || "").trim())
             .filter(Boolean);
-          guests = [...SEED_NAMES, ...realGuests];
+          combined = [...SEED_NAMES, ...realGuests];
         }
       } catch (err) {
         console.error("Guests fetch failed:", err);
@@ -32,5 +33,6 @@ export async function GET() {
     }
   }
 
+  const guests = dedupeNames(combined);
   return NextResponse.json({ guests, count: guests.length });
 }

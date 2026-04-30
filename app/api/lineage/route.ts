@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { normalizeName } from "@/lib/names";
 
 const SEED_NAMES = ["Baby", "Shenika", "Brandon"];
 const SEED_OFFSET = SEED_NAMES.length;
@@ -35,7 +36,7 @@ export async function GET() {
             members?: Array<{ merge_fields?: { FNAME?: string } }>;
           };
           const priors = (data.members || [])
-            .map((m) => (m.merge_fields?.FNAME || "").trim())
+            .map((m) => normalizeName(m.merge_fields?.FNAME || ""))
             .filter(Boolean);
           const chain = [...priors, ...SEED_NAMES];
           prev1 = chain[0] || SEED_NAMES[0];
