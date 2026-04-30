@@ -175,9 +175,6 @@ export function SignupForm() {
           onInvalid={(e) => setCustomMessage(e.currentTarget, "name")}
           required
         />
-        <button className="add-name__button" type="submit" disabled={status === "submitting"}>
-          {buttonLabel}
-        </button>
       </div>
 
       <div className="add-name__grid">
@@ -206,6 +203,10 @@ export function SignupForm() {
           />
         </label>
       </div>
+
+      <button className="add-name__button" type="submit" disabled={status === "submitting"}>
+        {buttonLabel}
+      </button>
 
       <div className="lineage-preview">
         <div className="lineage-preview__rule" aria-hidden="true" />
