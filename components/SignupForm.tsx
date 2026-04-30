@@ -44,6 +44,7 @@ export function SignupForm() {
   const [name, setName] = useState("");
   const [lineage, setLineage] = useState<Lineage>(SEED_FALLBACK);
   const [ticketUrl, setTicketUrl] = useState<string | null>(null);
+  const [guests, setGuests] = useState<string[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -59,6 +60,22 @@ export function SignupForm() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    let cancelled = false;
+    fetch("/api/guests")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data?.guests)) {
+          setGuests(data.guests);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [status]);
 
   const buttonLabel = useMemo(() => {
     if (status === "submitting") return "Adding\u2026";
@@ -113,6 +130,22 @@ export function SignupForm() {
         <p className="ticket-success__kicker">N&deg; {lineage.num} &middot; You&rsquo;re on the list</p>
         <img src={ticketUrl} alt="Your Arrival List ticket" className="ticket-success__image" />
         <p className="ticket-success__note">{message}</p>
+
+        {guests.length > 0 ? (
+          <div className="ticket-success__guests">
+            <p className="ticket-success__guests-kicker">
+              The Guest List <span className="ticket-success__guests-count">&middot; {guests.length}</span>
+            </p>
+            <p className="ticket-success__guests-names">
+              {guests.map((guestName, i) => (
+                <span key={`${guestName}-${i}`}>
+                  <em>{guestName}</em>
+                  {i < guests.length - 1 ? <span aria-hidden="true"> &middot; </span> : null}
+                </span>
+              ))}
+            </p>
+          </div>
+        ) : null}
       </div>
     );
   }

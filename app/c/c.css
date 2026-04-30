@@ -1165,6 +1165,44 @@
   color: var(--c-ink-soft);
 }
 
+.ticket-success__guests {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(28, 26, 23, 0.18);
+  text-align: center;
+}
+
+.ticket-success__guests-kicker {
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+  margin: 0 0 14px;
+}
+
+.ticket-success__guests-count {
+  color: var(--c-muted);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+}
+
+.ticket-success__guests-names {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  color: var(--c-ink);
+  line-height: 1.7;
+  margin: 0;
+  word-spacing: 0.04em;
+}
+
+.ticket-success__guests-names em {
+  font-style: italic;
+  color: var(--c-ink);
+}
+
 @media (max-width: 600px) {
   .add-name__grid {
     grid-template-columns: 1fr;
