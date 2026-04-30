@@ -121,7 +121,7 @@ export function SignupForm() {
     <form className="add-name" onSubmit={handleSubmit}>
       <input className="honeypot" type="text" name="website" tabIndex={-1} autoComplete="off" />
 
-      <div className="add-name__label">Add a Name <span aria-hidden="true">*</span></div>
+      <div className="add-name__label">Add Your Name <span aria-hidden="true">*</span></div>
 
       {message && status === "error" ? (
         <p className="form-message form-message--error" role="alert">{message}</p>
