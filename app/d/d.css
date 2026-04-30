@@ -247,6 +247,16 @@
   margin-top: clamp(12px, 2vh, 24px);
 }
 
+/* Signup form section under the portrait hero overlay */
+.c-signup {
+  margin-top: clamp(20px, 3vh, 36px);
+  margin-bottom: clamp(28px, 4vh, 48px);
+}
+
+.c-signup .c-marker {
+  margin-bottom: clamp(14px, 2vw, 22px);
+}
+
 /* Registry section — editorial directory layout */
 
 /* Section uses c-section padding but renders the slab as a sibling

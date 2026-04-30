@@ -131,7 +131,7 @@ export function SignupForm() {
       <div className="lineage-preview">
         <div className="lineage-preview__rule" aria-hidden="true" />
         <div className="lineage-preview__body">
-          <p className="lineage-preview__kicker">Lineage Preview</p>
+          <p className="lineage-preview__kicker">Already On The List</p>
           <p className="lineage-preview__prev">{lineage.prev1}</p>
           <p className="lineage-preview__you">{previewName.toUpperCase()}</p>
           <p className="lineage-preview__prev">{lineage.prev2}</p>

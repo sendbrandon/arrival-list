@@ -924,7 +924,7 @@
 }
 
 /* ---------- Add a Name (ticket form) ---------- */
-.c-form-shell .add-name {
+.add-name {
   background: var(--c-paper);
   color: var(--c-ink);
   max-width: 720px;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { reminderDrops, siteCopy } from "@/lib/copy";
+import { SignupForm } from "@/components/SignupForm";
 import "../c/c.css";
 import "./d.css";
 
@@ -64,14 +65,16 @@ export default function DPage({
             )}
           </figure>
 
-          {/* Portrait variant: Join CTA sits right under the overlay image */}
+          {/* Portrait variant: signup form sits right under the overlay image */}
           {isPortrait && (
-            <Link href="/join" className="c-rsvp c-rsvp--tight c-rsvp--inline">
-              <span className="c-rsvp__label">Join Our Guest List</span>
-              <span className="c-rsvp__rule" aria-hidden="true" />
-              <span className="c-rsvp__meta">Address · Reminders · Registry</span>
-              <span className="c-rsvp__arrow" aria-hidden="true">→</span>
-            </Link>
+            <div className="c-signup">
+              <div className="c-marker">
+                <span className="c-marker__num">01</span>
+                <span className="c-marker__label">Take Your Seat</span>
+                <span className="c-marker__rule" aria-hidden="true" />
+              </div>
+              <SignupForm />
+            </div>
           )}
 
           {/* Main row — names + note */}
