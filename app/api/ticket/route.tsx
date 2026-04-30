@@ -112,7 +112,7 @@ export async function GET(request: Request) {
                 letterSpacing: -0.4
               }}
             >
-              The Arrival List
+              The Guest List
             </div>
             <div style={{ height: 1, background: INK, opacity: 0.85 }} />
           </div>
