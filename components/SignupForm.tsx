@@ -1,18 +1,50 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+type Lineage = {
+  prev1: string;
+  prev2: string;
+  num: string;
+};
+
+const SEED_FALLBACK: Lineage = {
+  prev1: "Baby",
+  prev2: "Shenika",
+  num: "000004"
+};
 
 export function SignupForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [lineage, setLineage] = useState<Lineage>(SEED_FALLBACK);
+  const [ticketUrl, setTicketUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/lineage")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && data) {
+          setLineage({ prev1: data.prev1, prev2: data.prev2, num: data.num });
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const buttonLabel = useMemo(() => {
-    if (status === "submitting") return "Sending\u2026";
-    if (status === "success") return "We\u2019ve got you";
-    return "Send My RSVP";
+    if (status === "submitting") return "Adding\u2026";
+    if (status === "success") return "On the list";
+    return "Add Name";
   }, [status]);
+
+  const previewName = name.trim() || "Your Name";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,13 +55,7 @@ export function SignupForm() {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
       phone: String(formData.get("phone") || ""),
-      rsvpStatus: String(formData.get("rsvpStatus") || "undecided"),
-      partySize: Number(formData.get("partySize") || 1),
-      dietaryNotes: String(formData.get("dietaryNotes") || ""),
-      emailConsent: true,
-      smsConsent: true,
-      website: String(formData.get("website") || ""),
-      reminderPreferences: ["event", "registry", "baby-updates"]
+      website: String(formData.get("website") || "")
     };
 
     setStatus("submitting");
@@ -49,63 +75,77 @@ export function SignupForm() {
       }
 
       setStatus("success");
-      setMessage("You\u2019re on the list. We can\u2019t wait to celebrate with you.");
+      setMessage("You\u2019re on the list. Check your email for your ticket.");
+      if (data?.ticketUrl) setTicketUrl(data.ticketUrl);
       form.reset();
+      setName("");
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Something went wrong.");
     }
   }
 
+  if (status === "success" && ticketUrl) {
+    return (
+      <div className="ticket-success">
+        <p className="ticket-success__kicker">N&deg; {lineage.num} &middot; You&rsquo;re on the list</p>
+        <img src={ticketUrl} alt="Your Arrival List ticket" className="ticket-success__image" />
+        <p className="ticket-success__note">{message}</p>
+      </div>
+    );
+  }
+
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <form className="add-name" onSubmit={handleSubmit} noValidate>
       <input className="honeypot" type="text" name="website" tabIndex={-1} autoComplete="off" />
 
-      <div className="field-grid field-grid--two">
-        <label>
-          <span>Name</span>
-          <input name="name" type="text" autoComplete="name" required />
-        </label>
-        <label>
+      <div className="add-name__label">Add a Name</div>
+
+      <div className="add-name__row">
+        <input
+          className="add-name__input"
+          name="name"
+          type="text"
+          placeholder="Your full name"
+          autoComplete="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <button className="add-name__button" type="submit" disabled={status === "submitting"}>
+          {buttonLabel}
+        </button>
+      </div>
+
+      <div className="add-name__grid">
+        <label className="add-name__field">
           <span>Email</span>
           <input name="email" type="email" autoComplete="email" required />
         </label>
-      </div>
-
-      <div className="field-grid field-grid--two">
-        <label>
+        <label className="add-name__field">
           <span>Phone</span>
           <input name="phone" type="tel" autoComplete="tel" required placeholder="For event-day texts" />
         </label>
-        <label>
-          <span>Party size</span>
-          <input name="partySize" type="number" min="1" max="10" defaultValue="1" required />
-        </label>
       </div>
 
-      <fieldset>
-        <legend>RSVP</legend>
-        <div className="choice-row">
-          <label><input type="radio" name="rsvpStatus" value="yes" required /> Yes</label>
-          <label><input type="radio" name="rsvpStatus" value="maybe" /> Maybe</label>
-          <label><input type="radio" name="rsvpStatus" value="no" /> No</label>
+      <div className="lineage-preview">
+        <div className="lineage-preview__rule" aria-hidden="true" />
+        <div className="lineage-preview__body">
+          <p className="lineage-preview__kicker">Lineage Preview</p>
+          <p className="lineage-preview__prev">{lineage.prev1}</p>
+          <p className="lineage-preview__you">{previewName.toUpperCase()}</p>
+          <p className="lineage-preview__prev">{lineage.prev2}</p>
+          <p className="lineage-preview__num">N&deg; {lineage.num}</p>
         </div>
-      </fieldset>
+      </div>
 
-      <label>
-        <span>Anything we should know? <span className="signup-form__optional">(optional)</span></span>
-        <textarea name="dietaryNotes" rows={3} placeholder="Allergies, accessibility, anything we should know" />
-      </label>
-
-      <button className="button button--primary" type="submit" disabled={status === "submitting"}>
-        {buttonLabel}
-      </button>
-
-      <p className="signup-form__fineprint">
-        By sending your RSVP, you agree to receive event details and a few gentle reminders by email and text. We&rsquo;ll keep it brief, kept warm, never spammy.
+      <p className="add-name__fineprint">
+        All three fields are required. We&rsquo;ll email your ticket and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
       </p>
 
-      {message ? <p className={`form-message form-message--${status}`}>{message}</p> : null}
+      {message && status !== "success" ? (
+        <p className={`form-message form-message--${status}`}>{message}</p>
+      ) : null}
     </form>
   );
 }
