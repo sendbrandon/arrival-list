@@ -16,6 +16,28 @@ const SEED_FALLBACK: Lineage = {
   num: "000004"
 };
 
+const VALIDATION_MESSAGES: Record<string, { missing: string; mismatch?: string }> = {
+  name: { missing: "Please add your name." },
+  email: {
+    missing: "Please add your email so we can send your ticket.",
+    mismatch: "That email looks off — please check the format."
+  },
+  phone: { missing: "Please add your phone number." }
+};
+
+function setCustomMessage(input: HTMLInputElement, fieldKey: string) {
+  const v = input.validity;
+  const messages = VALIDATION_MESSAGES[fieldKey];
+  if (!messages) return;
+  if (v.valueMissing) {
+    input.setCustomValidity(messages.missing);
+  } else if (v.typeMismatch && messages.mismatch) {
+    input.setCustomValidity(messages.mismatch);
+  } else {
+    input.setCustomValidity("");
+  }
+}
+
 export function SignupForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -96,20 +118,28 @@ export function SignupForm() {
   }
 
   return (
-    <form className="add-name" onSubmit={handleSubmit} noValidate>
+    <form className="add-name" onSubmit={handleSubmit}>
       <input className="honeypot" type="text" name="website" tabIndex={-1} autoComplete="off" />
 
-      <div className="add-name__label">Add a Name</div>
+      <div className="add-name__label">Add a Name <span aria-hidden="true">*</span></div>
+
+      {message && status === "error" ? (
+        <p className="form-message form-message--error" role="alert">{message}</p>
+      ) : null}
 
       <div className="add-name__row">
         <input
           className="add-name__input"
           name="name"
           type="text"
-          placeholder="Your full name"
+          placeholder="Your full name (required)"
           autoComplete="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            setName(e.target.value);
+            e.currentTarget.setCustomValidity("");
+          }}
+          onInvalid={(e) => setCustomMessage(e.currentTarget, "name")}
           required
         />
         <button className="add-name__button" type="submit" disabled={status === "submitting"}>
@@ -119,12 +149,28 @@ export function SignupForm() {
 
       <div className="add-name__grid">
         <label className="add-name__field">
-          <span>Email</span>
-          <input name="email" type="email" autoComplete="email" required />
+          <span>Email <span aria-hidden="true">*</span></span>
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            placeholder="you@example.com"
+            onInput={(e) => e.currentTarget.setCustomValidity("")}
+            onInvalid={(e) => setCustomMessage(e.currentTarget, "email")}
+          />
         </label>
         <label className="add-name__field">
-          <span>Phone</span>
-          <input name="phone" type="tel" autoComplete="tel" required placeholder="For event-day texts" />
+          <span>Phone <span aria-hidden="true">*</span></span>
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            required
+            placeholder="For event-day texts"
+            onInput={(e) => e.currentTarget.setCustomValidity("")}
+            onInvalid={(e) => setCustomMessage(e.currentTarget, "phone")}
+          />
         </label>
       </div>
 
@@ -140,12 +186,8 @@ export function SignupForm() {
       </div>
 
       <p className="add-name__fineprint">
-        All three fields are required. We&rsquo;ll email your ticket and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
+        Name, email, and phone are all required. We&rsquo;ll email your ticket and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
       </p>
-
-      {message && status !== "success" ? (
-        <p className={`form-message form-message--${status}`}>{message}</p>
-      ) : null}
     </form>
   );
 }
