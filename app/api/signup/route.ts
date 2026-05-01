@@ -13,16 +13,16 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ATTENDING_VALUES = new Set(["yes", "no", "maybe"]);
 const PARTY_VALUES = new Set(["1", "2", "family"]);
 
-// Mailchimp's "Phone Number" merge field type validates against a fixed
-// format (e.g. 555-555-5555). Normalize before sending so users can type
-// any common shape without hitting the format check.
+// Mailchimp's "Phone Number" merge field with format "(###) ###-####"
+// validates strictly. Normalize before sending so users can type any
+// common shape without tripping the validator.
 function formatPhoneForMailchimp(raw: string): string {
   const digits = raw.replace(/\D/g, "");
   if (digits.length === 10) {
-    return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
   }
   if (digits.length === 11 && digits.startsWith("1")) {
-    return `${digits.slice(1, 4)}-${digits.slice(4, 7)}-${digits.slice(7)}`;
+    return `(${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
   }
   return raw;
 }
