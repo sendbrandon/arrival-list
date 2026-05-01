@@ -190,7 +190,7 @@
   align-items: baseline;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: 0.18em;
+  gap: 0.34em;
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
@@ -371,14 +371,14 @@
 
   .d-overlay__headline {
     font-size: clamp(1.15rem, 5.4vw, 1.7rem);
-    letter-spacing: 0.22em;
-    gap: 0;
+    letter-spacing: 0.18em;
+    gap: 0.28em;
     color: var(--c-paper);
   }
 
   .d-overlay__amp {
-    font-size: 1.55em;
-    margin: -0.06em 0;
+    font-size: 1.4em;
+    margin: 0;
     color: var(--c-accent-soft);
   }
 

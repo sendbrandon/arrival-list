@@ -7,10 +7,17 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SEED_NAMES = ["Baby", "Shenika", "Brandon"];
 const SEED_OFFSET = SEED_NAMES.length;
 
+const ATTENDING_VALUES = new Set(["yes", "no", "maybe"]);
+const PARTY_VALUES = new Set(["1", "2", "family"]);
+
 type SignupPayload = {
   name?: string;
   email?: string;
   phone?: string;
+  attending?: string;
+  partySize?: string;
+  dietary?: string;
+  note?: string;
   website?: string;
 };
 
@@ -54,6 +61,28 @@ async function fetchMemberCount(dc: string, audienceId: string, apiKey: string) 
   return data.stats?.member_count || 0;
 }
 
+async function postSubscriberNote(
+  dc: string,
+  audienceId: string,
+  apiKey: string,
+  subscriberHash: string,
+  note: string
+) {
+  const url = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}/notes`;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${Buffer.from(`any:${apiKey}`).toString("base64")}`
+      },
+      body: JSON.stringify({ note })
+    });
+  } catch (err) {
+    console.warn("Mailchimp note attach failed:", err);
+  }
+}
+
 export async function POST(request: Request) {
   let payload: SignupPayload;
 
@@ -70,6 +99,10 @@ export async function POST(request: Request) {
   const name = payload.name?.trim();
   const email = payload.email?.trim().toLowerCase();
   const phone = payload.phone?.trim();
+  const attendingRaw = payload.attending?.trim().toLowerCase() || "yes";
+  const partySizeRaw = payload.partySize?.trim().toLowerCase() || "1";
+  const dietary = payload.dietary?.trim().slice(0, 500) || "";
+  const note = payload.note?.trim().slice(0, 1000) || "";
 
   if (!name) {
     return NextResponse.json({ message: "Please enter your name." }, { status: 400 });
@@ -80,6 +113,9 @@ export async function POST(request: Request) {
   if (!phone || phone.replace(/\D/g, "").length < 7) {
     return NextResponse.json({ message: "Please enter a valid phone number." }, { status: 400 });
   }
+
+  const attending = ATTENDING_VALUES.has(attendingRaw) ? attendingRaw : "yes";
+  const partySize = PARTY_VALUES.has(partySizeRaw) ? partySizeRaw : "1";
 
   const [rawFirstName, ...rest] = name.split(" ");
   const firstName = normalizeName(rawFirstName || name);
@@ -111,7 +147,14 @@ export async function POST(request: Request) {
   const displayFirst = firstName || normalizeName(name);
   const ticketUrl = buildTicketUrl(origin, displayFirst, prev1, prev2, ticketNum);
 
-  const tags = ["arrival-list-site"];
+  // Tags surface RSVP signal in Mailchimp without requiring custom merge fields.
+  const tags = [
+    "arrival-list-site",
+    `rsvp:${attending}`,
+    `party:${partySize}`
+  ];
+  if (dietary) tags.push("has:dietary");
+  if (note) tags.push("has:note");
 
   const mergeFields: Record<string, string | number> = {
     FNAME: displayFirst,
@@ -127,6 +170,10 @@ export async function POST(request: Request) {
     console.warn("Mailchimp not configured. Dev fallback signup:", {
       email,
       name,
+      attending,
+      partySize,
+      dietary,
+      note,
       tags,
       mergeFields,
       ticketUrl
@@ -167,6 +214,16 @@ export async function POST(request: Request) {
       { message: "Could not save your signup. Please try again." },
       { status: 500 }
     );
+  }
+
+  // Persist free-text RSVP details as a subscriber note — no schema setup required.
+  if (dietary || note) {
+    const lines = [
+      `RSVP: ${attending} · Party: ${partySize}`,
+      dietary ? `Dietary: ${dietary}` : null,
+      note ? `Note: ${note}` : null
+    ].filter(Boolean) as string[];
+    await postSubscriberNote(dc, audienceId, apiKey, subscriberHash, lines.join("\n"));
   }
 
   return NextResponse.json(

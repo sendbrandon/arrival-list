@@ -1010,6 +1010,114 @@
   margin-bottom: 22px;
 }
 
+.add-name__grid--single {
+  grid-template-columns: 1fr;
+}
+
+.add-name__fieldset {
+  border: 0;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.add-name__fieldset legend {
+  font-family: "Inter", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.add-name__choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.add-name__choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  border: 1px solid rgba(28, 26, 23, 0.28);
+  background: transparent;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+  font-family: "Fraunces", serif;
+  font-size: 0.95rem;
+  color: var(--c-ink);
+  text-align: center;
+  letter-spacing: 0.005em;
+}
+
+.add-name__choice:hover {
+  border-color: var(--c-ink);
+  background: rgba(28, 26, 23, 0.04);
+}
+
+.add-name__choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.add-name__choice.is-selected,
+.add-name__choice:has(input:checked) {
+  background: var(--c-black);
+  border-color: var(--c-black);
+  color: var(--c-paper);
+}
+
+.add-name__choice span {
+  pointer-events: none;
+}
+
+.add-name__field--note {
+  margin-bottom: 22px;
+}
+
+.add-name__field textarea {
+  background: transparent;
+  border: 1px solid rgba(28, 26, 23, 0.28);
+  padding: 12px 14px;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--c-ink);
+  resize: vertical;
+  min-height: 84px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-name__field textarea:focus {
+  outline: none;
+  border-color: var(--c-ink);
+  background: rgba(28, 26, 23, 0.03);
+}
+
+.add-name__field textarea::placeholder {
+  color: rgba(28, 26, 23, 0.4);
+  font-style: italic;
+}
+
+.add-name__optional {
+  font-style: italic;
+  font-family: "Fraunces", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  color: var(--c-muted);
+  text-transform: none;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
 .add-name__field {
   display: flex;
   flex-direction: column;
@@ -1109,6 +1217,25 @@
   line-height: 1.2;
 }
 
+.lineage-preview__admit {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+  margin: 0 0 4px;
+}
+
+.lineage-preview__date {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--c-ink-soft);
+  letter-spacing: 0.005em;
+  margin: 4px 0 0;
+}
+
 .lineage-preview__you {
   font-family: "Fraunces", serif;
   font-weight: 700;
@@ -1150,6 +1277,25 @@
   text-transform: uppercase;
   color: var(--c-ink-soft);
   margin: 0 0 18px;
+}
+
+.ticket-success__headline {
+  font-family: "Fraunces", serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--c-ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 0 0 18px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.ticket-success__headline em {
+  font-style: italic;
+  color: var(--c-accent);
+  font-weight: 400;
+  font-feature-settings: "swsh" 1, "dlig" 1;
+  margin: 0 0.04em;
 }
 
 .ticket-success__image {
@@ -1213,4 +1359,36 @@
     padding: 16px;
     letter-spacing: 0.22em;
   }
+  .add-name__choices {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .add-name__choice {
+    font-size: 0.85rem;
+    padding: 11px 6px;
+  }
+}
+
+/* ---------- Signup intro paragraph (above the form) ---------- */
+.c-signup__intro {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.55;
+  color: var(--c-ink-soft);
+  max-width: 580px;
+  margin: 0 0 clamp(20px, 3vw, 28px);
+}
+
+/* ---------- Registry intro paragraph (above the babylist slab) ---------- */
+.c-registry__intro {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--c-ink-soft);
+  max-width: 640px;
+  margin: 0 0 clamp(28px, 4vw, 40px);
 }

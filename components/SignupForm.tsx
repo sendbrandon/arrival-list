@@ -19,7 +19,7 @@ const SEED_FALLBACK: Lineage = {
 const VALIDATION_MESSAGES: Record<string, { missing: string; mismatch?: string }> = {
   name: { missing: "Please add your name." },
   email: {
-    missing: "Please add your email so we can send your ticket.",
+    missing: "Please add your email so we can send your details.",
     mismatch: "That email looks off — please check the format."
   },
   phone: { missing: "Please add your phone number." }
@@ -42,6 +42,8 @@ export function SignupForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
+  const [attending, setAttending] = useState<"yes" | "no" | "maybe">("yes");
+  const [partySize, setPartySize] = useState<"1" | "2" | "family">("1");
   const [lineage, setLineage] = useState<Lineage>(SEED_FALLBACK);
   const [ticketUrl, setTicketUrl] = useState<string | null>(null);
   const [guests, setGuests] = useState<string[]>([]);
@@ -78,9 +80,9 @@ export function SignupForm() {
   }, [status]);
 
   const buttonLabel = useMemo(() => {
-    if (status === "submitting") return "Adding\u2026";
+    if (status === "submitting") return "Confirming\u2026";
     if (status === "success") return "On the list";
-    return "Add Name";
+    return "Confirm My RSVP";
   }, [status]);
 
   const previewName = name.trim() || "Your Name";
@@ -94,6 +96,10 @@ export function SignupForm() {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
       phone: String(formData.get("phone") || ""),
+      attending: String(formData.get("attending") || "yes"),
+      partySize: String(formData.get("partySize") || "1"),
+      dietary: String(formData.get("dietary") || ""),
+      note: String(formData.get("note") || ""),
       website: String(formData.get("website") || "")
     };
 
@@ -114,7 +120,7 @@ export function SignupForm() {
       }
 
       setStatus("success");
-      setMessage("You\u2019re on the list. Check your email for your ticket.");
+      setMessage("You\u2019re on the list. Your private location details and calendar invite will be sent by email.");
       if (data?.ticketUrl) setTicketUrl(data.ticketUrl);
       form.reset();
       setName("");
@@ -124,12 +130,20 @@ export function SignupForm() {
     }
   }
 
-  if (status === "success" && ticketUrl) {
+  if (status === "success") {
     return (
       <div className="ticket-success">
         <p className="ticket-success__kicker">N&deg; {lineage.num} &middot; You&rsquo;re on the list</p>
-        <img src={ticketUrl} alt="Your Arrival List ticket" className="ticket-success__image" />
-        <p className="ticket-success__note">{message}</p>
+        <h3 className="ticket-success__headline">
+          You&rsquo;re <em>on</em> the list<span className="c-title__period">.</span>
+        </h3>
+        <p className="ticket-success__note">
+          Your private location details and calendar invite will be sent by email.
+          We can&rsquo;t wait to celebrate with you.
+        </p>
+        {ticketUrl ? (
+          <img src={ticketUrl} alt="Your Baby in Bloom ticket" className="ticket-success__image" />
+        ) : null}
 
         {guests.length > 0 ? (
           <div className="ticket-success__guests">
@@ -154,7 +168,7 @@ export function SignupForm() {
     <form className="add-name" onSubmit={handleSubmit}>
       <input className="honeypot" type="text" name="website" tabIndex={-1} autoComplete="off" />
 
-      <div className="add-name__label">Add Your Name <span aria-hidden="true">*</span></div>
+      <div className="add-name__label">Reserve Your Seat <span aria-hidden="true">*</span></div>
 
       {message && status === "error" ? (
         <p className="form-message form-message--error" role="alert">{message}</p>
@@ -204,6 +218,77 @@ export function SignupForm() {
         </label>
       </div>
 
+      <fieldset className="add-name__fieldset">
+        <legend>Will you attend?</legend>
+        <div className="add-name__choices" role="radiogroup">
+          {[
+            { v: "yes", label: "Yes" },
+            { v: "maybe", label: "Not sure yet" },
+            { v: "no", label: "No" }
+          ].map((opt) => (
+            <label
+              key={opt.v}
+              className={`add-name__choice${attending === opt.v ? " is-selected" : ""}`}
+            >
+              <input
+                type="radio"
+                name="attending"
+                value={opt.v}
+                checked={attending === opt.v}
+                onChange={() => setAttending(opt.v as typeof attending)}
+              />
+              <span>{opt.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset className="add-name__fieldset">
+        <legend>How many guests?</legend>
+        <div className="add-name__choices" role="radiogroup">
+          {[
+            { v: "1", label: "Just me" },
+            { v: "2", label: "Plus one" },
+            { v: "family", label: "Family" }
+          ].map((opt) => (
+            <label
+              key={opt.v}
+              className={`add-name__choice${partySize === opt.v ? " is-selected" : ""}`}
+            >
+              <input
+                type="radio"
+                name="partySize"
+                value={opt.v}
+                checked={partySize === opt.v}
+                onChange={() => setPartySize(opt.v as typeof partySize)}
+              />
+              <span>{opt.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="add-name__grid add-name__grid--single">
+        <label className="add-name__field">
+          <span>Dietary notes <em className="add-name__optional">— optional</em></span>
+          <input
+            name="dietary"
+            type="text"
+            placeholder="Allergies, preferences, kids' menu"
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
+      <label className="add-name__field add-name__field--note">
+        <span>A note for Brandon &amp; Shenika <em className="add-name__optional">— optional</em></span>
+        <textarea
+          name="note"
+          rows={3}
+          placeholder="Anything you want them to know"
+        />
+      </label>
+
       <button className="add-name__button" type="submit" disabled={status === "submitting"}>
         {buttonLabel}
       </button>
@@ -211,16 +296,16 @@ export function SignupForm() {
       <div className="lineage-preview">
         <div className="lineage-preview__rule" aria-hidden="true" />
         <div className="lineage-preview__body">
-          <p className="lineage-preview__kicker">Already On The List</p>
-          <p className="lineage-preview__prev">{lineage.prev1}</p>
+          <p className="lineage-preview__kicker">Baby in Bloom</p>
+          <p className="lineage-preview__admit">Admit One</p>
           <p className="lineage-preview__you">{previewName.toUpperCase()}</p>
-          <p className="lineage-preview__prev">{lineage.prev2}</p>
+          <p className="lineage-preview__date">Sunday &middot; June 28, 2026</p>
           <p className="lineage-preview__num">N&deg; {lineage.num}</p>
         </div>
       </div>
 
       <p className="add-name__fineprint">
-        Name, email, and phone are all required. We&rsquo;ll email your ticket and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
+        We&rsquo;ll email your ticket, the private location details, and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
       </p>
     </form>
   );

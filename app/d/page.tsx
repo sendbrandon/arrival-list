@@ -12,13 +12,15 @@ export default function DPage({
 
   return (
     <main className="c d">
-      {/* Top marquee — two halves, each with a spacer so first text appears offset right */}
+      {/* Top marquee — decorative only. aria-hidden on outer + sr-only label
+          inside replaces 12 DOM copies of the same sentence with a single
+          accessible label. Visual loop: 2 halves, 3 groups each = 6 copies. */}
       <div className="c-marquee" aria-hidden="true">
         <div className="c-marquee__track">
           {Array.from({ length: 2 }).map((_, halfIndex) => (
             <div className="c-marquee__half" key={halfIndex}>
               <div className="c-marquee__spacer" aria-hidden="true" />
-              {Array.from({ length: 6 }).map((_, i) => (
+              {Array.from({ length: 3 }).map((_, i) => (
                 <div className="c-marquee__group" key={i}>
                   <span>You are invited &mdash; come eat slow, sit long, and bloom with us &mdash; Summer &rsquo;26</span>
                   <span className="c-marquee__mark">✿</span>
@@ -39,12 +41,10 @@ export default function DPage({
             <span className="c-nav__edition">Vol. I &mdash; Summer &rsquo;26</span>
           </div>
 
-          {/* Section marker — 00 The Invitation (or eyebrow phrase in portrait variant) */}
+          {/* Section marker — 00 The Invitation */}
           <div className="c-marker">
             <span className="c-marker__num">00</span>
-            <span className="c-marker__label">
-              {isPortrait ? "An Invitation to Baby in Bloom" : "The Invitation"}
-            </span>
+            <span className="c-marker__label">The Invitation</span>
             <span className="c-marker__rule" aria-hidden="true" />
           </div>
 
@@ -60,7 +60,9 @@ export default function DPage({
                 </h1>
                 <span className="d-overlay__rule" aria-hidden="true" />
                 <p className="d-overlay__date">{siteCopy.heroDateLong}</p>
-                <p className="d-overlay__location">Location shared with confirmed guests</p>
+                <p className="d-overlay__location">
+                  Private location shared after RSVP &middot; {siteCopy.heroRegionShort}
+                </p>
               </figcaption>
             )}
           </figure>
@@ -70,9 +72,13 @@ export default function DPage({
             <div className="c-signup">
               <div className="c-marker">
                 <span className="c-marker__num">01</span>
-                <span className="c-marker__label">Take Your Seat</span>
+                <span className="c-marker__label">Reserve Your Seat</span>
                 <span className="c-marker__rule" aria-hidden="true" />
               </div>
+              <p className="c-signup__intro">
+                Add your name to the guest list and we&rsquo;ll send the private location
+                details, calendar reminder, and final notes closer to the day.
+              </p>
               <SignupForm />
             </div>
           )}
@@ -100,19 +106,19 @@ export default function DPage({
         {/* Black slab CTA — bottom of hero (default layout only) */}
         {!isPortrait && (
           <Link href="/join" className="c-rsvp">
-            <span className="c-rsvp__label">Join Our Guest List</span>
+            <span className="c-rsvp__label">Reserve Your Seat</span>
             <span className="c-rsvp__rule" aria-hidden="true" />
-            <span className="c-rsvp__meta">Address · Reminders · Registry</span>
+            <span className="c-rsvp__meta">Confirm RSVP · Receive Details</span>
             <span className="c-rsvp__arrow" aria-hidden="true">→</span>
           </Link>
         )}
       </section>
 
-      {/* Schedule */}
+      {/* Schedule — what happens next */}
       <section className="c-shell c-section">
         <div className="c-marker">
           <span className="c-marker__num">02</span>
-          <span className="c-marker__label">What to expect</span>
+          <span className="c-marker__label">What Happens Next</span>
           <span className="c-marker__rule" aria-hidden="true" />
         </div>
         <h2 className="c-h2">
@@ -135,12 +141,16 @@ export default function DPage({
         <div className="c-shell">
           <div className="c-marker">
             <span className="c-marker__num">03</span>
-            <span className="c-marker__label">From the registry</span>
+            <span className="c-marker__label">The Registry</span>
             <span className="c-marker__rule" aria-hidden="true" />
           </div>
           <h2 className="c-h2 c-h2--registry">
             A small list, <em>thoughtfully</em> kept<span className="c-title__period">.</span>
           </h2>
+          <p className="c-registry__intro">
+            Nothing is expected. Anything is deeply appreciated. We kept the registry
+            simple, useful, and full of things that will actually help.
+          </p>
         </div>
 
         {/* Full-bleed Babylist slab — sits tight under the H2, mirrors hero CTA */}
