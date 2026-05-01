@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { normalizeName } from "@/lib/names";
+import {
+  SEED_OFFSET,
+  allocateTicket,
+  importExistingTicket,
+  isStorageConfigured
+} from "@/lib/storage";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const SEED_OFFSET = 3;
 
 const ATTENDING_VALUES = new Set(["yes", "no", "maybe"]);
 const PARTY_VALUES = new Set(["1", "2", "family"]);
@@ -142,16 +146,35 @@ export async function POST(request: Request) {
 
   if (apiKey && audienceId) {
     dc = apiKey.split("-")[1];
-    if (dc) {
-      // Idempotent allocation: if this email already has a TKT_NUM, keep it.
-      // Otherwise allocate the next sequential number from member count.
-      const existing = await fetchExistingTicketNum(dc, audienceId, apiKey, subscriberHash);
-      if (existing) {
-        ticketNum = existing;
+  }
+
+  if (isStorageConfigured()) {
+    // Redis is the source of truth: atomic INCR on the counter, idempotent
+    // per-email cache. Mailchimp existing TKT_NUM is checked first only as a
+    // safety net for records created before sync ran.
+    if (dc && apiKey && audienceId) {
+      const mcExisting = await fetchExistingTicketNum(dc, audienceId, apiKey, subscriberHash);
+      if (mcExisting) {
+        await importExistingTicket(subscriberHash, mcExisting);
+        ticketNum = mcExisting;
       } else {
-        const count = await fetchMemberCount(dc, audienceId, apiKey);
-        ticketNum = SEED_OFFSET + count + 1;
+        const allocated = await allocateTicket(subscriberHash);
+        if (allocated) ticketNum = allocated;
       }
+    } else {
+      const allocated = await allocateTicket(subscriberHash);
+      if (allocated) ticketNum = allocated;
+    }
+  } else if (dc && apiKey && audienceId) {
+    // Fallback when Redis isn't configured: idempotent on existing TKT_NUM,
+    // then derive a new number from member_count. Race-prone on simultaneous
+    // new signups — Upstash setup eliminates that risk.
+    const existing = await fetchExistingTicketNum(dc, audienceId, apiKey, subscriberHash);
+    if (existing) {
+      ticketNum = existing;
+    } else {
+      const count = await fetchMemberCount(dc, audienceId, apiKey);
+      ticketNum = SEED_OFFSET + count + 1;
     }
   }
 
