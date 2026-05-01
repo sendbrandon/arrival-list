@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 const PAPER = "#efe7d0";
 const INK = "#1c1a17";
 const INK_SOFT = "#2f3d33";
-const MUTED = "#88907f";
 const BURGUNDY = "#6b2820";
 
 async function loadFont(file: string) {
@@ -38,13 +37,28 @@ function buildBarcode(seedText: string) {
   return bars;
 }
 
+function partyLabel(party: string) {
+  const p = party.toLowerCase();
+  if (p === "1") return "Party of 1";
+  if (p === "2") return "Party of 2";
+  if (p === "family") return "Family";
+  return "Party of 1";
+}
+
+function admitLabel(attending: string) {
+  const a = attending.toLowerCase();
+  if (a === "maybe") return "Saving Your Seat";
+  if (a === "no") return "Not Attending";
+  return "Confirmed Guest";
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const name = (searchParams.get("name") || "Guest").trim();
-  const prev1 = (searchParams.get("prev1") || "").trim();
-  const prev2 = (searchParams.get("prev2") || "").trim();
   const numRaw = parseInt(searchParams.get("num") || "0", 10) || 0;
   const num = padNumber(numRaw);
+  const party = searchParams.get("party") || "1";
+  const attending = searchParams.get("attending") || "yes";
 
   const [fraunces, frauncesItalic, inter] = await Promise.all([
     loadFont("Fraunces-Regular.ttf"),
@@ -52,6 +66,8 @@ export async function GET(request: Request) {
     loadFont("Inter-Medium.ttf")
   ]);
 
+  // Barcode is deterministic on num+name so the on-screen number and the
+  // visual code reference the same record.
   const bars = buildBarcode(`${num}-${name}`);
 
   return new ImageResponse(
@@ -74,7 +90,7 @@ export async function GET(request: Request) {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            padding: "56px 56px 40px"
+            padding: "44px 56px 32px"
           }}
         >
           <div
@@ -94,20 +110,20 @@ export async function GET(request: Request) {
             <span>Vol. I</span>
           </div>
 
-          <div style={{ height: 60 }} />
+          <div style={{ height: 48 }} />
 
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 12
+              gap: 10
             }}
           >
             <div
               style={{
                 fontFamily: "Fraunces",
                 fontStyle: "italic",
-                fontSize: 32,
+                fontSize: 30,
                 color: INK,
                 letterSpacing: -0.4
               }}
@@ -117,27 +133,25 @@ export async function GET(request: Request) {
             <div style={{ height: 1, background: INK, opacity: 0.85 }} />
           </div>
 
-          <div style={{ height: 56 }} />
+          <div style={{ height: 40 }} />
 
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 18
+              gap: 14
             }}
           >
-            {prev2 ? (
-              <div
-                style={{
-                  fontFamily: "Fraunces",
-                  fontStyle: "italic",
-                  fontSize: 28,
-                  color: INK_SOFT
-                }}
-              >
-                {prev2}
-              </div>
-            ) : null}
+            <div
+              style={{
+                fontFamily: "Fraunces",
+                fontStyle: "italic",
+                fontSize: 26,
+                color: INK_SOFT
+              }}
+            >
+              {admitLabel(attending)}
+            </div>
             <div
               style={{
                 fontFamily: "Fraunces",
@@ -153,18 +167,16 @@ export async function GET(request: Request) {
             >
               {name.toUpperCase()}
             </div>
-            {prev1 ? (
-              <div
-                style={{
-                  fontFamily: "Fraunces",
-                  fontStyle: "italic",
-                  fontSize: 28,
-                  color: INK_SOFT
-                }}
-              >
-                {prev1}
-              </div>
-            ) : null}
+            <div
+              style={{
+                fontFamily: "Fraunces",
+                fontStyle: "italic",
+                fontSize: 26,
+                color: INK_SOFT
+              }}
+            >
+              {partyLabel(party)}
+            </div>
           </div>
 
           <div style={{ flex: 1 }} />
@@ -174,21 +186,21 @@ export async function GET(request: Request) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: 8,
-              marginTop: 24
+              gap: 6,
+              marginTop: 0
             }}
           >
             <div
               style={{
                 display: "flex",
                 alignItems: "flex-end",
-                height: 70,
+                height: 60,
                 gap: 0
               }}
             >
               {bars.map((b, i) => (
                 <div key={i} style={{ display: "flex" }}>
-                  <div style={{ width: b.w, height: 70, background: INK }} />
+                  <div style={{ width: b.w, height: 60, background: INK }} />
                   <div style={{ width: b.gap }} />
                 </div>
               ))}
@@ -206,9 +218,9 @@ export async function GET(request: Request) {
             </div>
           </div>
 
-          <div style={{ height: 16 }} />
-          <div style={{ height: 1, background: INK, opacity: 0.8 }} />
           <div style={{ height: 14 }} />
+          <div style={{ height: 1, background: INK, opacity: 0.8 }} />
+          <div style={{ height: 12 }} />
 
           <div
             style={{
@@ -230,7 +242,7 @@ export async function GET(request: Request) {
     ),
     {
       width: 640,
-      height: 1100,
+      height: 940,
       fonts: [
         { name: "Fraunces", data: fraunces, weight: 400, style: "normal" },
         { name: "Fraunces", data: frauncesItalic, weight: 400, style: "italic" },

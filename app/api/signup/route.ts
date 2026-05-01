@@ -4,8 +4,7 @@ import { normalizeName } from "@/lib/names";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const SEED_NAMES = ["Baby", "Shenika", "Brandon"];
-const SEED_OFFSET = SEED_NAMES.length;
+const SEED_OFFSET = 3;
 
 const ATTENDING_VALUES = new Set(["yes", "no", "maybe"]);
 const PARTY_VALUES = new Set(["1", "2", "family"]);
@@ -21,32 +20,20 @@ type SignupPayload = {
   website?: string;
 };
 
-function buildTicketUrl(origin: string, name: string, prev1: string, prev2: string, num: number) {
+function buildTicketUrl(
+  origin: string,
+  name: string,
+  num: number,
+  party: string,
+  attending: string
+) {
   const params = new URLSearchParams({
     name,
-    prev1,
-    prev2,
-    num: String(num)
+    num: String(num),
+    party,
+    attending
   });
   return `${origin}/api/ticket?${params.toString()}`;
-}
-
-async function fetchPriorMembers(dc: string, audienceId: string, apiKey: string) {
-  const url = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members?sort_field=timestamp_signup&sort_dir=DESC&count=2&fields=members.merge_fields.FNAME,members.merge_fields.LNAME&status=subscribed`;
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Basic ${Buffer.from(`any:${apiKey}`).toString("base64")}`
-    }
-  });
-  if (!response.ok) {
-    return [] as string[];
-  }
-  const data = (await response.json()) as {
-    members?: Array<{ merge_fields?: { FNAME?: string; LNAME?: string } }>;
-  };
-  return (data.members || [])
-    .map((m) => normalizeName(m.merge_fields?.FNAME || ""))
-    .filter(Boolean);
 }
 
 async function fetchMemberCount(dc: string, audienceId: string, apiKey: string) {
@@ -59,6 +46,30 @@ async function fetchMemberCount(dc: string, audienceId: string, apiKey: string) 
   if (!response.ok) return 0;
   const data = (await response.json()) as { stats?: { member_count?: number } };
   return data.stats?.member_count || 0;
+}
+
+async function fetchExistingTicketNum(
+  dc: string,
+  audienceId: string,
+  apiKey: string,
+  subscriberHash: string
+) {
+  const url = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}?fields=merge_fields.TKT_NUM`;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Basic ${Buffer.from(`any:${apiKey}`).toString("base64")}`
+      }
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { merge_fields?: { TKT_NUM?: string } };
+    const raw = data.merge_fields?.TKT_NUM?.trim();
+    if (!raw) return null;
+    const n = parseInt(raw, 10);
+    return Number.isFinite(n) && n > 0 ? n : null;
+  } catch {
+    return null;
+  }
 }
 
 async function postSubscriberNote(
@@ -124,30 +135,30 @@ export async function POST(request: Request) {
   const apiKey = process.env.MAILCHIMP_API_KEY;
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
   const origin = new URL(request.url).origin;
+  const subscriberHash = crypto.createHash("md5").update(email).digest("hex");
 
-  let prev1 = SEED_NAMES[0];
-  let prev2 = SEED_NAMES[1];
   let ticketNum = SEED_OFFSET + 1;
+  let dc: string | undefined;
 
   if (apiKey && audienceId) {
-    const dc = apiKey.split("-")[1];
+    dc = apiKey.split("-")[1];
     if (dc) {
-      const [priors, count] = await Promise.all([
-        fetchPriorMembers(dc, audienceId, apiKey),
-        fetchMemberCount(dc, audienceId, apiKey)
-      ]);
-      const chain = [...priors, ...SEED_NAMES];
-      prev1 = chain[0] || SEED_NAMES[0];
-      prev2 = chain[1] || SEED_NAMES[1];
-      ticketNum = SEED_OFFSET + count + 1;
+      // Idempotent allocation: if this email already has a TKT_NUM, keep it.
+      // Otherwise allocate the next sequential number from member count.
+      const existing = await fetchExistingTicketNum(dc, audienceId, apiKey, subscriberHash);
+      if (existing) {
+        ticketNum = existing;
+      } else {
+        const count = await fetchMemberCount(dc, audienceId, apiKey);
+        ticketNum = SEED_OFFSET + count + 1;
+      }
     }
   }
 
   const ticketNumPadded = String(ticketNum).padStart(6, "0");
   const displayFirst = firstName || normalizeName(name);
-  const ticketUrl = buildTicketUrl(origin, displayFirst, prev1, prev2, ticketNum);
+  const ticketUrl = buildTicketUrl(origin, displayFirst, ticketNum, partySize, attending);
 
-  // Tags surface RSVP signal in Mailchimp without requiring custom merge fields.
   const tags = [
     "arrival-list-site",
     `rsvp:${attending}`,
@@ -160,8 +171,6 @@ export async function POST(request: Request) {
     FNAME: displayFirst,
     LNAME: lastName,
     PHONE: phone,
-    PREV_1: prev1,
-    PREV_2: prev2,
     TKT_NUM: ticketNumPadded,
     TKT_URL: ticketUrl
   };
@@ -179,18 +188,16 @@ export async function POST(request: Request) {
       ticketUrl
     });
     return NextResponse.json(
-      { message: "Thanks. You are on the list.", mode: "dev", ticketUrl },
+      { message: "Thanks. You are on the list.", mode: "dev", ticketUrl, attending },
       { status: 200 }
     );
   }
 
-  const dc = apiKey.split("-")[1];
   if (!dc) {
     console.error("Malformed MAILCHIMP_API_KEY — expected format KEY-dcXX.");
     return NextResponse.json({ message: "Signup is temporarily unavailable." }, { status: 500 });
   }
 
-  const subscriberHash = crypto.createHash("md5").update(email).digest("hex");
   const url = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}`;
 
   const response = await fetch(url, {
@@ -216,7 +223,6 @@ export async function POST(request: Request) {
     );
   }
 
-  // Persist free-text RSVP details as a subscriber note — no schema setup required.
   if (dietary || note) {
     const lines = [
       `RSVP: ${attending} · Party: ${partySize}`,
@@ -227,7 +233,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json(
-    { message: "Thanks. You are on the list.", ticketUrl },
+    { message: "Thanks. You are on the list.", ticketUrl, attending },
     { status: 201 }
   );
 }

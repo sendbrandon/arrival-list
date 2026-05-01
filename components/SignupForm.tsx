@@ -3,18 +3,8 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
-
-type Lineage = {
-  prev1: string;
-  prev2: string;
-  num: string;
-};
-
-const SEED_FALLBACK: Lineage = {
-  prev1: "Baby",
-  prev2: "Shenika",
-  num: "000004"
-};
+type Attending = "yes" | "no" | "maybe";
+type PartySize = "1" | "2" | "family";
 
 const VALIDATION_MESSAGES: Record<string, { missing: string; mismatch?: string }> = {
   name: { missing: "Please add your name." },
@@ -38,23 +28,34 @@ function setCustomMessage(input: HTMLInputElement, fieldKey: string) {
   }
 }
 
+function partyLabel(party: PartySize) {
+  if (party === "1") return "Party of 1";
+  if (party === "2") return "Party of 2";
+  return "Family";
+}
+
 export function SignupForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
-  const [attending, setAttending] = useState<"yes" | "no" | "maybe">("yes");
-  const [partySize, setPartySize] = useState<"1" | "2" | "family">("1");
-  const [lineage, setLineage] = useState<Lineage>(SEED_FALLBACK);
+  const [attending, setAttending] = useState<Attending>("yes");
+  const [partySize, setPartySize] = useState<PartySize>("1");
+  const [previewNum, setPreviewNum] = useState<string>("000004");
+  const [submittedNum, setSubmittedNum] = useState<string | null>(null);
+  const [submittedAttending, setSubmittedAttending] = useState<Attending>("yes");
+  const [submittedParty, setSubmittedParty] = useState<PartySize>("1");
   const [ticketUrl, setTicketUrl] = useState<string | null>(null);
-  const [guests, setGuests] = useState<string[]>([]);
+  const [guestCount, setGuestCount] = useState<number>(0);
+  const [guestPreview, setGuestPreview] = useState<string[]>([]);
+  const [guestHidden, setGuestHidden] = useState<number>(0);
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/lineage")
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (!cancelled && data) {
-          setLineage({ prev1: data.prev1, prev2: data.prev2, num: data.num });
+        if (!cancelled && data?.num) {
+          setPreviewNum(data.num);
         }
       })
       .catch(() => {});
@@ -69,9 +70,10 @@ export function SignupForm() {
     fetch("/api/guests")
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (!cancelled && Array.isArray(data?.guests)) {
-          setGuests(data.guests);
-        }
+        if (cancelled || !data) return;
+        if (typeof data.count === "number") setGuestCount(data.count);
+        if (Array.isArray(data.preview)) setGuestPreview(data.preview);
+        if (typeof data.hiddenCount === "number") setGuestHidden(data.hiddenCount);
       })
       .catch(() => {});
     return () => {
@@ -119,9 +121,31 @@ export function SignupForm() {
         throw new Error(data?.message || "Something went wrong.");
       }
 
+      const finalAttending = (data?.attending as Attending) || (payload.attending as Attending);
+      const finalParty = payload.partySize as PartySize;
+
       setStatus("success");
-      setMessage("You\u2019re on the list. Your private location details and calendar invite will be sent by email.");
+      setSubmittedAttending(finalAttending);
+      setSubmittedParty(finalParty);
+
+      if (finalAttending === "no") {
+        setMessage(
+          "Thanks for letting us know. We\u2019ll miss you \u2014 and we\u2019ll keep you in the loop with photos after the day."
+        );
+      } else {
+        setMessage(
+          "Your private location details and calendar invite will be sent by email."
+        );
+      }
+
       if (data?.ticketUrl) setTicketUrl(data.ticketUrl);
+      if (data?.ticketUrl) {
+        try {
+          const url = new URL(data.ticketUrl);
+          const num = url.searchParams.get("num");
+          if (num) setSubmittedNum(String(num).padStart(6, "0"));
+        } catch {}
+      }
       form.reset();
       setName("");
     } catch (error) {
@@ -131,32 +155,44 @@ export function SignupForm() {
   }
 
   if (status === "success") {
+    const isNo = submittedAttending === "no";
     return (
       <div className="ticket-success">
-        <p className="ticket-success__kicker">N&deg; {lineage.num} &middot; You&rsquo;re on the list</p>
-        <h3 className="ticket-success__headline">
-          You&rsquo;re <em>on</em> the list<span className="c-title__period">.</span>
-        </h3>
-        <p className="ticket-success__note">
-          Your private location details and calendar invite will be sent by email.
-          We can&rsquo;t wait to celebrate with you.
+        <p className="ticket-success__kicker">
+          {submittedNum ? <>N&deg; {submittedNum} &middot; </> : null}
+          {isNo ? "Heard, with love" : "You\u2019re on the list"}
         </p>
-        {ticketUrl ? (
+        <h3 className="ticket-success__headline">
+          {isNo ? (
+            <>We&rsquo;ll <em>miss</em> you<span className="c-title__period">.</span></>
+          ) : (
+            <>You&rsquo;re <em>on</em> the list<span className="c-title__period">.</span></>
+          )}
+        </h3>
+        <p className="ticket-success__note">{message}</p>
+
+        {!isNo && ticketUrl ? (
           <img src={ticketUrl} alt="Your Baby in Bloom ticket" className="ticket-success__image" />
         ) : null}
 
-        {guests.length > 0 ? (
+        {!isNo && guestCount > 0 ? (
           <div className="ticket-success__guests">
             <p className="ticket-success__guests-kicker">
-              The Guest List <span className="ticket-success__guests-count">&middot; {guests.length}</span>
+              The Guest List <span className="ticket-success__guests-count">&middot; {guestCount} confirmed</span>
             </p>
             <p className="ticket-success__guests-names">
-              {guests.map((guestName, i) => (
+              {guestPreview.map((guestName, i) => (
                 <span key={`${guestName}-${i}`}>
                   <em>{guestName}</em>
-                  {i < guests.length - 1 ? <span aria-hidden="true"> &middot; </span> : null}
+                  {i < guestPreview.length - 1 ? <span aria-hidden="true"> &middot; </span> : null}
                 </span>
               ))}
+              {guestHidden > 0 ? (
+                <>
+                  <span aria-hidden="true"> &middot; </span>
+                  <span className="ticket-success__guests-more">+{guestHidden} more</span>
+                </>
+              ) : null}
             </p>
           </div>
         ) : null}
@@ -235,7 +271,7 @@ export function SignupForm() {
                 name="attending"
                 value={opt.v}
                 checked={attending === opt.v}
-                onChange={() => setAttending(opt.v as typeof attending)}
+                onChange={() => setAttending(opt.v as Attending)}
               />
               <span>{opt.label}</span>
             </label>
@@ -243,30 +279,34 @@ export function SignupForm() {
         </div>
       </fieldset>
 
-      <fieldset className="add-name__fieldset">
-        <legend>How many guests?</legend>
-        <div className="add-name__choices" role="radiogroup">
-          {[
-            { v: "1", label: "Just me" },
-            { v: "2", label: "Plus one" },
-            { v: "family", label: "Family" }
-          ].map((opt) => (
-            <label
-              key={opt.v}
-              className={`add-name__choice${partySize === opt.v ? " is-selected" : ""}`}
-            >
-              <input
-                type="radio"
-                name="partySize"
-                value={opt.v}
-                checked={partySize === opt.v}
-                onChange={() => setPartySize(opt.v as typeof partySize)}
-              />
-              <span>{opt.label}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      {attending !== "no" ? (
+        <fieldset className="add-name__fieldset">
+          <legend>How many guests?</legend>
+          <div className="add-name__choices" role="radiogroup">
+            {[
+              { v: "1", label: "Just me" },
+              { v: "2", label: "Plus one" },
+              { v: "family", label: "Family" }
+            ].map((opt) => (
+              <label
+                key={opt.v}
+                className={`add-name__choice${partySize === opt.v ? " is-selected" : ""}`}
+              >
+                <input
+                  type="radio"
+                  name="partySize"
+                  value={opt.v}
+                  checked={partySize === opt.v}
+                  onChange={() => setPartySize(opt.v as PartySize)}
+                />
+                <span>{opt.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ) : (
+        <input type="hidden" name="partySize" value="1" />
+      )}
 
       <div className="add-name__grid add-name__grid--single">
         <label className="add-name__field">
@@ -293,16 +333,20 @@ export function SignupForm() {
         {buttonLabel}
       </button>
 
-      <div className="lineage-preview">
-        <div className="lineage-preview__rule" aria-hidden="true" />
-        <div className="lineage-preview__body">
-          <p className="lineage-preview__kicker">Baby in Bloom</p>
-          <p className="lineage-preview__admit">Admit One</p>
-          <p className="lineage-preview__you">{previewName.toUpperCase()}</p>
-          <p className="lineage-preview__date">Sunday &middot; June 28, 2026</p>
-          <p className="lineage-preview__num">N&deg; {lineage.num}</p>
+      {attending !== "no" ? (
+        <div className="lineage-preview">
+          <div className="lineage-preview__rule" aria-hidden="true" />
+          <div className="lineage-preview__body">
+            <p className="lineage-preview__kicker">Baby in Bloom</p>
+            <p className="lineage-preview__admit">
+              {attending === "maybe" ? "Saving Your Seat" : "Confirmed Guest"}
+            </p>
+            <p className="lineage-preview__you">{previewName.toUpperCase()}</p>
+            <p className="lineage-preview__date">{partyLabel(partySize)}</p>
+            <p className="lineage-preview__num">N&deg; {previewNum}</p>
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <p className="add-name__fineprint">
         We&rsquo;ll email your ticket, the private location details, and a few gentle reminders &mdash; kept brief, kept warm, never spammy.
