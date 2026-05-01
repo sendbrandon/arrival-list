@@ -187,8 +187,6 @@ export async function POST(request: Request) {
     `rsvp:${attending}`,
     `party:${partySize}`
   ];
-  if (dietary) tags.push("has:dietary");
-  if (note) tags.push("has:note");
 
   const mergeFields: Record<string, string | number> = {
     FNAME: displayFirst,
@@ -231,6 +229,9 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       email_address: email,
+      // status forces re-activation for previously-archived contacts;
+      // status_if_new applies only when creating a brand-new record.
+      status: "subscribed",
       status_if_new: "subscribed",
       merge_fields: mergeFields,
       tags
@@ -240,8 +241,17 @@ export async function POST(request: Request) {
   if (!response.ok) {
     const errorText = await response.text();
     console.error("Mailchimp subscribe failed:", errorText);
+    let detail = "";
+    try {
+      const parsed = JSON.parse(errorText) as { title?: string; detail?: string };
+      detail = parsed.detail || parsed.title || "";
+    } catch {}
     return NextResponse.json(
-      { message: "Could not save your signup. Please try again." },
+      {
+        message: detail
+          ? `Could not save your signup. ${detail}`
+          : "Could not save your signup. Please try again."
+      },
       { status: 500 }
     );
   }
