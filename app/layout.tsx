@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "Baby in Bloom — Brandon & Shenika's Baby Shower";
+const title = "Baby in Bloom — Brandon & Shenika";
 const description =
-  "Sunday, June 28, 2026. Join the guest list for address, reminders, and the registry. A small, slow afternoon — flowers, a long table, and the people who already love this little one most.";
+  "A small, slow afternoon for the people we love most. RSVP to save your seat.";
 
 export const metadata: Metadata = {
   title,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Baby in Bloom — Brandon & Shenika's Baby Shower"
+        alt: "Baby in Bloom — Brandon & Shenika"
       }
     ]
   },
